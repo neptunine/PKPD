@@ -15,9 +15,9 @@ namespace TouchInput
         public float
             speed = 3f;
 
-        [Tooltip("Moveable objects")]
-        public GameObject[]
-            targetObjects;
+//      [Tooltip("Moveable objects")]
+//      public GameObject[]
+//          targetObjects;
 
         [Tooltip("Object currently picked up")]
         public GameObject
@@ -36,7 +36,7 @@ namespace TouchInput
                 {
                     RaycastHit2D hitInformation = Physics2D.Raycast(new Vector2(touchPos.x, touchPos.y), Camera.main.transform.forward);
 
-                    if (hitInformation.collider != null && Array.IndexOf(targetObjects, hitInformation.transform.gameObject) > -1)
+                    if (hitInformation.collider != null) // && Array.IndexOf(targetObjects, hitInformation.transform.gameObject) > -1
                     {
 
                         pickedObject = hitInformation.transform.gameObject;
