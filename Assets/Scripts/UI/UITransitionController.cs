@@ -60,6 +60,7 @@ namespace UI
                 {
                     _initalObject.anchoredPosition = Vector2.zero + _spacing;
                     _targetObject.anchoredPosition = Vector2.zero;
+                    _initalObject.gameObject.SetActive(false);
                 }
                 else return;
             }

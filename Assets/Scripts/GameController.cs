@@ -19,6 +19,9 @@ namespace Game {
         private LevelController
             currentLevelController;
 
+        public int
+            ss;
+
         private void Start()
         {
 
@@ -36,6 +39,13 @@ namespace Game {
             currentLevelController = currentLevel.GetComponent<LevelController>();
             currentLevelController.wordFile = wordFile[mode];
             currentLevel.SetActive(true);
+        }
+
+        public void TerminateGame(int score)
+        {
+            ss = score;
+            Destroy(currentLevel);
+            mainMenu.SetActive(true);
         }
     }
 }
