@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Level
+namespace Game
 {
     public class LevelController : MonoBehaviour
     {
         public TextAsset
-            wordListFile;
+            wordFile;
+
+        public int
+            mode;
 
         [SerializeField]
         Text text;
@@ -21,15 +24,15 @@ namespace Level
 
         private void Awake()
         {
-            words = wordListFile.text.Split("\n"[0]);
+            words = wordFile.text.Split("\n"[0]);
         }
 
-        void Start()
+        private void Start()
         {
-            
+            Initialize();
         }
 
-        void Update()
+        private void Update()
         {
 
         }

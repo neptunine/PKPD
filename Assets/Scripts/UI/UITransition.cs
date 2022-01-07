@@ -10,6 +10,7 @@ namespace UI
         UITransitionController
             controller;
 
+        [Tooltip("Both XY position need to be Zero")]
         public RectTransform
             inital,
             target;
