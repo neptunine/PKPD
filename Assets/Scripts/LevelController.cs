@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Game
 {
@@ -80,14 +81,6 @@ namespace Game
 
         private void Update()
         {
-            if (selected)
-            {
-                selector.transform.position = new Vector3(Mathf.Lerp(selector.transform.position.x, selected.transform.position.x, Time.deltaTime * lerpSpeed), Mathf.Lerp(selector.transform.position.y, selected.transform.position.y, Time.deltaTime * lerpSpeed), selector.transform.position.z);
-            }
-            if (selectedInput)
-            {
-                selectedInput.position = new Vector3(Mathf.Lerp(selectedInput.position.x, targetPos.x, Time.deltaTime * lerpSpeed), Mathf.Lerp(selectedInput.position.y, targetPos.y, Time.deltaTime * lerpSpeed), selectedInput.position.z);
-            }
 
         }
 
@@ -172,14 +165,18 @@ namespace Game
         public void SelectChar(Button clicked)
         {
             selected = clicked.gameObject;
+            selector.GetComponent<SmoothFollow>().anchor = selected.transform;
 
         }
 
         public void InputChar(Button clicked)
         {
+            if (selectedInput)
+                selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
+            
             selectedInput = clicked.transform;
             initalPos = selectedInput.position;
-            targetPos = selector.transform.position;
+            selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.transform.position;
 
             char inchar = selectedInput.GetComponentInChildren<Text>().text.ToCharArray()[0];
             int no, k;
@@ -195,6 +192,7 @@ namespace Game
                         StartCoroutine(IncorrectInput());
                         return;
                     }
+                    selectedInput = null;
 
                     missing[i] = -1;
 
@@ -231,7 +229,8 @@ namespace Game
         {
             yield return new WaitForSeconds(1);
 
-            targetPos = initalPos;
+            if (selectedInput)
+                selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
         }
     }
 }

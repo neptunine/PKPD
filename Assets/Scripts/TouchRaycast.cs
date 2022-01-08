@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TouchInput
+namespace Utility
 {
     public class TouchRaycast : MonoBehaviour
     {
