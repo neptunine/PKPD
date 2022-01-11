@@ -23,28 +23,30 @@ namespace UI
 
         private void Start()
         {
-            _initial.enabled = _target.enabled = false;
+            _initial = initial.GetComponent<SmoothFollow>();
+            _target = target.GetComponent<SmoothFollow>();
         }
 
         public void Transition()
         {
             target.gameObject.SetActive(true);
 
-            _initial = initial.GetComponent<SmoothFollow>();
-            _target = target.GetComponent<SmoothFollow>();
-
-
             initial.anchoredPosition = Vector2.zero;
             target.anchoredPosition = new Vector2(spacing.x, spacing.y);
             _initial.anchor.GetComponent<RectTransform>().anchoredPosition = new Vector2(spacing.x * -1, spacing.y * -1);
             _target.anchor.position = Vector3.zero;
 
-            StartCoroutine(waitForTimeout());
+            //float timeout;
+            if (_initial.mode == SmoothFollow.modeSetting.Lerp)
+                timeout = 1 / _initial.lerpSpeed;
+            else
+                timeout = _initial.smoothTime;
+            StartCoroutine(waitForTimeout(timeout));
         }
 
-        IEnumerator waitForTimeout()
+        IEnumerator waitForTimeout(float t)
         {
-            yield return new WaitForSeconds(timeout);
+            yield return new WaitForSeconds(t);
 
             initial.gameObject.SetActive(false);
         }

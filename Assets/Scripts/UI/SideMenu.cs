@@ -1,69 +1,75 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Utility;
 
 namespace UI
 {
+    [RequireComponent(typeof(SmoothFollow))]
     public class SideMenu : MonoBehaviour
     {
-        public Vector2
-            initalLocation,
-            targetLocation;
-
-        public float
-            duration = .5f;
-
         private RectTransform
             _rect;
 
-        private float
-            _timer = 0f;
+        private SmoothFollow
+            _smoothFollow;
 
-        private bool
-            _moving = false,
-            _state = false;
+        private GameObject
+            _closeButton;
+
+        private Coroutine _coroutine;
+
+        private float
+            anchorMaxX,
+            anchorMinX;
 
         private void Start()
         {
             transform.parent.gameObject.SetActive(false);
-            _rect = GetComponent<RectTransform>();
-        }
+            _smoothFollow = GetComponent<SmoothFollow>();
+            _rect = _smoothFollow.anchor.GetComponent<RectTransform>();
+            _closeButton = transform.parent.GetComponentInChildren<Button>().gameObject;
 
-        private void Update()
-        {
-            if (!_moving) return;
-
-            if (_timer <= duration && _timer >= 0)
-            {
-                if (_state) _timer -= Time.deltaTime;
-                else _timer += Time.deltaTime;
-                float t = _timer / duration;
-                float x = Mathf.SmoothStep(initalLocation.x, targetLocation.x, t);
-                float y = Mathf.SmoothStep(initalLocation.y, targetLocation.y, t);
-                _rect.anchoredPosition = new Vector2(x, y);
-            }
-            else
-            {
-                if (_state) _timer = 0;
-                else _timer = duration;
-                _moving = false;
-                if (_state) transform.parent.gameObject.SetActive(false);
-            }
+            anchorMaxX = _rect.anchorMax.x;
+            anchorMinX = _rect.anchorMin.x;
         }
 
         public void Show()
         {
-            _rect.anchoredPosition = initalLocation;
+            if (_coroutine != null)
+                StopCoroutine(_coroutine);
+
+            _rect.anchorMax = new Vector2(anchorMinX * -1, _rect.anchorMax.y);
+            _rect.anchorMin = new Vector2(0, _rect.anchorMin.y);
+            _rect.offsetMax = _rect.offsetMin = Vector2.zero;
+
             transform.parent.gameObject.SetActive(true);
-            _moving = true;
-            _state = false;
+            _closeButton.SetActive(true);
         }
 
         public void Hide()
         {
-            _rect.anchoredPosition = targetLocation;
-            _moving = true;
-            _state = true;
+            _rect.anchorMax = new Vector2(anchorMaxX, _rect.anchorMax.y);
+            _rect.anchorMin = new Vector2(anchorMinX, _rect.anchorMin.y);
+            _rect.offsetMax = _rect.offsetMin = Vector2.zero;
+
+            _closeButton.SetActive(false);
+
+            float timeout;
+            if (_smoothFollow.mode == SmoothFollow.modeSetting.Lerp)
+                timeout = 1 / _smoothFollow.lerpSpeed * 6;
+            else
+                timeout = _smoothFollow.smoothTime * 6;
+            _coroutine = StartCoroutine(waitForTimeout(timeout));
+        }
+
+        IEnumerator waitForTimeout(float t)
+        {
+            yield return new WaitForSeconds(t);
+
+            transform.parent.gameObject.SetActive(false);
+            _coroutine = null;
         }
     }
 }
