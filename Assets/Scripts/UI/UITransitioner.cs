@@ -5,7 +5,7 @@ using Utility;
 
 namespace UI
 {
-    public class UITransitoner : MonoBehaviour
+    public class UITransitioner : MonoBehaviour
     {
         public RectTransform
             initial,
@@ -13,9 +13,6 @@ namespace UI
 
         public Vector2
             spacing;
-
-        public float
-            timeout = 1f;
 
         private SmoothFollow
             _initial,
@@ -36,7 +33,7 @@ namespace UI
             _initial.anchor.GetComponent<RectTransform>().anchoredPosition = new Vector2(spacing.x * -1, spacing.y * -1);
             _target.anchor.position = Vector3.zero;
 
-            //float timeout;
+            float timeout;
             if (_initial.mode == SmoothFollow.modeSetting.Lerp)
                 timeout = 1 / _initial.lerpSpeed;
             else
