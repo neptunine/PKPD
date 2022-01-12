@@ -32,7 +32,7 @@ namespace Game {
 
         }
 
-        public void InitializeGame(int mode)
+        public void StartLevel(int mode)
         {
             mainMenu.SetActive(false);
             currentLevel = Instantiate(level);
@@ -41,7 +41,7 @@ namespace Game {
             currentLevel.SetActive(true);
         }
 
-        public void TerminateGame(int score)
+        public void TerminateLevel(int score)
         {
             ss = score;
             Destroy(currentLevel);

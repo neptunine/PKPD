@@ -65,13 +65,6 @@ namespace Game
         {
             words = wordFile.text.Split("\n"[0]);
             abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            for (int i = 0; i < abc.Length; i++)
-            {
-                char tmp = abc[i];
-                int r = Random.Range(i, abc.Length);
-                abc[i] = abc[r];
-                abc[r] = tmp;
-            }
         }
 
         private void Start()
@@ -90,16 +83,28 @@ namespace Game
             Debug.Log($"[{this.name}] picked '{targetWord}'");
 
             char[] wordChar = targetWord.ToCharArray();
+            percent = Mathf.Clamp01(percent);
             int len = Mathf.RoundToInt(wordChar.Length * percent);
             missing = new int[len];
-            for (int i = 0; i < len;)
+            if (len < wordChar.Length)
             {
-                int index = Random.Range(0, wordChar.Length - 1);
-                if (wordChar[index] != hideChar)
+                for (int i = 0; i < len;)
                 {
-                    inputChars[index] = wordChar[index];
-                    wordChar[index] = hideChar;
-                    i++;
+                    int index = Random.Range(0, wordChar.Length - 1);
+                    if (wordChar[index] != hideChar)
+                    {
+                        inputChars[index] = wordChar[index];
+                        wordChar[index] = hideChar;
+                        i++;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < len; i++)
+                {
+                   inputChars[i] = wordChar[i];
+                   wordChar[i] = hideChar;
                 }
             }
             for (int i = 0, j = 0; i < wordChar.Length; i++)
@@ -110,7 +115,6 @@ namespace Game
                     j++;
                 }
             }
-
 
             for (int i = 0; i < wordChar.Length; i++)
             {
@@ -129,6 +133,13 @@ namespace Game
                 charObject.SetActive(true);
             }
 
+            for (int i = 0; i < abc.Length; i++)
+            {
+                char tmp = abc[i];
+                int r = Random.Range(i, abc.Length);
+                abc[i] = abc[r];
+                abc[r] = tmp;
+            }
             for (int i = 0; i < inputChars.Length; i++)
             {
                 if (inputChars[i] == 0)
@@ -143,6 +154,7 @@ namespace Game
                 inputChars[i] = inputChars[r];
                 inputChars[r] = tmp;
             }
+
             for (int i = 0; i < inputChars.Length; i++)
             {
                 GameObject charObject = Instantiate(charInput, charInput.transform.parent);
@@ -159,7 +171,7 @@ namespace Game
 
         public void Terminate()
         {
-            controller.TerminateGame(score);
+            controller.TerminateLevel(score);
         }
 
         public void SelectChar(Button clicked)
@@ -173,7 +185,7 @@ namespace Game
         {
             if (selectedInput)
                 selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
-            
+
             selectedInput = clicked.transform;
             initalPos = selectedInput.position;
             selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.transform.position;

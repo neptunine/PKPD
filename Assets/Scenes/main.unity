@@ -976,9 +976,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 144855534}
-        m_MethodName: StartGame
-        m_Mode: 1
+      - m_Target: {fileID: 169596344}
+        m_MethodName: StartLevel
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1466,7 +1466,6 @@ MonoBehaviour:
   initial: {fileID: 1726739341}
   target: {fileID: 1336822199}
   spacing: {x: 2000, y: 0}
-  timeout: 0.1
 --- !u!1 &187863318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1855,6 @@ MonoBehaviour:
   initial: {fileID: 266904188}
   target: {fileID: 1726739341}
   spacing: {x: -2000, y: 0}
-  timeout: 0.1
 --- !u!114 &201432866
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -3677,7 +3675,7 @@ MonoBehaviour:
   controller: {fileID: 169596344}
   wordFile: {fileID: 0}
   mode: 0
-  percent: 0.3
+  percent: 0.5
   lerpSpeed: 4
   charDisplay: {fileID: 2037017892}
   charInput: {fileID: 187863318}
@@ -4173,7 +4171,6 @@ MonoBehaviour:
   initial: {fileID: 1726739341}
   target: {fileID: 81857401}
   spacing: {x: 2000, y: 0}
-  timeout: 0.1
 --- !u!1 &805643537
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,7 +4501,6 @@ MonoBehaviour:
   initial: {fileID: 1336822199}
   target: {fileID: 1726739341}
   spacing: {x: -2000, y: 0}
-  timeout: 0.1
 --- !u!114 &830634078
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -5036,7 +5032,6 @@ MonoBehaviour:
   initial: {fileID: 81857401}
   target: {fileID: 1726739341}
   spacing: {x: -2000, y: 0}
-  timeout: 0.1
 --- !u!114 &910091584
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -9398,7 +9393,6 @@ MonoBehaviour:
   initial: {fileID: 1726739341}
   target: {fileID: 266904188}
   spacing: {x: 2000, y: 0}
-  timeout: 0.1
 --- !u!1 &1587973644
 GameObject:
   m_ObjectHideFlags: 0
@@ -9998,7 +9992,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 169596344}
-        m_MethodName: TerminateGame
+        m_MethodName: TerminateLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10009,7 +10003,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 169596344}
-        m_MethodName: InitializeGame
+        m_MethodName: StartLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
