@@ -12,6 +12,21 @@ namespace Game
         GameController
             controller;
 
+        [SerializeField]
+        LevelGraphicsHandler
+            graphics;
+
+        [SerializeField]
+        GameObject
+            charDisplay,
+            charInput,
+            selector;
+
+        [SerializeField]
+        Text text;
+
+        [Header("Settings")]
+
         public TextAsset
             wordFile;
 
@@ -20,15 +35,6 @@ namespace Game
 
         public float
             percent;
-
-        public float
-            lerpSpeed = 4f;
-
-        [SerializeField]
-        GameObject
-            charDisplay,
-            charInput,
-            selector;
 
         private Transform
             selectedInput;
@@ -49,7 +55,7 @@ namespace Game
         private string
             targetWord;
 
-        public int[]
+        private int[]
             missing;
 
         private GameObject
@@ -103,8 +109,8 @@ namespace Game
             {
                 for (int i = 0; i < len; i++)
                 {
-                   inputChars[i] = wordChar[i];
-                   wordChar[i] = hideChar;
+                    inputChars[i] = wordChar[i];
+                    wordChar[i] = hideChar;
                 }
             }
             for (int i = 0, j = 0; i < wordChar.Length; i++)
@@ -201,10 +207,9 @@ namespace Game
 
                     if (inchar != targetWord[k])
                     {
-                        StartCoroutine(IncorrectInput());
+                        StartCoroutine(OnIncorrectInput());
                         return;
                     }
-                    selectedInput = null;
 
                     missing[i] = -1;
 
@@ -227,22 +232,61 @@ namespace Game
 
             if (no != -1)
             {
-                Transform found = charDisplay.transform.parent.Find(no.ToString());
-                if (found != null)
-                    SelectChar(found.GetComponent<Button>());
+                StartCoroutine(OnCorrectInput(no));
             }
             else
             {
-                Debug.Log("no more");
+                StartCoroutine(OnEnd());
             }
+            selectedInput = null;
         }
 
-        private IEnumerator IncorrectInput()
+        private IEnumerator OnCorrectInput(int i)
         {
-            yield return new WaitForSeconds(1);
+            SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
+            sf.anchor = selected.transform;
+
+            float t;
+            if (sf.mode == SmoothFollow.modeSetting.Lerp)
+                t = 1 / sf.lerpSpeed;
+            else
+                t = sf.smoothTime;
+            yield return new WaitForSeconds(t);
+
+            SelectChar(charDisplay.transform.parent.Find(i.ToString()).GetComponent<Button>());
+        }
+
+        private IEnumerator OnIncorrectInput()
+        {
+            SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
+            float t;
+            if (sf.mode == SmoothFollow.modeSetting.Lerp)
+                t = 1 / sf.lerpSpeed * 2;
+            else
+                t = sf.smoothTime * 2;
+            yield return new WaitForSeconds(t);
 
             if (selectedInput)
-                selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
+                LayoutRebuilder.ForceRebuildLayoutImmediate(sf.anchor.transform.parent.GetComponent<RectTransform>());
+            //sf.anchor.position = initalPos;
+
+            graphics.nextStage();
+            if (graphics.isFinal)
+                StartCoroutine(OnGameOver());
+        }
+
+        private IEnumerator OnEnd()
+        {
+            Debug.Log($"[{this.name}] Finish");
+            yield return new WaitForSeconds(2);
+            text.text = "Finish";
+        }
+
+        private IEnumerator OnGameOver()
+        {
+            Debug.Log($"[{this.name}] Game Over");
+            yield return new WaitForSeconds(2);
+            text.text = "Game Over";
         }
     }
 }

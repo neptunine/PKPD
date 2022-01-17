@@ -1,9 +1,9 @@
 ﻿
 using UnityEngine;
 using System;
-using static UdonSharp.Video.UI.UIStyleMarkup;
+using static UIStyle.UIStyleMarkup;
 
-namespace UdonSharp.Video.UI
+namespace UIStyle
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
     internal class StyleMarkupLinkAttribute : Attribute
