@@ -25,15 +25,16 @@ namespace Game
 
         public bool
             isFinal = false;
+            
+        private float
+            current,
+            velocity = 0f;
 
+        [Min(0)]
         public float
-            rotStep = 15;
-
-        public Vector3
-            gravity;
-
-        public float
-            angle;
+            rotateStep = .3f,
+            elasticity = 40f,
+            damping = .5f;
 
         private void Start()
         {
@@ -43,7 +44,7 @@ namespace Game
 
         private void Update()
         {
-            SetRot();
+            SetRotation();
 
             isFinal = row == Jar.Length - 1;
         }
@@ -67,12 +68,14 @@ namespace Game
             row = Mathf.Clamp(row - 1, 0, Jar.Length - 1);
         }
 
-        private void SetRot()
+        private void SetRotation()
         {
-            gravity = Input.gyro.gravity;
-            angle = gravity.x * 90;
+            float target = Mathf.Clamp(Input.gyro.gravity.x, rotateStep * -3f, rotateStep * 3f);
+            float force = elasticity * (target - current) - damping * velocity;
+            velocity = velocity + force * Time.deltaTime;
+            current = current + velocity * Time.deltaTime;
 
-            int index = Mathf.Clamp(Mathf.RoundToInt(angle / rotStep), -4, 4);
+            int index = Mathf.Clamp(Mathf.RoundToInt(current / rotateStep), -4, 4);
             if (index < 0)
                 index *= -1;
             else if (index > 0)
