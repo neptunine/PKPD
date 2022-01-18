@@ -38,8 +38,8 @@ namespace Utility
         public XYZ freezePosition = new XYZ();
 
         public Transform
-            anchor,
-            anchorParent;
+            anchor;
+            //anchorParent;
 
         public float
             lerpSpeed = 3f,
@@ -50,11 +50,11 @@ namespace Utility
             _velocityY,
             _velocityZ;
 
-        private void Awake()
-        {
-            if (anchorParent)
-                anchor.SetParent(anchorParent);
-        }
+        //private void Awake()
+        //{
+        //    if (anchorParent)
+        //        anchor.SetParent(anchorParent);
+        //}
 
         private void Update()
         {

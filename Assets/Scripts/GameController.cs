@@ -7,20 +7,34 @@ namespace Game {
     {
         [SerializeField]
         GameObject
+            menuObject,
             mainMenu,
+            levelMenu,
+            optionsMenu,
+            creditsMenu;
+
+        [SerializeField]
+        LevelController
             level;
 
         public TextAsset[]
             wordFile;
 
-        private GameObject
-            currentLevel;
-
         private LevelController
-            currentLevelController;
+            currentLevel;
 
         public int
             ss;
+
+        private void Awake()
+        {
+            level.gameObject.SetActive(false);
+            menuObject.SetActive(true);
+            mainMenu.SetActive(true);
+            levelMenu.SetActive(false);
+            optionsMenu.SetActive(false);
+            creditsMenu.SetActive(false);
+        }
 
         private void Start()
         {
@@ -34,18 +48,19 @@ namespace Game {
 
         public void StartLevel(int mode)
         {
-            mainMenu.SetActive(false);
-            currentLevel = Instantiate(level);
-            currentLevelController = currentLevel.GetComponent<LevelController>();
-            currentLevelController.wordFile = wordFile[mode];
-            currentLevel.SetActive(true);
+            menuObject.SetActive(false);
+            currentLevel = Instantiate(level.gameObject).GetComponent<LevelController>();
+            currentLevel.wordFile = wordFile[mode];
+            currentLevel.Initialize();
+            currentLevel.gameObject.SetActive(true);
         }
 
         public void TerminateLevel(int score)
         {
             ss = score;
-            Destroy(currentLevel);
-            mainMenu.SetActive(true);
+            Destroy(currentLevel.gameObject);
+            menuObject.SetActive(true);
         }
+
     }
 }

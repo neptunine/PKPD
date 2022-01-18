@@ -18,9 +18,10 @@ namespace Game
 
         [SerializeField]
         GameObject
+            charPrefab,
+            selector,
             charDisplay,
-            charInput,
-            selector;
+            charInput;
 
         [SerializeField]
         Text text;
@@ -36,46 +37,40 @@ namespace Game
         public float
             percent;
 
+        private string
+            targetWord;
+
+        private char[]
+            abc;
+        
+        private char
+            hideChar = ' ';
+        
+        private char[]
+            inputChars = new char[18];
+        
+        private int[]
+            missing;
+
         private Transform
+            selected,
             selectedInput;
 
         private Vector3
             initalPos,
             targetPos;
 
-        private string[]
-            words;
-
-        private char
-            hideChar = ' ';
-
-        private char[]
-            inputChars = new char[18];
-
-        private string
-            targetWord;
-
-        private int[]
-            missing;
-
-        private GameObject
-            selected;
-
         public int
             score;
 
-        private char[]
-            abc;
-
         private void Awake()
         {
-            words = wordFile.text.Split("\n"[0]);
-            abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            
         }
 
         private void Start()
         {
-            Initialize();
+            
         }
 
         private void Update()
@@ -85,6 +80,8 @@ namespace Game
 
         public void Initialize()
         {
+            abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+            string[] words = wordFile.text.Split("\n"[0]);
             targetWord = words[Random.Range(0, words.Length)].Trim().ToUpper();
             Debug.Log($"[{this.name}] picked '{targetWord}'");
 
@@ -122,10 +119,17 @@ namespace Game
                 }
             }
 
+            LayoutGroup displayLayout = charDisplay.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < wordChar.Length; i++)
             {
-                GameObject charObject = Instantiate(charDisplay, charDisplay.transform.parent);
+                GameObject charObject = Instantiate(charPrefab, charDisplay.transform);
+                charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = i.ToString();
+                SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
+                sf.anchor.transform.SetParent(displayLayout.transform);
+                sf.anchor.name = i.ToString();
+                sf.freezePosition.X = false;
+                sf.freezePosition.Y = sf.freezePosition.Z = true;
                 charObject.GetComponentInChildren<Text>().text = wordChar[i].ToString();
                 if (wordChar[i] == hideChar)
                 {
@@ -138,6 +142,7 @@ namespace Game
                 }
                 charObject.SetActive(true);
             }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(displayLayout.GetComponent<RectTransform>());
 
             for (int i = 0; i < abc.Length; i++)
             {
@@ -161,10 +166,17 @@ namespace Game
                 inputChars[r] = tmp;
             }
 
+            LayoutGroup inputLayout = charInput.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < inputChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charInput, charInput.transform.parent);
+                GameObject charObject = Instantiate(charPrefab, charInput.transform);
+                charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = i.ToString();
+                SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
+                sf.anchor.transform.SetParent(inputLayout.transform);
+                sf.anchor.name = i.ToString();
+                sf.freezePosition.X = sf.freezePosition.Y = false;
+                sf.freezePosition.Z = true;
                 charObject.GetComponentInChildren<Text>().text = inputChars[i].ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
                 button.interactable = true;
@@ -172,6 +184,7 @@ namespace Game
                 button.onClick.AddListener(() => InputChar(self));
                 charObject.SetActive(true);
             }
+            LayoutRebuilder.ForceRebuildLayoutImmediate(inputLayout.GetComponent<RectTransform>());
 
         }
 
@@ -182,30 +195,30 @@ namespace Game
 
         public void SelectChar(Button clicked)
         {
-            selected = clicked.gameObject;
-            selector.GetComponent<SmoothFollow>().anchor = selected.transform;
-
+            selected = clicked.transform;
+            selector.GetComponent<SmoothFollow>().anchor = selected;
         }
 
         public void InputChar(Button clicked)
         {
             if (selectedInput)
+            {
                 selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
+                selectedInput.GetComponent<Button>().interactable = true;
+            }
 
             selectedInput = clicked.transform;
             initalPos = selectedInput.position;
-            selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.transform.position;
+            selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.GetComponent<SmoothFollow>().anchor.position;
+            selectedInput.GetComponent<Button>().interactable = false;
 
             char inchar = selectedInput.GetComponentInChildren<Text>().text.ToCharArray()[0];
-            int no, k;
-            int.TryParse(selected.name, out no);
+            int.TryParse(selected.name, out int no);
             for (int i = 0; i < missing.Length; i++)
             {
                 if (missing[i] == no)
                 {
-                    k = missing[i];
-
-                    if (inchar != targetWord[k])
+                    if (inchar != targetWord[missing[i]])
                     {
                         StartCoroutine(OnIncorrectInput());
                         return;
@@ -244,7 +257,9 @@ namespace Game
         private IEnumerator OnCorrectInput(int i)
         {
             SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
-            sf.anchor = selected.transform;
+            sf.anchor = selected;
+            selected.GetComponent<Button>().interactable = false;
+            selected = charDisplay.transform.Find(i.ToString());
 
             float t;
             if (sf.mode == SmoothFollow.modeSetting.Lerp)
@@ -253,7 +268,7 @@ namespace Game
                 t = sf.smoothTime;
             yield return new WaitForSeconds(t);
 
-            SelectChar(charDisplay.transform.parent.Find(i.ToString()).GetComponent<Button>());
+            selector.GetComponent<SmoothFollow>().anchor = selected;
         }
 
         private IEnumerator OnIncorrectInput()
@@ -267,17 +282,27 @@ namespace Game
             yield return new WaitForSeconds(t);
 
             if (selectedInput)
+            {
                 LayoutRebuilder.ForceRebuildLayoutImmediate(sf.anchor.transform.parent.GetComponent<RectTransform>());
-            //sf.anchor.position = initalPos;
+                selectedInput.GetComponent<Button>().interactable = true;
+            }
 
             graphics.nextStage();
             if (graphics.isFinal)
                 StartCoroutine(OnGameOver());
+
+            selectedInput = null;
         }
 
         private IEnumerator OnEnd()
         {
             Debug.Log($"[{this.name}] Finish");
+
+            foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
+                button.interactable = false;
+            foreach (Button button in charInput.GetComponentsInChildren<Button>())
+                button.interactable = false;
+
             yield return new WaitForSeconds(2);
             text.text = "Finish";
         }
@@ -285,6 +310,12 @@ namespace Game
         private IEnumerator OnGameOver()
         {
             Debug.Log($"[{this.name}] Game Over");
+
+            foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
+                button.interactable = false;
+            foreach (Button button in charInput.GetComponentsInChildren<Button>())
+                button.interactable = false;
+
             yield return new WaitForSeconds(2);
             text.text = "Game Over";
         }
