@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Utility
@@ -18,17 +15,9 @@ namespace Utility
         public modeSetting
             mode = modeSetting.None;
 
-        //public enum XYZEnum
-        //{
-        //    X,
-        //    Y,
-        //    Z
-        //};
-
         [Serializable]
         public class XYZ
         {
-            //public XYZEnum freezePosition;
             public bool
                 X,
                 Y,
@@ -39,7 +28,6 @@ namespace Utility
 
         public Transform
             anchor;
-            //anchorParent;
 
         public float
             lerpSpeed = 3f,
@@ -49,12 +37,6 @@ namespace Utility
             _velocityX,
             _velocityY,
             _velocityZ;
-
-        //private void Awake()
-        //{
-        //    if (anchorParent)
-        //        anchor.SetParent(anchorParent);
-        //}
 
         private void Update()
         {

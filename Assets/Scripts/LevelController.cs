@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Utility;
@@ -206,7 +205,7 @@ namespace Game
             selectedInput.GetComponent<Button>().interactable = false;
 
             char inchar = selectedInput.GetComponentInChildren<CharacterHandler>().character;
-            int.TryParse(selected.name, out int i);
+            int i = selected.GetComponentInChildren<CharacterHandler>().index;
 
             if (inchar != expectChar[i])
             {
@@ -216,18 +215,15 @@ namespace Game
             expectChar[i] = '\0';
 
             int next = -1;
-            if (i < expectChar.Length - 1)
+            for (int j = i; j < expectChar.Length; j++)
             {
-                for (int j = i; j < expectChar.Length; j++)
+                if (expectChar[j] != '\0')
                 {
-                    if (expectChar[j] != '\0')
-                    {
-                        next = j;
-                        break;
-                    }
+                    next = j;
+                    break;
                 }
             }
-            else
+            if (next == -1)
             {
                 for (int j = 0; j < i; j++)
                 {
