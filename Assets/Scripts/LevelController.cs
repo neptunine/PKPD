@@ -17,8 +17,11 @@ namespace Game
             graphics;
 
         [SerializeField]
+        CharacterHandler
+            charPrefab;
+
+        [SerializeField]
         GameObject
-            charPrefab,
             selector,
             charDisplay,
             charInput;
@@ -108,15 +111,17 @@ namespace Game
             LayoutGroup displayLayout = charDisplay.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < disChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charPrefab, charDisplay.transform);
+                GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
                 charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = i.ToString();
+                CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
+                character.index = i;
+                character.character = disChars[i];
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
                 sf.anchor.name = i.ToString();
                 sf.freezePosition.X = false;
                 sf.freezePosition.Y = sf.freezePosition.Z = true;
-                charObject.GetComponentInChildren<Text>().text = disChars[i].ToString();
                 if (disChars[i] == '\0')
                 {
                     Button button = charObject.GetComponentInChildren<Button>();
@@ -155,15 +160,17 @@ namespace Game
             LayoutGroup inputLayout = charInput.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < inChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charPrefab, charInput.transform);
+                GameObject charObject = Instantiate(charPrefab.gameObject, charInput.transform);
                 charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = i.ToString();
+                CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
+                character.index = i;
+                character.character = inChars[i];
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(inputLayout.transform);
                 sf.anchor.name = i.ToString();
                 sf.freezePosition.X = sf.freezePosition.Y = false;
                 sf.freezePosition.Z = true;
-                charObject.GetComponentInChildren<Text>().text = inChars[i].ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
                 button.interactable = true;
                 Button self = button;
@@ -198,7 +205,7 @@ namespace Game
             selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.GetComponent<SmoothFollow>().anchor.position;
             selectedInput.GetComponent<Button>().interactable = false;
 
-            char inchar = selectedInput.GetComponentInChildren<Text>().text.ToCharArray()[0];
+            char inchar = selectedInput.GetComponentInChildren<CharacterHandler>().character;
             int.TryParse(selected.name, out int i);
 
             if (inchar != expectChar[i])
