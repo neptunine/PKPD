@@ -22,8 +22,12 @@ namespace Game
         [SerializeField]
         GameObject
             selector,
-            charDisplay,
-            charInput;
+            charDisplay;
+
+        [SerializeField]
+        LayoutGroup
+            displayLayout,
+            inputLayout;
 
         [SerializeField]
         Text text;
@@ -107,20 +111,17 @@ namespace Game
                 }
             }
 
-            LayoutGroup displayLayout = charDisplay.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < disChars.Length; i++)
             {
                 GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
-                charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-                charObject.name = i.ToString();
+                //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+                charObject.name = '$' + i.ToString();
                 CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
                 character.index = i;
                 character.character = disChars[i];
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
-                sf.anchor.name = i.ToString();
-                sf.freezePosition.X = false;
-                sf.freezePosition.Y = sf.freezePosition.Z = true;
+                sf.anchor.name = '$' + i.ToString();
                 if (disChars[i] == '\0')
                 {
                     Button button = charObject.GetComponentInChildren<Button>();
@@ -156,20 +157,17 @@ namespace Game
                 inChars[r] = tmp;
             }
 
-            LayoutGroup inputLayout = charInput.GetComponentInChildren<LayoutGroup>();
             for (int i = 0; i < inChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charPrefab.gameObject, charInput.transform);
-                charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-                charObject.name = i.ToString();
+                GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
+                //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
+                charObject.name = '_' + i.ToString();
                 CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
                 character.index = i;
                 character.character = inChars[i];
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(inputLayout.transform);
-                sf.anchor.name = i.ToString();
-                sf.freezePosition.X = sf.freezePosition.Y = false;
-                sf.freezePosition.Z = true;
+                sf.anchor.name = '_' + i.ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
                 button.interactable = true;
                 Button self = button;
@@ -251,7 +249,7 @@ namespace Game
             SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
             sf.anchor = selected;
             selected.GetComponent<Button>().interactable = false;
-            selected = charDisplay.transform.Find(i.ToString());
+            selected = charDisplay.transform.Find('$' + i.ToString());
 
             float t;
             if (sf.mode == SmoothFollow.modeSetting.Lerp)
@@ -292,8 +290,6 @@ namespace Game
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
-            foreach (Button button in charInput.GetComponentsInChildren<Button>())
-                button.interactable = false;
 
             yield return new WaitForSeconds(2);
             text.text = "Finish";
@@ -304,8 +300,6 @@ namespace Game
             Debug.Log($"[{this.name}] Game Over");
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
-                button.interactable = false;
-            foreach (Button button in charInput.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
             yield return new WaitForSeconds(2);
