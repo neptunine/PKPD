@@ -21,6 +21,7 @@ namespace Game
 
         [SerializeField]
         GameObject
+            levelUI,
             selector,
             charDisplay;
 
@@ -34,8 +35,8 @@ namespace Game
 
         [Header("Settings")]
 
-        public TextAsset
-            wordFile;
+        public string[]
+            wordList;
 
         public int
             mode;
@@ -48,9 +49,6 @@ namespace Game
 
         private char[]
            expectChar;
-
-        private char[]
-            abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
         private Transform
             selected,
@@ -80,9 +78,11 @@ namespace Game
 
         public void Initialize()
         {
-            string[] words = wordFile.text.Split("\n"[0]);
-            targetWord = words[Random.Range(0, words.Length)].Trim().ToUpper();
-            Debug.Log($"[{this.name}] picked '{targetWord}'");
+            Clear();
+
+            targetWord = wordList[Random.Range(0, wordList.Length)].Trim().ToUpper();
+            Debug.Log($"[{this.name}] Target word is '{targetWord}'");
+            char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
             char[] disChars = targetWord.ToCharArray();
             char[] inChars = new char[18];
@@ -180,7 +180,28 @@ namespace Game
 
         public void Terminate()
         {
+            Clear();
             controller.TerminateLevel(score);
+        }
+
+        public void Clear()
+        {
+            selected = selectedInput = null;
+            targetWord = null;
+            expectChar = null;
+
+            for (int i = 0; i < charDisplay.transform.childCount; i++)
+            {
+                Destroy(charDisplay.transform.GetChild(i).gameObject);
+            }
+            for (int i = 0; i < displayLayout.transform.childCount; i++)
+            {
+                Destroy(displayLayout.transform.GetChild(i).gameObject);
+            }
+            for (int i = 0; i < inputLayout.transform.childCount; i++)
+            {
+                Destroy(inputLayout.transform.GetChild(i).gameObject);
+            }
         }
 
         public void SelectChar(Button clicked)

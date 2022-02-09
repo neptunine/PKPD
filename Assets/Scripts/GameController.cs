@@ -11,11 +11,12 @@ namespace Game {
             mainMenu,
             levelMenu,
             optionsMenu,
-            creditsMenu;
+            creditsMenu,
+            level,
+            levelUI;
 
-        [SerializeField]
-        LevelController
-            level;
+        private LevelController
+            levelController;
 
         public TextAsset[]
             wordFile;
@@ -28,7 +29,9 @@ namespace Game {
 
         private void Awake()
         {
+            levelController = level.GetComponent<LevelController>();
             level.gameObject.SetActive(false);
+            levelUI.gameObject.SetActive(false);
             menuObject.SetActive(true);
             mainMenu.SetActive(true);
             levelMenu.SetActive(false);
@@ -49,16 +52,17 @@ namespace Game {
         public void StartLevel(int mode)
         {
             menuObject.SetActive(false);
-            currentLevel = Instantiate(level.gameObject).GetComponent<LevelController>();
-            currentLevel.wordFile = wordFile[mode];
-            currentLevel.Initialize();
-            currentLevel.gameObject.SetActive(true);
+            level.SetActive(true);
+            levelUI.SetActive(true);
+            levelController.wordList = wordFile[mode].text.Split("\n"[0]); ;
+            levelController.Initialize();
         }
 
         public void TerminateLevel(int score)
         {
             ss = score;
-            Destroy(currentLevel.gameObject);
+            level.SetActive(false);
+            levelUI.SetActive(false);
             menuObject.SetActive(true);
         }
 
