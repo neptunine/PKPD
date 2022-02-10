@@ -16,9 +16,9 @@ namespace Game
         public SpriteArray[]
             Jar;
 
-        public int
-            row,
-            column;
+        private int
+            _row,
+            _column;
 
         private SpriteRenderer
             _renderer;
@@ -46,26 +46,31 @@ namespace Game
         {
             SetRotation();
 
-            isFinal = row == Jar.Length - 1;
+            isFinal = _row == Jar.Length - 1;
         }
 
         private void LateUpdate()
         {
-            int _y = Mathf.Clamp(row, 0, Jar.Length - 1);
-            int _x = Mathf.Clamp(column, 0, Jar[_y].sprites.Length - 1);
+            int _y = Mathf.Clamp(_row, 0, Jar.Length - 1);
+            int _x = Mathf.Clamp(_column, 0, Jar[_y].sprites.Length - 1);
             _renderer.sprite = Jar[_y].sprites[_x];
 
         }
 
-        public void nextStage()
+        public void NextStage()
         {
-            row = Mathf.Clamp(row + 1, 0, Jar.Length - 1);
-            isFinal = row == Jar.Length - 1;
+            _row = Mathf.Min(_row + 1, Jar.Length - 1);
+            isFinal = _row == Jar.Length - 1;
         }
 
-        public void preStage()
+        public void PreStage()
         {
-            row = Mathf.Clamp(row - 1, 0, Jar.Length - 1);
+            _row = Mathf.Max(_row - 1, 0);
+        }
+
+        public void Clear()
+        {
+            _row = 0;
         }
 
         private void SetRotation()
@@ -80,7 +85,7 @@ namespace Game
                 index *= -1;
             else if (index > 0)
                 index += 4;
-            column = index;
+            _column = index;
         }
     }
 }

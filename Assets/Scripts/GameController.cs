@@ -25,6 +25,9 @@ namespace Game {
             currentLevel;
 
         public int
+            live;
+
+        public int
             ss;
 
         private void Awake()
@@ -41,7 +44,7 @@ namespace Game {
 
         private void Start()
         {
-
+            live = 5;
         }
 
         private void Update()
@@ -54,7 +57,15 @@ namespace Game {
             menuObject.SetActive(false);
             level.SetActive(true);
             levelUI.SetActive(true);
-            levelController.wordList = wordFile[mode].text.Split("\n"[0]); ;
+            string[] words = wordFile[mode].text.Split("\n"[0]);
+            for (int i = 0; i < words.Length; i++)
+            {
+                string tmp = words[i];
+                int r = Random.Range(i, words.Length);
+                words[i] = words[r];
+                words[r] = tmp;
+            }
+            levelController.wordList = words;
             levelController.Initialize();
         }
 

@@ -23,7 +23,12 @@ namespace Game
         GameObject
             levelUI,
             selector,
-            charDisplay;
+            charDisplay,
+            nextUI;
+
+        [SerializeField]
+        ProgressBar
+            progress;
 
         [SerializeField]
         LayoutGroup
@@ -39,7 +44,8 @@ namespace Game
             wordList;
 
         public int
-            mode;
+            quest,
+            stage;
 
         public float
             percent;
@@ -57,6 +63,13 @@ namespace Game
         private Vector3
             initalPos,
             targetPos;
+
+        public bool
+            isQuestEnded,
+            isLevelEnded;
+
+        public bool[]
+            result;
 
         public int
             score;
@@ -78,9 +91,29 @@ namespace Game
 
         public void Initialize()
         {
+            for (int i = 0; i < wordList.Length; i++)
+            {
+                wordList[i] = wordList[i].Trim().ToUpper();
+            }
+            quest = 0;
+            result = new bool[wordList.Length];
+            isQuestEnded = isLevelEnded = false;
             Clear();
+            NewWord();
+        }
 
-            targetWord = wordList[Random.Range(0, wordList.Length)].Trim().ToUpper();
+        public void NewWord()
+        {
+            nextUI.SetActive(false);
+            isQuestEnded = false;
+            quest += 1;
+            if (isLevelEnded)
+            {
+                StartCoroutine(EndScreen());
+                return;
+            }
+
+            targetWord = wordList[quest - 1];
             Debug.Log($"[{this.name}] Target word is '{targetWord}'");
             char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
@@ -189,6 +222,9 @@ namespace Game
             selected = selectedInput = null;
             targetWord = null;
             expectChar = null;
+            text.text = string.Empty;
+            graphics.Clear();
+            stage = graphics.Jar.Length - 1;
 
             for (int i = 0; i < charDisplay.transform.childCount; i++)
             {
@@ -212,6 +248,9 @@ namespace Game
 
         public void InputChar(Button clicked)
         {
+            if (isQuestEnded || isLevelEnded)
+                return;
+
             if (selectedInput)
             {
                 selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
@@ -228,6 +267,9 @@ namespace Game
 
             if (inchar != expectChar[i])
             {
+                stage -= 1;
+                if (stage < 1)
+                    isQuestEnded = true;
                 StartCoroutine(OnIncorrectInput());
                 return;
             }
@@ -260,6 +302,7 @@ namespace Game
             }
             else
             {
+                isQuestEnded = true;
                 StartCoroutine(OnEnd());
             }
             selectedInput = null;
@@ -298,7 +341,7 @@ namespace Game
                 selectedInput.GetComponent<Button>().interactable = true;
             }
 
-            graphics.nextStage();
+            graphics.NextStage();
             if (graphics.isFinal)
                 StartCoroutine(OnGameOver());
 
@@ -309,22 +352,57 @@ namespace Game
         {
             Debug.Log($"[{this.name}] Finish");
 
+            result[quest - 1] = true;
+            QuestionEnd();
+
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
             yield return new WaitForSeconds(2);
             text.text = "Finish";
+
+            nextUI.SetActive(true);
         }
 
         private IEnumerator OnGameOver()
         {
-            Debug.Log($"[{this.name}] Game Over");
+            Debug.Log($"[{this.name}] Failed");
+
+            controller.live -= 1;
+            result[quest - 1] = false;
+            QuestionEnd();
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
             yield return new WaitForSeconds(2);
-            text.text = "Game Over";
+            text.text = "Failed";
+
+            nextUI.SetActive(true);
+        }
+
+        private IEnumerator EndScreen()
+        {
+            yield return new WaitForSeconds(1);
+            text.text = "Gameover";
+            yield return new WaitForSeconds(2);
+            text.text = "Score: " + score;
+        }
+
+        private void QuestionEnd()
+        {
+            progress.value = 1f * quest / wordList.Length;
+            if (quest > wordList.Length || controller.live < 1)
+                isLevelEnded = true;
+
+            float s = 0f;
+            for (int i = 0; i < result.Length; i++)
+            {
+                if (result[i])
+                    s += 100f;
+            }
+            s /= result.Length;
+            score = Mathf.RoundToInt(s);
         }
     }
 }
