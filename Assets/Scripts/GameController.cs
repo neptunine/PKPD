@@ -6,35 +6,32 @@ namespace Game {
     public class GameController : MonoBehaviour
     {
         [SerializeField]
+        LevelController
+            level;
+
+        [SerializeField]
+        LifeHandler
+            life;
+
+        [SerializeField]
         GameObject
             menuObject,
             mainMenu,
             levelMenu,
             optionsMenu,
             creditsMenu,
-            level,
             levelUI;
-
-        private LevelController
-            levelController;
 
         public TextAsset[]
             wordFile;
-
-        private LevelController
-            currentLevel;
-
-        public int
-            live;
 
         public int
             ss;
 
         private void Awake()
         {
-            levelController = level.GetComponent<LevelController>();
             level.gameObject.SetActive(false);
-            levelUI.gameObject.SetActive(false);
+            levelUI.SetActive(false);
             menuObject.SetActive(true);
             mainMenu.SetActive(true);
             levelMenu.SetActive(false);
@@ -44,7 +41,7 @@ namespace Game {
 
         private void Start()
         {
-            live = 5;
+            
         }
 
         private void Update()
@@ -54,8 +51,14 @@ namespace Game {
 
         public void StartLevel(int mode)
         {
+            if (life.isOutOfLife)
+            {
+                Debug.Log($"[<color=magenta>GameController</color>] Can't Start Level without life");
+                return;
+            }
+            
             menuObject.SetActive(false);
-            level.SetActive(true);
+            level.gameObject.SetActive(true);
             levelUI.SetActive(true);
             string[] words = wordFile[mode].text.Split("\n"[0]);
             for (int i = 0; i < words.Length; i++)
@@ -65,16 +68,20 @@ namespace Game {
                 words[i] = words[r];
                 words[r] = tmp;
             }
-            levelController.wordList = words;
-            levelController.Initialize();
+            level.wordList = words;
+            level.Initialize();
+
+            Debug.Log($"[<color=magenta>GameController</color>] Started Level with mode {mode}");
         }
 
         public void TerminateLevel(int score)
         {
             ss = score;
-            level.SetActive(false);
+            level.gameObject.SetActive(false);
             levelUI.SetActive(false);
             menuObject.SetActive(true);
+
+            Debug.Log($"[<color=magenta>GameController</color>] Ended Level");
         }
 
     }

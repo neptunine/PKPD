@@ -12,8 +12,16 @@ namespace Game
             controller;
 
         [SerializeField]
+        LifeHandler
+            life;
+
+        [SerializeField]
         LevelGraphicsHandler
             graphics;
+
+        [SerializeField]
+        ProgressBar
+            progress;
 
         [SerializeField]
         CharacterHandler
@@ -25,10 +33,6 @@ namespace Game
             selector,
             charDisplay,
             nextUI;
-
-        [SerializeField]
-        ProgressBar
-            progress;
 
         [SerializeField]
         LayoutGroup
@@ -114,7 +118,7 @@ namespace Game
             }
 
             targetWord = wordList[quest - 1];
-            Debug.Log($"[{this.name}] Target word is '{targetWord}'");
+            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{targetWord}'");
             char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
             char[] disChars = targetWord.ToCharArray();
@@ -350,7 +354,7 @@ namespace Game
 
         private IEnumerator OnEnd()
         {
-            Debug.Log($"[{this.name}] Finish");
+            Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
 
             result[quest - 1] = true;
             QuestionEnd();
@@ -366,9 +370,9 @@ namespace Game
 
         private IEnumerator OnGameOver()
         {
-            Debug.Log($"[{this.name}] Failed");
+            Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
 
-            controller.live -= 1;
+            life.Damage();
             result[quest - 1] = false;
             QuestionEnd();
 
@@ -383,6 +387,8 @@ namespace Game
 
         private IEnumerator EndScreen()
         {
+            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score}%)");
+
             yield return new WaitForSeconds(1);
             text.text = "Gameover";
             yield return new WaitForSeconds(2);
@@ -392,7 +398,7 @@ namespace Game
         private void QuestionEnd()
         {
             progress.value = 1f * quest / wordList.Length;
-            if (quest > wordList.Length || controller.live < 1)
+            if (quest > wordList.Length || life.isOutOfLife)
                 isLevelEnded = true;
 
             float s = 0f;

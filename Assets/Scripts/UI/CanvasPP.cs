@@ -19,7 +19,7 @@ namespace UI
             _pixelPerfectCamera = Camera.main.GetComponent<PixelPerfectCamera>();
             _canvasScaler = GetComponent<CanvasScaler>();
         }
-        private void Update()
+        private void LateUpdate()
         {
             if (_pixelPerfectCamera && _pixelPerfectCamera.enabled)
             {

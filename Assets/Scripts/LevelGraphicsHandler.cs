@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Game
 {
-    [RequireComponent(typeof(SpriteRenderer))]
     public class LevelGraphicsHandler : MonoBehaviour
     {
         [System.Serializable]
@@ -13,15 +12,15 @@ namespace Game
             public Sprite[] sprites;
         }
 
+        public SpriteRenderer
+            jarRenderer;
+
         public SpriteArray[]
             Jar;
 
         private int
             _row,
             _column;
-
-        private SpriteRenderer
-            _renderer;
 
         public bool
             isFinal = false;
@@ -38,7 +37,6 @@ namespace Game
 
         private void Start()
         {
-            _renderer = GetComponent<SpriteRenderer>();
             Input.gyro.enabled = true;
         }
 
@@ -53,7 +51,7 @@ namespace Game
         {
             int _y = Mathf.Clamp(_row, 0, Jar.Length - 1);
             int _x = Mathf.Clamp(_column, 0, Jar[_y].sprites.Length - 1);
-            _renderer.sprite = Jar[_y].sprites[_x];
+            jarRenderer.sprite = Jar[_y].sprites[_x];
 
         }
 
