@@ -3847,7 +3847,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2835206138677946005, guid: 8bfb1ba0e253c4b96b841c4c14773b0b,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6541,7 +6541,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3710183241121652259, guid: ee0ece4e6a2b08148850b67da00620bf,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8367,7 +8367,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: c77bd05e1d9ea4eceb6260e88ed47969, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -10561,7 +10561,7 @@ MonoBehaviour:
   jarRenderer: {fileID: 1127616506}
   Jar:
   - sprites:
-    - {fileID: 21300000, guid: 644cb36d0ae585e4296a9bc567923a2c, type: 3}
+    - {fileID: 21300000, guid: c77bd05e1d9ea4eceb6260e88ed47969, type: 3}
   - sprites:
     - {fileID: -3710183241121652259, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
     - {fileID: 3211240730108638604, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
