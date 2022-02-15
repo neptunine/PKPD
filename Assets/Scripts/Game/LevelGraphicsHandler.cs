@@ -22,12 +22,15 @@ namespace Game
             _row,
             _column;
 
+        private Animator
+            _animator;
+
         public bool
             isFinal = false;
             
         private float
-            current,
-            velocity = 0f;
+            _current,
+            _velocity = 0f;
 
         [Min(0)]
         public float
@@ -38,6 +41,7 @@ namespace Game
         private void Start()
         {
             Input.gyro.enabled = true;
+            _animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -59,11 +63,13 @@ namespace Game
         {
             _row = Mathf.Min(_row + 1, Jar.Length - 1);
             isFinal = _row == Jar.Length - 1;
+            _animator.SetInteger("stage", _row);
         }
 
         public void PreStage()
         {
             _row = Mathf.Max(_row - 1, 0);
+            _animator.SetInteger("stage", _row);
         }
 
         public void Clear()
@@ -74,11 +80,11 @@ namespace Game
         private void SetRotation()
         {
             float target = Mathf.Clamp(Input.gyro.gravity.x, rotateStep * -3f, rotateStep * 3f);
-            float force = elasticity * (target - current) - damping * velocity;
-            velocity = velocity + force * Time.deltaTime;
-            current = current + velocity * Time.deltaTime;
+            float force = elasticity * (target - _current) - damping * _velocity;
+            _velocity = _velocity + force * Time.deltaTime;
+            _current = _current + _velocity * Time.deltaTime;
 
-            int index = Mathf.Clamp(Mathf.RoundToInt(current / rotateStep), -4, 4);
+            int index = Mathf.Clamp(Mathf.RoundToInt(_current / rotateStep), -4, 4);
             if (index < 0)
                 index *= -1;
             else if (index > 0)
