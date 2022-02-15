@@ -21,14 +21,11 @@ namespace Game
 
         [SerializeField]
         ProgressBar
-            progress;
-
-        [SerializeField]
-        CharacterHandler
-            charPrefab;
+            progress;   
 
         [SerializeField]
         GameObject
+            charPrefab,
             levelUI,
             selector,
             charDisplay,
@@ -42,10 +39,20 @@ namespace Game
         [SerializeField]
         Text text;
 
-        [Header("Settings")]
+        [System.Serializable]
+        public class ABC
+        {
+            public Sprite
+                blank,
+                a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+        }
 
-        public string[]
-            wordList;
+        [SerializeField]
+        ABC
+            characters;
+
+        private string[]
+            _wordList;
 
         public int
             quest,
@@ -55,25 +62,33 @@ namespace Game
             percent;
 
         private string
-            targetWord;
+            _targetWord;
 
         private char[]
-           expectChar;
+            _expectChars,
+            _inputChars;
 
-        private Transform
-            selected,
-            selectedInput;
+        private Button[]
+            _wordButtons,
+            _inputButtons;
+
+        private int
+            _selectedChar,
+            _selectedInput;
 
         private Vector3
-            initalPos,
-            targetPos;
+            _initalPos,
+            _targetPos;
 
         public bool
             isQuestEnded,
             isLevelEnded;
 
-        public bool[]
-            result;
+        private bool[]
+            _results;
+
+        private int
+            _inputs = 18;
 
         public int
             score;
@@ -93,14 +108,15 @@ namespace Game
 
         }
 
-        public void Initialize()
+        public void Initialize(string[] words)
         {
-            for (int i = 0; i < wordList.Length; i++)
+            _wordList = words;
+            for (int i = 0; i < _wordList.Length; i++)
             {
-                wordList[i] = wordList[i].Trim().ToUpper();
+                _wordList[i] = _wordList[i].Trim().ToUpper();
             }
             quest = 0;
-            result = new bool[wordList.Length];
+            _results = new bool[_wordList.Length];
             isQuestEnded = isLevelEnded = false;
             Clear();
             NewWord();
@@ -117,13 +133,15 @@ namespace Game
                 return;
             }
 
-            targetWord = wordList[quest - 1];
-            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{targetWord}'");
+            _targetWord = _wordList[quest - 1];
+            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{_targetWord}'");
             char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
-            char[] disChars = targetWord.ToCharArray();
-            char[] inChars = new char[18];
-            expectChar = new char[disChars.Length];
+            char[] disChars = _targetWord.ToCharArray();
+            char[] inChars = new char[_inputs];
+            _expectChars = new char[disChars.Length];
+            _wordButtons = new Button[disChars.Length];
+            _inputButtons = new Button[_inputs];
             percent = Mathf.Clamp01(percent);
             int len = Mathf.RoundToInt(disChars.Length * percent);
             if (len < disChars.Length)
@@ -133,7 +151,7 @@ namespace Game
                     int index = Random.Range(0, disChars.Length - 1);
                     if (disChars[index] != '\0')
                     {
-                        inChars[index] = expectChar[index] = disChars[index];
+                        inChars[index] = _expectChars[index] = disChars[index];
                         disChars[index] = '\0';
                         i++;
                     }
@@ -143,7 +161,7 @@ namespace Game
             {
                 for (int i = 0; i < len; i++)
                 {
-                    inChars[i] = expectChar[i] = disChars[i];
+                    inChars[i] = _expectChars[i] = disChars[i];
                     disChars[i] = '\0';
                 }
             }
@@ -152,21 +170,24 @@ namespace Game
             {
                 GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-                charObject.name = '$' + i.ToString();
-                CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
-                character.index = i;
-                character.character = disChars[i];
+                charObject.name = "W." + i.ToString();
+                charObject.GetComponentInChildren<Image>().sprite = GetSprite(disChars[i]);
+                //CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
+                //character.index = i;
+                //character.character = disChars[i];
+                Button button = charObject.GetComponentInChildren<Button>();
+                _wordButtons[i] = button;
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
-                sf.anchor.name = '$' + i.ToString();
+                sf.anchor.name = "w." + i.ToString();
                 if (disChars[i] == '\0')
                 {
-                    Button button = charObject.GetComponentInChildren<Button>();
-                    if (selected == null)
-                        SelectChar(button);
+                    charObject.name += "_";
                     button.interactable = true;
-                    Button self = button;
+                    int self = i;
                     button.onClick.AddListener(() => SelectChar(self));
+                    if (_selectedChar == -1)
+                        SelectChar(i);
                 }
                 charObject.SetActive(true);
             }
@@ -194,20 +215,23 @@ namespace Game
                 inChars[r] = tmp;
             }
 
+            _inputChars = inChars;
             for (int i = 0; i < inChars.Length; i++)
             {
                 GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
-                charObject.name = '_' + i.ToString();
-                CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
-                character.index = i;
-                character.character = inChars[i];
+                charObject.name = "D." + i.ToString();
+                charObject.GetComponentInChildren<Image>().sprite = GetSprite(inChars[i]);
+                //CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
+                //character.index = i;
+                //character.character = inChars[i];
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(inputLayout.transform);
-                sf.anchor.name = '_' + i.ToString();
+                sf.anchor.name = "d." + i.ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
+                _inputButtons[i] = button;
                 button.interactable = true;
-                Button self = button;
+                int self = i;
                 button.onClick.AddListener(() => InputChar(self));
                 charObject.SetActive(true);
             }
@@ -223,9 +247,9 @@ namespace Game
 
         public void Clear()
         {
-            selected = selectedInput = null;
-            targetWord = null;
-            expectChar = null;
+            _selectedChar = _selectedInput = -1;
+            _targetWord = null;
+            _expectChars = null;
             text.text = string.Empty;
             graphics.Clear();
             stage = graphics.Jar.Length - 1;
@@ -244,32 +268,66 @@ namespace Game
             }
         }
 
-        public void SelectChar(Button clicked)
+        private Sprite GetSprite(char character)
         {
-            selected = clicked.transform;
-            selector.GetComponent<SmoothFollow>().anchor = selected;
+            switch (character)
+            {
+                case 'a': case 'A': return characters.a;
+                case 'b': case 'B': return characters.b;
+                case 'c': case 'C': return characters.c;
+                case 'd': case 'D': return characters.d;
+                case 'e': case 'E': return characters.e;
+                case 'f': case 'F': return characters.f;
+                case 'g': case 'G': return characters.g;
+                case 'h': case 'H': return characters.h;
+                case 'i': case 'I': return characters.i;
+                case 'j': case 'J': return characters.j;
+                case 'k': case 'K': return characters.k;
+                case 'l': case 'L': return characters.l;
+                case 'm': case 'M': return characters.m;
+                case 'n': case 'N': return characters.n;
+                case 'o': case 'O': return characters.o;
+                case 'p': case 'P': return characters.p;
+                case 'q': case 'Q': return characters.q;
+                case 'r': case 'R': return characters.r;
+                case 's': case 'S': return characters.s;
+                case 't': case 'T': return characters.t;
+                case 'u': case 'U': return characters.u;
+                case 'v': case 'V': return characters.v;
+                case 'w': case 'W': return characters.w;
+                case 'x': case 'X': return characters.x;
+                case 'y': case 'Y': return characters.y;
+                case 'z': case 'Z': return characters.z;
+                default: return characters.blank;
+            }
         }
 
-        public void InputChar(Button clicked)
+        public void SelectChar(int clicked)
+        {
+            _selectedChar = clicked;
+            selector.GetComponent<SmoothFollow>().anchor = _wordButtons[clicked].transform;
+        }
+
+        public void InputChar(int clicked)
         {
             if (isQuestEnded || isLevelEnded)
                 return;
 
-            if (selectedInput)
+            if (_selectedInput != -1)
             {
-                selectedInput.GetComponent<SmoothFollow>().anchor.position = initalPos;
-                selectedInput.GetComponent<Button>().interactable = true;
+                _inputButtons[_selectedInput].GetComponent<SmoothFollow>().anchor.position = _initalPos;
+                _inputButtons[_selectedInput].interactable = true;
             }
 
-            selectedInput = clicked.transform;
-            initalPos = selectedInput.position;
-            selectedInput.GetComponent<SmoothFollow>().anchor.position = selector.GetComponent<SmoothFollow>().anchor.position;
-            selectedInput.GetComponent<Button>().interactable = false;
+            _selectedInput = clicked;
+            SmoothFollow sf = _inputButtons[_selectedInput].GetComponent<SmoothFollow>();
+            _initalPos = sf.anchor.position;
+            sf.anchor.position = selector.GetComponent<SmoothFollow>().anchor.position;
+            _inputButtons[_selectedInput].interactable = false;
 
-            char inchar = selectedInput.GetComponentInChildren<CharacterHandler>().character;
-            int i = selected.GetComponentInChildren<CharacterHandler>().index;
+            char inchar = _inputChars[clicked];
 
-            if (inchar != expectChar[i])
+            if (inchar != _expectChars[_selectedChar])
             {
                 stage -= 1;
                 if (stage < 1)
@@ -277,12 +335,12 @@ namespace Game
                 StartCoroutine(OnIncorrectInput());
                 return;
             }
-            expectChar[i] = '\0';
+            _expectChars[_selectedChar] = '\0';
 
             int next = -1;
-            for (int j = i; j < expectChar.Length; j++)
+            for (int j = _selectedChar; j < _expectChars.Length; j++)
             {
-                if (expectChar[j] != '\0')
+                if (_expectChars[j] != '\0')
                 {
                     next = j;
                     break;
@@ -290,9 +348,9 @@ namespace Game
             }
             if (next == -1)
             {
-                for (int j = 0; j < i; j++)
+                for (int j = 0; j < _selectedChar; j++)
                 {
-                    if (expectChar[j] != '\0')
+                    if (_expectChars[j] != '\0')
                     {
                         next = j;
                         break;
@@ -309,15 +367,15 @@ namespace Game
                 isQuestEnded = true;
                 StartCoroutine(OnEnd());
             }
-            selectedInput = null;
+            _selectedInput = -1;
         }
 
-        private IEnumerator OnCorrectInput(int i)
+        private IEnumerator OnCorrectInput(int next)
         {
-            SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
-            sf.anchor = selected;
-            selected.GetComponent<Button>().interactable = false;
-            selected = charDisplay.transform.Find('$' + i.ToString());
+            SmoothFollow sf = _inputButtons[_selectedInput].GetComponent<SmoothFollow>();
+            sf.anchor = _wordButtons[_selectedChar].transform;
+            _inputButtons[_selectedInput].interactable = false;
+            _selectedChar = next;
 
             float t;
             if (sf.mode == SmoothFollow.modeSetting.Lerp)
@@ -326,12 +384,12 @@ namespace Game
                 t = sf.smoothTime;
             yield return new WaitForSeconds(t);
 
-            selector.GetComponent<SmoothFollow>().anchor = selected;
+            selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
         }
 
         private IEnumerator OnIncorrectInput()
         {
-            SmoothFollow sf = selectedInput.GetComponent<SmoothFollow>();
+            SmoothFollow sf = _inputButtons[_selectedInput].GetComponent<SmoothFollow>();
             float t;
             if (sf.mode == SmoothFollow.modeSetting.Lerp)
                 t = 1 / sf.lerpSpeed * 2;
@@ -339,24 +397,24 @@ namespace Game
                 t = sf.smoothTime * 2;
             yield return new WaitForSeconds(t);
 
-            if (selectedInput)
+            if (_selectedInput != -1)
             {
                 LayoutRebuilder.ForceRebuildLayoutImmediate(sf.anchor.transform.parent.GetComponent<RectTransform>());
-                selectedInput.GetComponent<Button>().interactable = true;
+                _inputButtons[_selectedInput].interactable = true;
             }
 
             graphics.NextStage();
             if (graphics.isFinal)
                 StartCoroutine(OnGameOver());
 
-            selectedInput = null;
+            _selectedInput = -1;
         }
 
         private IEnumerator OnEnd()
         {
             Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
 
-            result[quest - 1] = true;
+            _results[quest - 1] = true;
             QuestionEnd();
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
@@ -373,7 +431,7 @@ namespace Game
             Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
 
             life.Damage();
-            result[quest - 1] = false;
+            _results[quest - 1] = false;
             QuestionEnd();
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
@@ -397,17 +455,17 @@ namespace Game
 
         private void QuestionEnd()
         {
-            progress.value = 1f * quest / wordList.Length;
-            if (quest > wordList.Length || life.isOutOfLife)
+            progress.value = 1f * quest / _wordList.Length;
+            if (quest > _wordList.Length || life.isOutOfLife)
                 isLevelEnded = true;
 
             float s = 0f;
-            for (int i = 0; i < result.Length; i++)
+            for (int i = 0; i < _results.Length; i++)
             {
-                if (result[i])
+                if (_results[i])
                     s += 100f;
             }
-            s /= result.Length;
+            s /= _results.Length;
             score = Mathf.RoundToInt(s);
         }
     }

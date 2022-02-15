@@ -68,8 +68,7 @@ namespace Game {
                 words[i] = words[r];
                 words[r] = tmp;
             }
-            level.wordList = words;
-            level.Initialize();
+            level.Initialize(words);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with mode {mode}");
         }
