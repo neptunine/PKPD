@@ -12,6 +12,11 @@ namespace Game
             public Sprite[] sprites;
         }
 
+        public bool isFinal
+        {
+            get { return _stage == Jar.Length - 1; }
+        }
+
         public SpriteRenderer
             jarRenderer;
 
@@ -19,14 +24,13 @@ namespace Game
             Jar;
 
         private int
-            _row,
-            _column;
+            _stage;
+
+        private float
+            _tilt;
 
         private Animator
             _animator;
-
-        public bool
-            isFinal = false;
             
         private float
             _current,
@@ -38,6 +42,12 @@ namespace Game
             elasticity = 40f,
             damping = .5f;
 
+        public bool testing = true;
+
+        public int
+            row,
+            col;
+
         private void Start()
         {
             Input.gyro.enabled = true;
@@ -46,50 +56,58 @@ namespace Game
 
         private void Update()
         {
-            SetRotation();
-
-            isFinal = _row == Jar.Length - 1;
+            
         }
 
         private void LateUpdate()
         {
-            int _y = Mathf.Clamp(_row, 0, Jar.Length - 1);
-            int _x = Mathf.Clamp(_column, 0, Jar[_y].sprites.Length - 1);
-            jarRenderer.sprite = Jar[_y].sprites[_x];
+            if (testing)
+            {
+                int y = Mathf.Clamp(row, 0, Jar.Length - 1);
+                int x = Mathf.Clamp(col, 0, Jar[y].sprites.Length - 1);
+                jarRenderer.sprite = Jar[y].sprites[x];
+                return;
+            }
 
+            GetRotation();
+
+            int _y = Mathf.Clamp(_stage, 0, Jar.Length - 1);
+            int _x = Mathf.RoundToInt(_tilt);
+            if (_x < 1)
+                _x *= -1;
+            else
+                _x += 4;
+            _x = Mathf.Clamp(_x, 0, Jar[_y].sprites.Length - 1);
+
+            jarRenderer.sprite = Jar[_y].sprites[_x];
         }
 
         public void NextStage()
         {
-            _row = Mathf.Min(_row + 1, Jar.Length - 1);
-            isFinal = _row == Jar.Length - 1;
-            _animator.SetInteger("stage", _row);
+            _stage = Mathf.Min(_stage + 1, Jar.Length - 1);
+            _animator.SetInteger("stage", _stage);
         }
 
         public void PreStage()
         {
-            _row = Mathf.Max(_row - 1, 0);
-            _animator.SetInteger("stage", _row);
+            _stage = Mathf.Max(_stage - 1, 0);
+            _animator.SetInteger("stage", _stage);
         }
 
         public void Clear()
         {
-            _row = 0;
+            _stage = 0;
         }
 
-        private void SetRotation()
+        private void GetRotation()
         {
             float target = Mathf.Clamp(Input.gyro.gravity.x, rotateStep * -3f, rotateStep * 3f);
             float force = elasticity * (target - _current) - damping * _velocity;
             _velocity = _velocity + force * Time.deltaTime;
             _current = _current + _velocity * Time.deltaTime;
 
-            int index = Mathf.Clamp(Mathf.RoundToInt(_current / rotateStep), -4, 4);
-            if (index < 0)
-                index *= -1;
-            else if (index > 0)
-                index += 4;
-            _column = index;
+            _tilt = Mathf.Clamp(_current / rotateStep, -4, 4);
+            _animator.SetFloat("tilt", _tilt);
         }
     }
 }
