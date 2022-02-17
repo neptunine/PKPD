@@ -20,10 +20,10 @@ public class dialog : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GetTextFormFile(textFile);
+        //GetTextFormFile(textFile);
 
     }
-   
+
     private void OnEnable()
     {
         textLabel.text = textList[index];
@@ -59,4 +59,5 @@ public class dialog : MonoBehaviour
             }
         }
     }
+}
     
