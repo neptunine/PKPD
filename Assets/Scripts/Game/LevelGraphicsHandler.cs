@@ -42,6 +42,12 @@ namespace Game
             elasticity = 40f,
             damping = .5f;
 
+        public bool testing = true;
+
+        public int
+            row,
+            col;
+
         private void Start()
         {
             Input.gyro.enabled = true;
@@ -55,6 +61,14 @@ namespace Game
 
         private void LateUpdate()
         {
+            if (testing)
+            {
+                int y = Mathf.Clamp(row, 0, Jar.Length - 1);
+                int x = Mathf.Clamp(col, 0, Jar[y].sprites.Length - 1);
+                jarRenderer.sprite = Jar[y].sprites[x];
+                return;
+            }
+
             GetRotation();
 
             int _y = Mathf.Clamp(_stage, 0, Jar.Length - 1);
