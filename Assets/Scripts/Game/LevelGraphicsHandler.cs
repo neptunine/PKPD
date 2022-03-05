@@ -42,11 +42,13 @@ namespace Game
             elasticity = 40f,
             damping = .5f;
 
-        public bool testing = true;
+#if UNITY_EDITOR
+        [Header("Debug")]
 
-        public int
-            row,
-            col;
+        public bool Override = false;
+        [Range(0, 7)] public int Y;
+        [Range(-4, 4)] public int X;
+#endif
 
         private void Start()
         {
@@ -61,16 +63,19 @@ namespace Game
 
         private void LateUpdate()
         {
-            if (testing)
+#if UNITY_EDITOR
+            if (Override)
             {
-                int y = Mathf.Clamp(row, 0, Jar.Length - 1);
-                int x = Mathf.Clamp(col, 0, Jar[y].sprites.Length - 1);
-                jarRenderer.sprite = Jar[y].sprites[x];
-                return;
+                _stage = Y;
+                _tilt = X;
+                _animator.SetInteger("stage", _stage);
+                _animator.SetFloat("tilt", _tilt);
             }
-
+            else
+                GetRotation();
+#else
             GetRotation();
-
+#endif
             int _y = Mathf.Clamp(_stage, 0, Jar.Length - 1);
             int _x = Mathf.RoundToInt(_tilt);
             if (_x < 1)
