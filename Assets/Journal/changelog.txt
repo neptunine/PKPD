@@ -1,0 +1,109 @@
+﻿Online changelog
+http://docs.gamegrind.io/journal/changelog
+
+Journal Version Changelog
+1.2 - TMPro
+	Notice: New version no longer support Unity versions < 2018.3
+	Features
+	- All Journal text objects now use TextMeshPro text
+		- Imports TMPro Essentials if missing
+	- Auto save
+	- Show hidden achievements
+		- Can now be done at any time, not just on completion
+		- Use Journal.UnhideAchievement(Achievement)
+		- Unhiding an achievement can be done as a reward in itself, "unlocking" new goals
+		- Secret/hidden state saved with achievement progress
+	- Unified settings for all things Journal
+		- Strings like Point name and save location
+		- Sound effect to play when achievement is granted
+		- Auto save option
+		- Colors for all UI elements
+		- Secret achievement settings
+		- Find the file in the Journal folder: Journal>Settings
+	- Created 3 new sound effects for granting achievements
+	Fixes
+	- Icon loading now more efficient
+	- Added event to determine when Journal is loaded and ready
+	- Updated support links in Window>Journal>Support
+		- No more forum support, replaced by Discord
+		- Reliable email added
+	- Changed color theme
+	- Suppressed typical [SerializedField] private field unassigned warnings (assigned in inspector)
+1.11 - Breaking Bug
+	Fixes
+	- Removed UnityEngine.Sprite constructor reference
+
+1.1 - Taken Seriously
+	Features
+	- Achievement icons added
+	- Complete UI overhaul
+		- More flexible and scalable design/layout
+		- Progress bars now use more space to portray progress significance
+		- Font size increased all around
+		- Lineheight is now more consistent
+		- Alternate row shading for readability
+		- Margins and paddings are now more consistent
+		- Colors are more cohesive overall
+		- Icons displayed in UI
+	- Toggle button for opening/closing achievements from anywhere
+	- Added toggle method to JournalCanvas for an easy way to toggle achievement UI
+	- Added a new Support Window that will direct you to various support options
+	- Save system now only saves progress data
+		- Now you can edit/change achievement data without messing with progress data for saved files
+		- No more worries about adding/editing achievements post-release
+	- Set an achievement value directly using Journal.SetValue(id, amount, [optional]grant)
+		- You may need to set an achievement to be equal to another property instead of increments
+		- Option to toggle grant popup or not, default true
+
+	Fixes
+	- Fixed some scaling issues on mobile
+	- Close button no longer loses reference to achievement panel on reload
+	- Multiple journal instances no longer possible, fixing many duplication issues
+	- Duplicate points bug fixed
+	- Getting an achievement during scene load/reload works as expected now
+	- Demo scene updated
+	- Installer moved to achievement editor
+		- Installer reserializes the data when you install so that the instanceIDs in JSON match
+		- InstanceIDs for Icons generated at installation based on the asset path to the sprite
+	- Cleaned up namespace
+	- Removed Ask a Question menu item (in favor of Journal Support window)
+	- Fixed incorrect summaries
+	- Journal.cs now has a method for getting achievement score so you don't have to touch other systems
+	- Decreasing an achievement will now check for completion
+	- Overloads for changing achievement values cleaned up
+
+
+1.05
+- Fixed event error prior to achievements UI loading
+- Fixed layout issues with demo scene
+
+1.04
+- Added support for secretive (hidden) achievements
+- Achievements can be hidden until complete by marking them as "secretive"
+- Secret achievement options added to Achievement Info Container
+  - Decide if secret achievements should show reward values, what color elements should be, and text alignment
+- Added more meaningful labels and tooltips to the Achievement Editor
+
+1.03
+- Installer now creates new canvas object for all achievement UI components
+- Journal is now set to not be destroyed between scene loads
+- Fixed issue of double achievement points on scene loads
+- Fixed issue of sometimes loading achievements twice in the UI list
+- Installing journal is now only required on the first scene you wish to track statistics from
+- Keybind option added to the Journal canvas (default [J])
+- Demo scene updated for new changes
+
+1.02 - Installer Fixes
+ - Remove installer canvas name requirement
+	- Installer now simply looks for a Canvas component in your scene
+ - Fix installer UI positioning
+	- Correctly anchor UI objects based on canvas anchors
+ - Include support forum link in tools
+ - Tighten up the toolbar in the Achievement Editor
+
+1.01 - JsonUtility
+ - Remove JSON.Net dependency
+ - Add support for Unity's JsonUtility helper
+ - Woo, better platform support!
+
+1.0 - Initial release

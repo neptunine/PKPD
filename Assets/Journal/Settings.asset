@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0a226b787b3d40468ce809bf0467986, type: 3}
+  m_Name: Settings
+  m_EditorClassIdentifier: 
+  achievementUIElement: {fileID: 11416654, guid: 71048c15133eac4459dcfbfe29abb053,
+    type: 3}
+  grantAudioClip: {fileID: 8300000, guid: 8e66a1900ca8ae948adcf8e7000ebea3, type: 3}
+  achievementPointValueName: Points
+  saveDataPath: /saves/
+  saveFileName: achievements
+  autoSave: 1
+  baseColor: {r: 0.16862746, g: 0.14901961, b: 0.28627452, a: 1}
+  accentColor: {r: 1, g: 0.8313726, b: 0, a: 1}
+  progressBarColor: {r: 1, g: 0.8313726, b: 0, a: 1}
+  progressBarCompleteColor: {r: 0, g: 0.9215687, b: 0.35686275, a: 1}
+  progressBarBackgroundColor: {r: 1, g: 0.8313726, b: 0, a: 0.5254902}
+  exitButtonColor: {r: 1, g: 0.20392159, b: 0.21960786, a: 1}
+  secretTextAlignment: 514
+  hiddenAchievementTitle: Secret Achievement
+  hiddenAchievementDescription: This achievement is currently hidden
+  progressBarSecretiveColor: {r: 0, g: 0, b: 0, a: 0}
+  secretValueBackgroundColor: {r: 0, g: 0, b: 0, a: 0}
+  secretShowReward: 0

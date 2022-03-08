@@ -1,0 +1,94 @@
+{
+  "AchievementList": [
+    {
+      "id": 0,
+      "title": "The Reaper",
+      "icon": {
+        "instanceID": 9746
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/death-zone.png",
+      "description": "Die 10 times.",
+      "value": 3,
+      "neededValue": 10,
+      "displayAsPercentage": true,
+      "points": 30,
+      "completed": false,
+      "secret": false
+    },
+    {
+      "id": 1,
+      "title": "Banana Split",
+      "icon": {
+        "instanceID": 9750
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/banana.png",
+      "description": "Slice 25 Bananas in half.",
+      "value": 19,
+      "neededValue": 25,
+      "displayAsPercentage": false,
+      "points": 25,
+      "completed": false,
+      "secret": false
+    },
+    {
+      "id": 2,
+      "title": "Aarrgh!",
+      "icon": {
+        "instanceID": 9596
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/achievement.png",
+      "description": "Find a hidden treasure chest full of booty.",
+      "value": 0,
+      "neededValue": 1,
+      "displayAsPercentage": false,
+      "points": 15,
+      "completed": false,
+      "secret": true
+    },
+    {
+      "id": 3,
+      "title": "Handy",
+      "icon": {
+        "instanceID": 9510
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/tied-scroll.png",
+      "description": "Assist 5 locals with their chores.",
+      "value": 5,
+      "neededValue": 5,
+      "displayAsPercentage": true,
+      "points": 10,
+      "completed": true,
+      "secret": false
+    },
+    {
+      "id": 4,
+      "title": "Forge Mastery",
+      "icon": {
+        "instanceID": 9566
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/bookmarklet (1).png",
+      "description": "Forge a legendary sword.",
+      "value": 0,
+      "neededValue": 1,
+      "displayAsPercentage": false,
+      "points": 120,
+      "completed": false,
+      "secret": false
+    },
+    {
+      "id": 5,
+      "title": "New achievement",
+      "icon": {
+        "instanceID": 9554
+      },
+      "iconPath": "Assets/Journal/Resources/Sprites/laurels-trophy.png",
+      "description": "This is the description for your new achievement.",
+      "value": 0,
+      "neededValue": 25,
+      "displayAsPercentage": false,
+      "points": 10,
+      "completed": false,
+      "secret": false
+    }
+  ]
+}
