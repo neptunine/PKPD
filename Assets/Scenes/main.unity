@@ -4081,60 +4081,87 @@ MonoBehaviour:
   inputLayout: {fileID: 1826354451}
   text: {fileID: 1361380648}
   characters:
-    blankTarget: {fileID: 0}
+    blankTarget: {fileID: -1177852489173450185, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
     blankAlt: {fileID: 0}
-    aTarget: {fileID: 0}
-    aAlt: {fileID: 0}
-    bTarget: {fileID: 0}
-    bAlt: {fileID: 0}
-    cTarget: {fileID: 0}
-    cAlt: {fileID: 0}
-    dTarget: {fileID: 0}
-    dAlt: {fileID: 0}
-    eTarget: {fileID: 0}
-    eAlt: {fileID: 0}
-    fTarget: {fileID: 0}
-    fAlt: {fileID: 0}
-    gTarget: {fileID: 0}
-    gAlt: {fileID: 0}
-    hTarget: {fileID: 0}
-    hAlt: {fileID: 0}
-    iTarget: {fileID: 0}
-    iAlt: {fileID: 0}
-    jTarget: {fileID: 0}
-    jAlt: {fileID: 0}
-    kTarget: {fileID: 0}
-    kAlt: {fileID: 0}
-    lTarget: {fileID: 0}
-    lAlt: {fileID: 0}
-    mTarget: {fileID: 0}
-    mAlt: {fileID: 0}
-    nTarget: {fileID: 0}
-    nAlt: {fileID: 0}
-    oTarget: {fileID: 0}
-    oAlt: {fileID: 0}
-    pTarget: {fileID: 0}
-    pAlt: {fileID: 0}
-    qTarget: {fileID: 0}
-    qAlt: {fileID: 0}
-    rTarget: {fileID: 0}
-    rAlt: {fileID: 0}
-    sTarget: {fileID: 0}
-    sAlt: {fileID: 0}
-    tTarget: {fileID: 0}
-    tAlt: {fileID: 0}
-    uTarget: {fileID: 0}
-    uAlt: {fileID: 0}
-    vTarget: {fileID: 0}
-    vAlt: {fileID: 0}
-    wTarget: {fileID: 0}
-    wAlt: {fileID: 0}
-    xTarget: {fileID: 0}
-    xAlt: {fileID: 0}
-    yTarget: {fileID: 0}
-    yAlt: {fileID: 0}
-    zTarget: {fileID: 0}
-    zAlt: {fileID: 0}
+    aTarget: {fileID: -2019528399045994831, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    aAlt: {fileID: -138675306817979599, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    bTarget: {fileID: 1054361504308062195, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    bAlt: {fileID: -3207238027357767546, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    cTarget: {fileID: -3126406087181863532, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    cAlt: {fileID: 9160641362999113642, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    dTarget: {fileID: -4990703920190639576, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    dAlt: {fileID: 3076545122815210905, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    eTarget: {fileID: -1139635821747720805, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    eAlt: {fileID: 1991833882925977649, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    fTarget: {fileID: 8525462690881467688, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    fAlt: {fileID: -2124276493083313708, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    gTarget: {fileID: 955784575775553184, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    gAlt: {fileID: 6757822517443109854, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    hTarget: {fileID: -2520027253757351134, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    hAlt: {fileID: 1755601703831342339, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    iTarget: {fileID: 7243408127162193074, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    iAlt: {fileID: 4368739107824202985, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    jTarget: {fileID: 2481001367401439634, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    jAlt: {fileID: 2671004922159931951, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    kTarget: {fileID: 1299736127984217748, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    kAlt: {fileID: -1434644486394911543, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    lTarget: {fileID: 1428497243748231973, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    lAlt: {fileID: 4604868279037360791, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    mTarget: {fileID: 4503487802294562780, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    mAlt: {fileID: -3593663789824567114, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    nTarget: {fileID: -2366593521711563888, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    nAlt: {fileID: -5739324106545649535, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    oTarget: {fileID: -8334120259164647229, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    oAlt: {fileID: -8357759932072720243, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    pTarget: {fileID: -7711739004284503040, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    pAlt: {fileID: 6163286880201435311, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    qTarget: {fileID: 956530893790963004, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    qAlt: {fileID: -1945533315284842329, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    rTarget: {fileID: 1839003681041398181, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    rAlt: {fileID: 525252069549778700, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    sTarget: {fileID: -8180635745611120661, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    sAlt: {fileID: 6198581976999900750, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    tTarget: {fileID: 3315211524232082606, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    tAlt: {fileID: -5566730636474516188, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    uTarget: {fileID: 5215372731654239046, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    uAlt: {fileID: 789153060362123075, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    vTarget: {fileID: -3056187215647009506, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    vAlt: {fileID: 5530579017718002588, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    wTarget: {fileID: 5850210972965825565, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    wAlt: {fileID: 7800222108969344196, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    xTarget: {fileID: 8005223048534824168, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    xAlt: {fileID: -5459964676195563613, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    yTarget: {fileID: 969542644093946379, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    yAlt: {fileID: -8555697065916867365, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
+    zTarget: {fileID: -7844940914345321732, guid: c5e47fb4d516f4f03923871c975f5c86,
+      type: 3}
+    zAlt: {fileID: -5753083081502377441, guid: 8d90dc5b5ed664e88b30a63e1b2a156a, type: 3}
   quest: 0
   stage: 0
   percent: 0.5
