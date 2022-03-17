@@ -11330,8 +11330,8 @@ MonoBehaviour:
     damageTime: 0
     nextHealTime: 0
     fullHealTime: 0
-  fullLives: 5
-  healTime: 3600000
+  fullLives: 9
+  healTime: 600000
   timeToHeal: 0
 --- !u!224 &1708174185
 RectTransform:
