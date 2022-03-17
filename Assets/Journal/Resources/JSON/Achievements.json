@@ -84,7 +84,7 @@
             "id": 5,
             "title": "New achievement",
             "icon": {
-                "instanceID": 19622
+                "instanceID": 0
             },
             "iconPath": "Assets/Journal/Resources/Sprites/laurels-trophy.png",
             "trimmedIconPath": "",
