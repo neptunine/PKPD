@@ -43,8 +43,9 @@ namespace Game
         public class ABC
         {
             public Sprite
-                blank,
-                a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+                blankTarget, blankAlt,
+                aTarget, bTarget, cTarget, dTarget, eTarget, fTarget, gTarget, hTarget, iTarget, jTarget, kTarget, lTarget, mTarget, nTarget, oTarget, pTarget, qTarget, rTarget, sTarget, tTarget, uTarget, vTarget, wTarget, xTarget, yTarget, zTarget,
+                aAlt, bAlt, cAlt, dAlt, eAlt, fAlt, gAlt, hAlt, iAlt, jAlt, kAlt, lAlt, mAlt, nAlt, oAlt, pAlt, qAlt, rAlt, sAlt, tAlt, uAlt, vAlt, wAlt, xAlt, yAlt, zAlt;
         }
 
         [SerializeField]
@@ -171,11 +172,12 @@ namespace Game
                 GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = "W." + i.ToString();
-                charObject.GetComponentInChildren<Image>().sprite = GetSprite(disChars[i]);
+                //charObject.GetComponentInChildren<Image>().sprite = GetSprite(disChars[i]);
                 //CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
                 //character.index = i;
                 //character.character = disChars[i];
                 Button button = charObject.GetComponentInChildren<Button>();
+                SetButtonSprite(button, disChars[i]);
                 _wordButtons[i] = button;
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
@@ -221,7 +223,7 @@ namespace Game
                 GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = "D." + i.ToString();
-                charObject.GetComponentInChildren<Image>().sprite = GetSprite(inChars[i]);
+                //charObject.GetComponentInChildren<Image>().sprite = GetSprite(inChars[i]);
                 //CharacterHandler character = charObject.GetComponentInChildren<CharacterHandler>();
                 //character.index = i;
                 //character.character = inChars[i];
@@ -229,6 +231,7 @@ namespace Game
                 sf.anchor.transform.SetParent(inputLayout.transform);
                 sf.anchor.name = "d." + i.ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
+                SetButtonSprite(button, inChars[i]);
                 _inputButtons[i] = button;
                 button.interactable = true;
                 int self = i;
@@ -268,38 +271,49 @@ namespace Game
             }
         }
 
-        private Sprite GetSprite(char character)
+        private void SetButtonSprite(Button button, char character)
         {
+            Sprite spriteTarget, spriteAlt;
+
             switch (character)
             {
-                case 'a': case 'A': return characters.a;
-                case 'b': case 'B': return characters.b;
-                case 'c': case 'C': return characters.c;
-                case 'd': case 'D': return characters.d;
-                case 'e': case 'E': return characters.e;
-                case 'f': case 'F': return characters.f;
-                case 'g': case 'G': return characters.g;
-                case 'h': case 'H': return characters.h;
-                case 'i': case 'I': return characters.i;
-                case 'j': case 'J': return characters.j;
-                case 'k': case 'K': return characters.k;
-                case 'l': case 'L': return characters.l;
-                case 'm': case 'M': return characters.m;
-                case 'n': case 'N': return characters.n;
-                case 'o': case 'O': return characters.o;
-                case 'p': case 'P': return characters.p;
-                case 'q': case 'Q': return characters.q;
-                case 'r': case 'R': return characters.r;
-                case 's': case 'S': return characters.s;
-                case 't': case 'T': return characters.t;
-                case 'u': case 'U': return characters.u;
-                case 'v': case 'V': return characters.v;
-                case 'w': case 'W': return characters.w;
-                case 'x': case 'X': return characters.x;
-                case 'y': case 'Y': return characters.y;
-                case 'z': case 'Z': return characters.z;
-                default: return characters.blank;
+                case 'a': case 'A': spriteTarget = characters.aTarget; spriteAlt = characters.aAlt; break;
+                case 'b': case 'B': spriteTarget = characters.bTarget; spriteAlt = characters.bAlt; break;
+                case 'c': case 'C': spriteTarget = characters.cTarget; spriteAlt = characters.cAlt; break;
+                case 'd': case 'D': spriteTarget = characters.dTarget; spriteAlt = characters.dAlt; break;
+                case 'e': case 'E': spriteTarget = characters.eTarget; spriteAlt = characters.eAlt; break;
+                case 'f': case 'F': spriteTarget = characters.fTarget; spriteAlt = characters.fAlt; break;
+                case 'g': case 'G': spriteTarget = characters.gTarget; spriteAlt = characters.gAlt; break;
+                case 'h': case 'H': spriteTarget = characters.hTarget; spriteAlt = characters.hAlt; break;
+                case 'i': case 'I': spriteTarget = characters.iTarget; spriteAlt = characters.iAlt; break;
+                case 'j': case 'J': spriteTarget = characters.jTarget; spriteAlt = characters.jAlt; break;
+                case 'k': case 'K': spriteTarget = characters.kTarget; spriteAlt = characters.kAlt; break;
+                case 'l': case 'L': spriteTarget = characters.lTarget; spriteAlt = characters.lAlt; break;
+                case 'm': case 'M': spriteTarget = characters.mTarget; spriteAlt = characters.mAlt; break;
+                case 'n': case 'N': spriteTarget = characters.nTarget; spriteAlt = characters.nAlt; break;
+                case 'o': case 'O': spriteTarget = characters.oTarget; spriteAlt = characters.oAlt; break;
+                case 'p': case 'P': spriteTarget = characters.pTarget; spriteAlt = characters.pAlt; break;
+                case 'q': case 'Q': spriteTarget = characters.qTarget; spriteAlt = characters.qAlt; break;
+                case 'r': case 'R': spriteTarget = characters.rTarget; spriteAlt = characters.rAlt; break;
+                case 's': case 'S': spriteTarget = characters.sTarget; spriteAlt = characters.sAlt; break;
+                case 't': case 'T': spriteTarget = characters.tTarget; spriteAlt = characters.tAlt; break;
+                case 'u': case 'U': spriteTarget = characters.uTarget; spriteAlt = characters.uAlt; break;
+                case 'v': case 'V': spriteTarget = characters.vTarget; spriteAlt = characters.vAlt; break;
+                case 'w': case 'W': spriteTarget = characters.wTarget; spriteAlt = characters.wAlt; break;
+                case 'x': case 'X': spriteTarget = characters.xTarget; spriteAlt = characters.xAlt; break;
+                case 'y': case 'Y': spriteTarget = characters.yTarget; spriteAlt = characters.yAlt; break;
+                case 'z': case 'Z': spriteTarget = characters.zTarget; spriteAlt = characters.zAlt; break;
+                default: spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; break;
             }
+
+            SpriteState spriteState = new SpriteState
+            {
+                highlightedSprite = spriteTarget,
+                pressedSprite = spriteAlt,
+                selectedSprite = spriteAlt,
+                disabledSprite = spriteAlt
+            };
+            button.spriteState = spriteState;
         }
 
         public void SelectChar(int clicked)

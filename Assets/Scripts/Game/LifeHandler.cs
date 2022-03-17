@@ -34,10 +34,13 @@ namespace Game
             get { return _lives; }
         }
 
-        public int
-            timeToHeal,
+        [SerializeField]
+        private int
             fullLives = 5,
             healTime = 3600000;
+
+        public int
+            timeToHeal;
 
         private int
            _lives;
