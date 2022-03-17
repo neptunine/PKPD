@@ -279,7 +279,7 @@ namespace Game
             _expectChars = null;
             text.text = string.Empty;
             graphics.Clear();
-            stage = graphics.Jar.Length - 1;
+            stage = graphics.maxstage;
 
             for (int i = 0; i < charDisplay.transform.childCount; i++)
             {
@@ -368,9 +368,15 @@ namespace Game
             if (inchar != _expectChars[_selectedChar])
             {
                 stage -= 1;
-                if (stage < 1)
-                    isQuestEnded = true;
                 StartCoroutine(OnIncorrectInput());
+                if (stage < 1)
+                {
+                    Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
+                    isQuestEnded = true;
+                    life.Damage();
+                    _results[quest - 1] = false;
+                    StartCoroutine(OnGameOver());
+                }
                 return;
             }
             _expectChars[_selectedChar] = '\0';
@@ -402,7 +408,9 @@ namespace Game
             }
             else
             {
+                Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
                 isQuestEnded = true;
+                _results[quest - 1] = true;
                 StartCoroutine(OnEnd());
             }
             _selectedInput = -1;
@@ -442,17 +450,12 @@ namespace Game
             }
 
             graphics.SetStage(stage);
-            if (graphics.isFinal)
-                StartCoroutine(OnGameOver());
-
+                
             _selectedInput = -1;
         }
 
         private IEnumerator OnEnd()
         {
-            Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
-
-            _results[quest - 1] = true;
             QuestionEnd();
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
@@ -466,10 +469,6 @@ namespace Game
 
         private IEnumerator OnGameOver()
         {
-            Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
-
-            life.Damage();
-            _results[quest - 1] = false;
             QuestionEnd();
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())

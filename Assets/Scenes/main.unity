@@ -996,8 +996,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 12}
+  m_AnchoredPosition: {x: 2, y: 0}
+  m_SizeDelta: {x: 126, y: 12}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &119973381
 MonoBehaviour:
@@ -1020,7 +1020,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 5156776694448688124, guid: a02cd6db9c50d44eca704b1d9aad0d19,
     type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1566,6 +1566,8 @@ GameObject:
   m_Component:
   - component: {fileID: 169596343}
   - component: {fileID: 169596344}
+  - component: {fileID: 169596345}
+  - component: {fileID: 169596346}
   m_Layer: 0
   m_Name: MainController
   m_TagString: Untagged
@@ -1601,7 +1603,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: {fileID: 664528808}
-  life: {fileID: 1708174184}
+  life: {fileID: 169596345}
   menuObject: {fileID: 430426234}
   mainMenu: {fileID: 1726739340}
   levelMenu: {fileID: 266904187}
@@ -1611,6 +1613,43 @@ MonoBehaviour:
   wordFile:
   - {fileID: 4900000, guid: 86abc56fa8e894546a81bd11288514fb, type: 3}
   ss: 0
+--- !u!114 &169596345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169596342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf83932b1f605c42bd624e70e937a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesDisplay: {fileID: 1708174184}
+  save:
+    lives: 0
+    damageTime: 0
+    nextHealTime: 0
+    fullHealTime: 0
+  fullLives: 9
+  healTime: 300000
+  timeToHeal: 0
+--- !u!114 &169596346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169596342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66d2d1ee1202d44ab7ca93482bfe275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: 0
+  _currentExp: 0
+  _expForNextLevel: 0
+  _totalexp: 0
 --- !u!1 &169795601
 GameObject:
   m_ObjectHideFlags: 0
@@ -4069,7 +4108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 169596344}
-  life: {fileID: 1708174184}
+  life: {fileID: 0}
   graphics: {fileID: 1675528808}
   progress: {fileID: 670927477}
   charPrefab: {fileID: 2037017892}
@@ -4296,7 +4335,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: 130, y: 12}
+  m_SizeDelta: {x: 130, y: 16}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &670927475
 MonoBehaviour:
@@ -4311,15 +4350,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5156776694448688124, guid: a02cd6db9c50d44eca704b1d9aad0d19,
+  m_Sprite: {fileID: 3057371475228891706, guid: cc8f119f75b764189b959ea5e51fcb5a,
     type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4349,9 +4388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fillRect: {fileID: 119973380}
-  min: 10
-  max: 120
-  duration: 0.5
+  min: 12
+  max: 126
+  duration: 1
 --- !u!1 &696255518
 GameObject:
   m_ObjectHideFlags: 0
@@ -5798,7 +5837,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 7499154508442906066, guid: 564ab32d2619c47a288e31f70f538a26,
     type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -6583,8 +6622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 100
-  m_RefResolutionX: 144
-  m_RefResolutionY: 256
+  m_RefResolutionX: 135
+  m_RefResolutionY: 240
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 0
@@ -8264,7 +8303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 7
+  m_ScaleFactor: 8
   m_ReferenceResolution: {x: 144, y: 256}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -10027,7 +10066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1708174184}
+      - m_Target: {fileID: 0}
         m_MethodName: Damage
         m_Mode: 1
         m_Arguments:
@@ -11135,71 +11174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jarRenderer: {fileID: 1127616506}
-  Jar:
-  - sprites:
-    - {fileID: 21300000, guid: c77bd05e1d9ea4eceb6260e88ed47969, type: 3}
-  - sprites:
-    - {fileID: -3710183241121652259, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: 3211240730108638604, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: -5697756787535735164, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: -5131843518553541380, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: 4112812968391633569, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: 9195937219040811458, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: -8652922282221322453, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: -7823292868930211341, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-    - {fileID: -4890432222231028903, guid: ee0ece4e6a2b08148850b67da00620bf, type: 3}
-  - sprites:
-    - {fileID: -5063483716289338183, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: -2148553836779907953, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: -4276347650819198497, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: 223272201551711347, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: -2404609822732677068, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: 6576791297343355041, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: -6664391015133091691, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: -5274482387867380050, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-    - {fileID: 1777789237878039892, guid: 7acf5dfe84a5ec64dab903b72d69d210, type: 3}
-  - sprites:
-    - {fileID: 1491847663913483158, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: 8833564775816852676, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: -793402594479175583, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: -4325625594618347597, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: -5273112562150663993, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: 3778364895732715311, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: 8117181535484014289, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: 4179349199144320119, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-    - {fileID: -4269091491858516260, guid: dc3cb906487be7840b9541d7ef9c851c, type: 3}
-  - sprites:
-    - {fileID: 3303620087808991981, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: -2696341201932519592, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: -5907569124065581151, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: 7019002749960691835, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: 2362094981496049989, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: -491675260735361101, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: 5718300338932009739, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: 103799909083980482, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-    - {fileID: 3004958145258994194, guid: 8f3492060a423224bb56e3ae6cf2838b, type: 3}
-  - sprites:
-    - {fileID: -7356660648633917922, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 651072666946238578, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 6696547671934467141, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 1458102709668348806, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 4629574452538004046, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 139632060975327018, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: -5806522303665282869, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: -2744011530002926968, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-    - {fileID: 6371185674382313893, guid: ff44c92bd77b18e42b090f31d5c4bdb2, type: 3}
-  - sprites:
-    - {fileID: 691382101224601663, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 7095478371548963104, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 8915572497369935694, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: -3561568299239562772, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 7790511530824243841, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 7054199300301487570, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 5387573580490863956, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: 1079086939043175756, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-    - {fileID: -3666640395237935487, guid: 618e98bfcd435bd48b6b1f57da5955ef, type: 3}
-  - sprites:
-    - {fileID: 21300000, guid: 1bc71d9a75cffbc449bdf0cf07d0abb3, type: 3}
+  jar: []
   rotateStep: 0.3
   elasticity: 40
   damping: 0.5
@@ -11312,27 +11287,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1708174184
-MonoBehaviour:
+--- !u!95 &1708174184
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708174183}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf83932b1f605c42bd624e70e937a42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 513635585}
-  save:
-    lives: 0
-    damageTime: 0
-    nextHealTime: 0
-    fullHealTime: 0
-  fullLives: 9
-  healTime: 600000
-  timeToHeal: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &1708174185
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12255,7 +12228,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 4340143670946724112, guid: 58427d981ae7946ecbae337bf59884fd,
     type: 3}
-  m_Type: 1
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

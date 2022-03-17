@@ -7,8 +7,8 @@ namespace Game
     public class LifeHandler : MonoBehaviour
     {
         [SerializeField]
-        Text
-            text;
+        private Animator
+            livesDisplay;
 
         [Serializable]
         public class Life
@@ -52,8 +52,14 @@ namespace Game
 
         private void Start()
         {
+            // load from db
             _lives = fullLives;
             _damageTime = _nextRegeneTime = _fullRegeneTime = DateTime.UtcNow;
+        }
+
+        private void OnDisable()
+        {
+            // save to db
         }
 
         private void Update()
@@ -89,12 +95,7 @@ namespace Game
                 }
             }
 
-            text.text = _lives.ToString();
-        }
-
-        private void OnDisable()
-        {
-
+            livesDisplay.SetInteger("lives", _lives);
         }
 
         public void Damage()

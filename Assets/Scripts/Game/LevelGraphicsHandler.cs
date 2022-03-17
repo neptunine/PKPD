@@ -14,14 +14,21 @@ namespace Game
 
         public bool isFinal
         {
-            get { return _stage == Jar.Length - 1; }
+            get { return _stage == jar.Length - 1; }
         }
 
-        public SpriteRenderer
+        public int maxstage
+        {
+            get { return jar.Length - 1; }
+        }
+
+        [SerializeField]
+        private SpriteRenderer
             jarRenderer;
 
-        public SpriteArray[]
-            Jar;
+        [SerializeField]
+        private SpriteArray[]
+            jar;
 
         private int
             _stage;
@@ -50,10 +57,15 @@ namespace Game
         [Range(-4, 4)] public int X;
 #endif
 
-        private void Start()
+        private void Awake()
         {
             Input.gyro.enabled = true;
             _animator = GetComponent<Animator>();
+        }
+
+        private void Start()
+        {
+            
         }
 
         private void Update()
@@ -76,26 +88,26 @@ namespace Game
 #else
             GetRotation();
 #endif
-            int _y = Mathf.Clamp(_stage, 0, Jar.Length - 1);
+            int _y = Mathf.Clamp(_stage, 0, jar.Length - 1);
             int _x = Mathf.RoundToInt(_tilt);
             if (_x < 1)
                 _x *= -1;
             else
                 _x += 4;
-            _x = Mathf.Clamp(_x, 0, Jar[_y].sprites.Length - 1);
+            _x = Mathf.Clamp(_x, 0, jar[_y].sprites.Length - 1);
 
-            jarRenderer.sprite = Jar[_y].sprites[_x];
+            jarRenderer.sprite = jar[_y].sprites[_x];
         }
 
         public void SetStage(int i)
         {
-            _stage = Mathf.Clamp(Jar.Length - 1 - i, 0, Jar.Length - 1);
+            _stage = Mathf.Clamp(jar.Length - 1 - i, 0, jar.Length - 1);
             _animator.SetInteger("stage", _stage);
         }
 
         public void NextStage()
         {
-            _stage = Mathf.Min(_stage + 1, Jar.Length - 1);
+            _stage = Mathf.Min(_stage + 1, jar.Length - 1);
             _animator.SetInteger("stage", _stage);
         }
 
@@ -108,6 +120,8 @@ namespace Game
         public void Clear()
         {
             _stage = 0;
+            _animator.SetInteger("stage", 0);
+            _animator.SetFloat("tilt", 0);
         }
 
         private void GetRotation()
