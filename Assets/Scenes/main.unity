@@ -997,7 +997,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 130, y: 4}
+  m_SizeDelta: {x: 130, y: 12}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &119973381
 MonoBehaviour:
@@ -4084,56 +4084,56 @@ MonoBehaviour:
     blankTarget: {fileID: 0}
     blankAlt: {fileID: 0}
     aTarget: {fileID: 0}
-    bTarget: {fileID: 0}
-    cTarget: {fileID: 0}
-    dTarget: {fileID: 0}
-    eTarget: {fileID: 0}
-    fTarget: {fileID: 0}
-    gTarget: {fileID: 0}
-    hTarget: {fileID: 0}
-    iTarget: {fileID: 0}
-    jTarget: {fileID: 0}
-    kTarget: {fileID: 0}
-    lTarget: {fileID: 0}
-    mTarget: {fileID: 0}
-    nTarget: {fileID: 0}
-    oTarget: {fileID: 0}
-    pTarget: {fileID: 0}
-    qTarget: {fileID: 0}
-    rTarget: {fileID: 0}
-    sTarget: {fileID: 0}
-    tTarget: {fileID: 0}
-    uTarget: {fileID: 0}
-    vTarget: {fileID: 0}
-    wTarget: {fileID: 0}
-    xTarget: {fileID: 0}
-    yTarget: {fileID: 0}
-    zTarget: {fileID: 0}
     aAlt: {fileID: 0}
+    bTarget: {fileID: 0}
     bAlt: {fileID: 0}
+    cTarget: {fileID: 0}
     cAlt: {fileID: 0}
+    dTarget: {fileID: 0}
     dAlt: {fileID: 0}
+    eTarget: {fileID: 0}
     eAlt: {fileID: 0}
+    fTarget: {fileID: 0}
     fAlt: {fileID: 0}
+    gTarget: {fileID: 0}
     gAlt: {fileID: 0}
+    hTarget: {fileID: 0}
     hAlt: {fileID: 0}
+    iTarget: {fileID: 0}
     iAlt: {fileID: 0}
+    jTarget: {fileID: 0}
     jAlt: {fileID: 0}
+    kTarget: {fileID: 0}
     kAlt: {fileID: 0}
+    lTarget: {fileID: 0}
     lAlt: {fileID: 0}
+    mTarget: {fileID: 0}
     mAlt: {fileID: 0}
+    nTarget: {fileID: 0}
     nAlt: {fileID: 0}
+    oTarget: {fileID: 0}
     oAlt: {fileID: 0}
+    pTarget: {fileID: 0}
     pAlt: {fileID: 0}
+    qTarget: {fileID: 0}
     qAlt: {fileID: 0}
+    rTarget: {fileID: 0}
     rAlt: {fileID: 0}
+    sTarget: {fileID: 0}
     sAlt: {fileID: 0}
+    tTarget: {fileID: 0}
     tAlt: {fileID: 0}
+    uTarget: {fileID: 0}
     uAlt: {fileID: 0}
+    vTarget: {fileID: 0}
     vAlt: {fileID: 0}
+    wTarget: {fileID: 0}
     wAlt: {fileID: 0}
+    xTarget: {fileID: 0}
     xAlt: {fileID: 0}
+    yTarget: {fileID: 0}
     yAlt: {fileID: 0}
+    zTarget: {fileID: 0}
     zAlt: {fileID: 0}
   quest: 0
   stage: 0
@@ -4269,7 +4269,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: 130, y: 4}
+  m_SizeDelta: {x: 130, y: 12}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &670927475
 MonoBehaviour:
@@ -4278,19 +4278,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670927473}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 5156776694448688124, guid: a02cd6db9c50d44eca704b1d9aad0d19,
+    type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14053,7 +14054,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

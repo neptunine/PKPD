@@ -44,8 +44,32 @@ namespace Game
         {
             public Sprite
                 blankTarget, blankAlt,
-                aTarget, bTarget, cTarget, dTarget, eTarget, fTarget, gTarget, hTarget, iTarget, jTarget, kTarget, lTarget, mTarget, nTarget, oTarget, pTarget, qTarget, rTarget, sTarget, tTarget, uTarget, vTarget, wTarget, xTarget, yTarget, zTarget,
-                aAlt, bAlt, cAlt, dAlt, eAlt, fAlt, gAlt, hAlt, iAlt, jAlt, kAlt, lAlt, mAlt, nAlt, oAlt, pAlt, qAlt, rAlt, sAlt, tAlt, uAlt, vAlt, wAlt, xAlt, yAlt, zAlt;
+                aTarget, aAlt,
+                bTarget, bAlt,
+                cTarget, cAlt,
+                dTarget, dAlt,
+                eTarget, eAlt,
+                fTarget, fAlt,
+                gTarget, gAlt,
+                hTarget, hAlt,
+                iTarget, iAlt,
+                jTarget, jAlt,
+                kTarget, kAlt,
+                lTarget, lAlt,
+                mTarget, mAlt,
+                nTarget, nAlt,
+                oTarget, oAlt,
+                pTarget, pAlt,
+                qTarget, qAlt,
+                rTarget, rAlt,
+                sTarget, sAlt,
+                tTarget, tAlt,
+                uTarget, uAlt,
+                vTarget, vAlt,
+                wTarget, wAlt,
+                xTarget, xAlt,
+                yTarget, yAlt,
+                zTarget, zAlt;
         }
 
         [SerializeField]
