@@ -329,13 +329,13 @@ namespace Game
                 case 'z': case 'Z': spriteTarget = characters.zTarget; spriteAlt = characters.zAlt; break;
                 default: spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; break;
             }
-
+            button.GetComponentInChildren<Image>().sprite = spriteTarget;
             SpriteState spriteState = new SpriteState
             {
                 highlightedSprite = spriteTarget,
                 pressedSprite = spriteAlt,
                 selectedSprite = spriteAlt,
-                disabledSprite = spriteAlt
+                disabledSprite = spriteTarget
             };
             button.spriteState = spriteState;
         }
@@ -441,7 +441,7 @@ namespace Game
                 _inputButtons[_selectedInput].interactable = true;
             }
 
-            graphics.NextStage();
+            graphics.SetStage(stage);
             if (graphics.isFinal)
                 StartCoroutine(OnGameOver());
 

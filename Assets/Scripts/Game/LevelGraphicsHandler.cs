@@ -87,6 +87,12 @@ namespace Game
             jarRenderer.sprite = Jar[_y].sprites[_x];
         }
 
+        public void SetStage(int i)
+        {
+            _stage = Mathf.Clamp(Jar.Length - 1 - i, 0, Jar.Length - 1);
+            _animator.SetInteger("stage", _stage);
+        }
+
         public void NextStage()
         {
             _stage = Mathf.Min(_stage + 1, Jar.Length - 1);
