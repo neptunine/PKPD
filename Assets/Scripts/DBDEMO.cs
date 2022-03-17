@@ -28,7 +28,7 @@ public class DBDEMO : MonoBehaviour
                 {
                     while (reader.Read())
                     {
-                        Debug.Log("Words:" + reader["Name"]);
+                        Debug.Log("Words:" + reader["Name"] );
                     }
                     reader.Close();
                 }
