@@ -8,23 +8,23 @@ namespace Game
     public class LevelController : MonoBehaviour
     {
         [SerializeField]
-        GameController
+        private GameController
             controller;
 
         [SerializeField]
-        LifeHandler
+        private LifeHandler
             life;
 
         [SerializeField]
-        LevelGraphicsHandler
+        private LevelGraphicsHandler
             graphics;
 
         [SerializeField]
-        ProgressBar
-            progress;   
+        private ProgressBar
+            progress;
 
         [SerializeField]
-        GameObject
+        private GameObject
             charPrefab,
             levelUI,
             selector,
@@ -32,12 +32,12 @@ namespace Game
             nextUI;
 
         [SerializeField]
-        LayoutGroup
+        private LayoutGroup
             displayLayout,
             inputLayout;
 
         [SerializeField]
-        Text text;
+        private Text text;
 
         [System.Serializable]
         public class ABC
@@ -73,7 +73,7 @@ namespace Game
         }
 
         [SerializeField]
-        ABC
+        private ABC
             characters;
 
         private string[]
@@ -85,6 +85,9 @@ namespace Game
 
         public float
             percent;
+
+        public bool
+            autoSelect;
 
         private string
             _targetWord;
@@ -105,9 +108,9 @@ namespace Game
             _initalPos,
             _targetPos;
 
-        public bool
-            isQuestEnded,
-            isLevelEnded;
+        private bool
+            _isQuestEnded,
+            _isLevelEnded;
 
         private bool[]
             _results;
@@ -142,7 +145,8 @@ namespace Game
             }
             quest = 0;
             _results = new bool[_wordList.Length];
-            isQuestEnded = isLevelEnded = false;
+            _isQuestEnded = _isLevelEnded = false;
+            selector.SetActive(!autoSelect);
             Clear();
             NewWord();
         }
@@ -150,16 +154,15 @@ namespace Game
         public void NewWord()
         {
             nextUI.SetActive(false);
-            isQuestEnded = false;
+            _isQuestEnded = false;
             quest += 1;
-            if (isLevelEnded)
+            if (_isLevelEnded)
             {
                 StartCoroutine(EndScreen());
                 return;
             }
 
             _targetWord = _wordList[quest - 1];
-            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{_targetWord}'");
             char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
             char[] disChars = _targetWord.ToCharArray();
@@ -264,6 +267,7 @@ namespace Game
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(inputLayout.GetComponent<RectTransform>());
 
+            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{_targetWord}'; Hide {percent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
         }
 
         public void Terminate()
@@ -348,13 +352,20 @@ namespace Game
 
         public void InputChar(int clicked)
         {
-            if (isQuestEnded || isLevelEnded)
+            if (_isQuestEnded || _isLevelEnded)
                 return;
 
             if (_selectedInput != -1)
             {
                 _inputButtons[_selectedInput].GetComponent<SmoothFollow>().anchor.position = _initalPos;
                 _inputButtons[_selectedInput].interactable = true;
+            }
+
+            if (autoSelect)
+            {
+                int index = System.Array.IndexOf(_expectChars, _inputChars[clicked]);
+                if (index != -1)
+                    SelectChar(index);
             }
 
             _selectedInput = clicked;
@@ -372,7 +383,7 @@ namespace Game
                 if (stage < 1)
                 {
                     Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
-                    isQuestEnded = true;
+                    _isQuestEnded = true;
                     life.Damage();
                     _results[quest - 1] = false;
                     StartCoroutine(OnGameOver());
@@ -409,7 +420,7 @@ namespace Game
             else
             {
                 Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
-                isQuestEnded = true;
+                _isQuestEnded = true;
                 _results[quest - 1] = true;
                 StartCoroutine(OnEnd());
             }
@@ -450,7 +461,7 @@ namespace Game
             }
 
             graphics.SetStage(stage);
-                
+
             _selectedInput = -1;
         }
 
@@ -494,7 +505,7 @@ namespace Game
         {
             progress.value = 1f * quest / _wordList.Length;
             if (quest > _wordList.Length || life.isOutOfLife)
-                isLevelEnded = true;
+                _isLevelEnded = true;
 
             float s = 0f;
             for (int i = 0; i < _results.Length; i++)

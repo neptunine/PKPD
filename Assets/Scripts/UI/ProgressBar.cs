@@ -6,9 +6,19 @@ namespace Utility
 {
     public class ProgressBar : MonoBehaviour
     {
-        [SerializeField]
-        private RectTransform
+        public RectTransform
             fillRect;
+
+        //public int
+        //    min = 0,
+        //    max = 100;
+
+        public int
+            min,
+            padding;
+
+        public float
+            duration = 1f;
 
         public float value
         {
@@ -17,29 +27,27 @@ namespace Utility
             {
                 _value = Mathf.Clamp01(value);
                 _from = fillRect.sizeDelta.x;
-                _to = Mathf.Round(min + (max - min) * _value);
+                //_to = Mathf.Round(min + (max - min) * _value);
+                _to = Mathf.Round(-_width + min + (padding * -2 + _width + min) * _value);
                 _timer = 0;
             }
         }
 
-        private float
+        public float
             _value,
             _timer,
             _from,
-            _to;
-
-        public int
-            min = 0,
-            max = 100;
-
-        public float
-            duration = 1f;
+            _to,
+            _width;
 
         private void OnEnable()
         {
             _value = _timer = 0f;
-            _from = max;
-            _to = min;
+            ////_from = max;
+            //_to = min;
+            _width = GetComponent<RectTransform>().rect.width;
+            _from = padding * -2;
+            _to = -_width + min;
         }
 
         private void Update()
