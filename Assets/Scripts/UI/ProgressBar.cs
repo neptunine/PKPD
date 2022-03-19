@@ -33,7 +33,7 @@ namespace Utility
             }
         }
 
-        public float
+        private float
             _value,
             _timer,
             _from,

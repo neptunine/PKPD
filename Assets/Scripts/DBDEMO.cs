@@ -14,7 +14,8 @@ public class DBDEMO : MonoBehaviour
 
     public void DisplayWords()
     {
-        string dbName = "URI=file:Assets/WordsDB.db";
+        //string dbName = "URI=file:Assets/WordsDB.db";
+        string dbName = $"Data Source={Application.streamingAssetsPath}/data.db";
 
         using (var connection = new SqliteConnection(dbName))
         {

@@ -38,14 +38,18 @@ namespace Game
             if (newExp < _expForNextLevel)
             {
                 _currentExp = newExp;
+
+                Debug.Log($"[<color=orange>LevelHandler</color>] Gained {exp} experience");
             }
             else
             {
                 _level += 1;
                 _currentExp = newExp - _expForNextLevel;
                 _expForNextLevel = GetExpforLevel(_level);
+
+                Debug.Log($"[<color=orange>LevelHandler</color>] Gained {exp} experience, level {_level} reached");
             }
-                
+            
         }
 
         private int GetExpforLevel(int n)
