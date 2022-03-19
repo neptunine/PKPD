@@ -14,7 +14,7 @@ public class DBDEMO : MonoBehaviour
 
     public void DisplayWords()
     {
-        string dbName = "URI=file:WordsDB.db";
+        string dbName = "URI=file:Assets/WordsDB.db";
 
         using (var connection = new SqliteConnection(dbName))
         {
@@ -38,6 +38,7 @@ public class DBDEMO : MonoBehaviour
         
 
     }
+
 
     
 }
