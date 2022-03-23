@@ -10,8 +10,8 @@ namespace Game {
             level;
 
         [SerializeField]
-        LifeHandler
-            life;
+        PlayerData
+            player;
 
         [SerializeField]
         GameObject
@@ -51,7 +51,7 @@ namespace Game {
 
         public void StartLevel(int mode)
         {
-            if (life.isOutOfLife)
+            if (player.isOutOfLife)
             {
                 Debug.Log($"[<color=magenta>GameController</color>] Can't Start Level without life");
                 return;

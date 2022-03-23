@@ -12,8 +12,8 @@ namespace Game
             controller;
 
         [SerializeField]
-        private LifeHandler
-            life;
+        private PlayerData
+            player;
 
         [SerializeField]
         private LevelGraphicsHandler
@@ -267,7 +267,7 @@ namespace Game
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(inputLayout.GetComponent<RectTransform>());
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Target word is '{_targetWord}'; Hide {percent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
+            Debug.Log($"[<color=cyan>LevelController</color>] Target word is \"{_targetWord}\"; Hide {percent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
         }
 
         public void Terminate()
@@ -384,7 +384,7 @@ namespace Game
                 {
                     Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
                     _isQuestEnded = true;
-                    life.Damage();
+                    player.Damage();
                     _results[quest - 1] = false;
                     StartCoroutine(OnGameOver());
                 }
@@ -504,7 +504,7 @@ namespace Game
         private void QuestionEnd()
         {
             progress.value = 1f * quest / _wordList.Length;
-            if (quest > _wordList.Length || life.isOutOfLife)
+            if (quest > _wordList.Length || player.isOutOfLife)
                 _isLevelEnded = true;
 
             float s = 0f;
