@@ -4,7 +4,7 @@
             "id": 0,
             "title": "The Reaper",
             "icon": {
-                "instanceID": 19130
+                "instanceID": 0
             },
             "iconPath": "Assets/Journal/Resources/Sprites/death-zone.png",
             "trimmedIconPath": "",
@@ -36,7 +36,7 @@
             "id": 2,
             "title": "Aarrgh!",
             "icon": {
-                "instanceID": 19636
+                "instanceID": 0
             },
             "iconPath": "Assets/Journal/Resources/Sprites/achievement.png",
             "trimmedIconPath": "",

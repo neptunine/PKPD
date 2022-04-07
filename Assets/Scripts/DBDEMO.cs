@@ -4,42 +4,46 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 using System.Data;
 
-public class DBDEMO : MonoBehaviour
+namespace Utility
 {
-    // Start is called before the first frame update
-    void Start()
+    public class DBDEMO : MonoBehaviour
     {
-        DisplayWords();
-    }
+        // Start is called before the first frame update
 
-    public void DisplayWords()
-    {
-        //string dbName = "URI=file:Assets/WordsDB.db";
-        string dbName = $"Data Source={Application.streamingAssetsPath}/data.db";
-
-        using (var connection = new SqliteConnection(dbName))
+        public string[] GetWords(int topic,int quantity)
         {
-            connection.Open();
-
-            using(var command = connection.CreateCommand())
+            //string dbName = "URI=file:Assets/WordsDB.db";
+            string dbName = $"Data Source={Application.streamingAssetsPath}/data.db";
+            string[] wordarray = new string[quantity];
+            using (var connection = new SqliteConnection(dbName))
             {
-                command.CommandText = "SELECT * FROM Words";
+                connection.Open();
 
-                using(IDataReader reader = command.ExecuteReader())
+                using (var command = connection.CreateCommand())
                 {
-                    while (reader.Read())
-                    {
-                        Debug.Log("Words:" + reader["Name"] );
+                    command.CommandText = $"select * from Words WHERE GenreID = {topic} order by RANDOM() LIMIT {quantity};";
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    { 
+                        for (int i=0;reader.Read(); i++)
+                        {
+                            wordarray[i] = (string)reader["Name"];
+                    
                     }
-                    reader.Close();
+                        reader.Close();
+                    }
                 }
+                connection.Close();
             }
-            connection.Close();
+            return wordarray;
+
         }
-        
+
+      
+
+
+
 
     }
 
-
-    
 }

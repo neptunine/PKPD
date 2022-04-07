@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utility;
 
 namespace Game {
     public class GameController : MonoBehaviour
@@ -27,6 +28,9 @@ namespace Game {
 
         public int
             ss;
+
+        public DBDEMO
+            getwordd;
 
         private void Awake()
         {
@@ -60,14 +64,16 @@ namespace Game {
             menuObject.SetActive(false);
             level.gameObject.SetActive(true);
             levelUI.SetActive(true);
-            string[] words = wordFile[mode].text.Split("\n"[0]);
-            for (int i = 0; i < words.Length; i++)
-            {
-                string tmp = words[i];
-                int r = Random.Range(i, words.Length);
-                words[i] = words[r];
-                words[r] = tmp;
-            }
+            string[] words = getwordd.GetWords(20,20);
+            //string[] words = wordFile[mode].text.Split("\n"[0]);
+
+            //for (int i = 0; i < words.Length; i++)
+            //{
+            //    string tmp = words[i];
+            //    int r = Random.Range(i, words.Length);
+            //    words[i] = words[r];
+            //    words[r] = tmp;
+            //}
             level.Initialize(words);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with mode {mode}");
