@@ -163,6 +163,8 @@ namespace Game
                 Debug.Log($"[<color=orange>PlayerData</color>] Level {_level} reached [lv.{_level}: {Math.Min(_currentExp, _expForNextLevel)}/{_expForNextLevel}]");
             }
 
+            lvText.text = _level.ToString();
+            lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, lvBar.localScale.y, lvBar.localScale.z);
             WriteSave();
         }
 

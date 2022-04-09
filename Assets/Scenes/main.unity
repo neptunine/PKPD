@@ -2789,8 +2789,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topicButtonsParent: {fileID: 1023719076}
   difficultyButtonsParent: {fileID: 179794634}
-  topic: 0
-  difficulty: 0
+  difficulties:
+  - words: {x: 10, y: 20}
+    hidePercentage: 1
+    manualSelection: 0
+  - words: {x: 10, y: 20}
+    hidePercentage: 0.5
+    manualSelection: 1
+  - words: {x: 10, y: 20}
+    hidePercentage: 0.7
+    manualSelection: 1
 --- !u!1 &268609606
 GameObject:
   m_ObjectHideFlags: 0

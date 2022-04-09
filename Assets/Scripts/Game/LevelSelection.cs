@@ -10,9 +10,36 @@ namespace Game
             topicButtonsParent,
             difficultyButtonsParent;
 
-        public int
-            topic,
-            difficulty;
+        [System.Serializable]
+        public class Difficulty
+        {
+            [Min(1)]
+            public Vector2Int
+                words = new Vector2Int(10, 20);
+
+            [Range(0, 1)]
+            public float
+                hidePercentage = 1f;
+
+            public bool
+                manualSelection = false;
+        }
+
+        public Difficulty[]
+            difficulties;
+
+        private int _topic;
+        public int topic { get { return _topic; } }
+        private int _difficulty;
+        public int difficulty { get { return _difficulty; } }
+        private int _wordMin;
+        public int wordMin { get { return _wordMin; } }
+        private int _wordMax;
+        public int wordMax { get { return _wordMax; } }
+        private float _hide;
+        public float hide { get { return _hide; } }
+        private bool _manual;
+        public bool manual { get { return _manual; } }
 
         void Start()
         {
@@ -44,18 +71,22 @@ namespace Game
                     i++;
                 }
             }
-            topic = 1;
-            difficulty = 0;
+            _topic = 1;
+            _difficulty = 0;
+            SetDifficulty(0);
         }
 
-        void Update()
+        void SetDifficulty(int i)
         {
-
+            _wordMin = difficulties[i].words.x;
+            _wordMax = difficulties[i].words.y;
+            _hide = difficulties[i].hidePercentage;
+            _manual = difficulties[i].manualSelection;
         }
 
         public void SelectTopic(int index, Toggle self)
         {
-            topic = index;
+            _topic = index;
             foreach (Transform child in topicButtonsParent)
             {
                 Toggle toggle = child.GetComponent<Toggle>();
@@ -68,7 +99,8 @@ namespace Game
 
         public void SelectDifficulty(int index, Toggle self)
         {
-            difficulty = index;
+            _difficulty = index;
+            SetDifficulty(index);
             foreach (Transform child in difficultyButtonsParent)
             {
                 Toggle toggle = child.GetComponent<Toggle>();

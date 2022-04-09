@@ -86,25 +86,8 @@ namespace Game {
             //string[] words = GetWords(20, 20);
             //level.Initialize(words);
 
-            string[] words = GetWords(levelSelect.topic, 10 + Mathf.FloorToInt(Random.Range(0f, 10f)));
-            float hide; bool auto;
-            switch (levelSelect.difficulty)
-            {
-                default:
-                case 0:
-                    hide = 1f;
-                    auto = true;
-                    break;
-                case 1:
-                    hide = .6f;
-                    auto = false;
-                    break;
-                case 2:
-                    hide = .8f;
-                    auto = false;
-                    break;
-            }
-            level.Initialize(words, hide, auto);
+            string[] words = GetWords(levelSelect.topic, 10 + Mathf.FloorToInt(Random.Range(levelSelect.wordMin, levelSelect.wordMax)));
+            level.Initialize(words, levelSelect.hide, levelSelect.manual);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with topic {levelSelect.topic} and mode {levelSelect.difficulty}");
         }
