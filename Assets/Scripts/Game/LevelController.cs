@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Utility;
 
 namespace Game
@@ -29,7 +30,8 @@ namespace Game
             levelUI,
             selector,
             charDisplay,
-            nextUI;
+            nextUI,
+            endScreenUI;
 
         [SerializeField]
         private LayoutGroup
@@ -79,15 +81,15 @@ namespace Game
         private string[]
             _wordList;
 
-        public int
-            quest,
-            stage;
+        private int
+            _quest,
+            _stage;
 
-        public float
-            hidePercent;
+        private float
+            _hidePercent;
 
-        public bool
-            autoSelect;
+        private bool
+            _autoSelect;
 
         private string
             _targetWord;
@@ -110,16 +112,14 @@ namespace Game
 
         private bool
             _isQuestEnded,
-            _isLevelEnded;
+            _isLevelEnded,
+            _isdead;
 
-        private bool[]
+        public bool[]
             _results;
 
         private int
             _inputs = 18;
-
-        public int
-            score;
 
         private void Awake()
         {
@@ -139,16 +139,17 @@ namespace Game
         public void Initialize(string[] words, float hide, bool select)
         {
             _wordList = words;
-            hidePercent = hide;
-            autoSelect = select;
+            _hidePercent = hide;
+            _autoSelect = select;
             for (int i = 0; i < _wordList.Length; i++)
             {
                 _wordList[i] = _wordList[i].Trim().ToUpper();
             }
-            quest = 0;
+            _quest = 0;
             _results = new bool[_wordList.Length];
-            _isQuestEnded = _isLevelEnded = false;
-            selector.SetActive(!autoSelect);
+            _isQuestEnded = _isLevelEnded = _isdead = false;
+            selector.SetActive(!_autoSelect);
+            endScreenUI.SetActive(false);
             Clear();
             NewWord();
         }
@@ -156,15 +157,15 @@ namespace Game
         public void NewWord()
         {
             nextUI.SetActive(false);
-            _isQuestEnded = false;
-            quest += 1;
-            if (_isLevelEnded)
+            if (_isLevelEnded || _quest >= _wordList.Length)
             {
-                StartCoroutine(EndScreen());
+                StartCoroutine(OnEndScreen(_isdead));
                 return;
             }
+            _isQuestEnded = false;
+            _quest += 1;
 
-            _targetWord = _wordList[quest - 1];
+            _targetWord = _wordList[_quest - 1];
             char[] abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
 
             char[] disChars = _targetWord.ToCharArray();
@@ -172,8 +173,8 @@ namespace Game
             _expectChars = new char[disChars.Length];
             _wordButtons = new Button[disChars.Length];
             _inputButtons = new Button[_inputs];
-            hidePercent = Mathf.Clamp01(hidePercent);
-            int len = Mathf.RoundToInt(disChars.Length * hidePercent);
+            _hidePercent = Mathf.Clamp01(_hidePercent);
+            int len = Mathf.RoundToInt(disChars.Length * _hidePercent);
             if (len < disChars.Length)
             {
                 for (int i = 0; i < len;)
@@ -206,7 +207,7 @@ namespace Game
                 //character.index = i;
                 //character.character = disChars[i];
                 Button button = charObject.GetComponentInChildren<Button>();
-                SetButtonSprite(button, disChars[i]);
+                SetButtonSprite(button, disChars[i], false);
                 _wordButtons[i] = button;
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
@@ -260,7 +261,7 @@ namespace Game
                 sf.anchor.transform.SetParent(inputLayout.transform);
                 sf.anchor.name = "d." + i.ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
-                SetButtonSprite(button, inChars[i]);
+                SetButtonSprite(button, inChars[i], true);
                 _inputButtons[i] = button;
                 button.interactable = true;
                 int self = i;
@@ -269,13 +270,13 @@ namespace Game
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(inputLayout.GetComponent<RectTransform>());
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Target word is \"{_targetWord}\"; Hide {hidePercent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
+            Debug.Log($"[<color=cyan>LevelController</color>] Question {_quest}/{_wordList.Length} Target word is \"{_targetWord}\"; Hide {_hidePercent * 100}%; Auto target {(_autoSelect ? "yes" : "no")}");
         }
 
         public void Terminate()
         {
             Clear();
-            controller.TerminateLevel(score);
+            controller.TerminateLevel();
         }
 
         public void Clear()
@@ -285,7 +286,7 @@ namespace Game
             _expectChars = null;
             text.text = string.Empty;
             graphics.Clear();
-            stage = graphics.maxstage;
+            _stage = graphics.maxstage;
 
             for (int i = 0; i < charDisplay.transform.childCount; i++)
             {
@@ -301,7 +302,7 @@ namespace Game
             }
         }
 
-        private void SetButtonSprite(Button button, char character)
+        private void SetButtonSprite(Button button, char character, bool input)
         {
             Sprite spriteTarget, spriteAlt;
 
@@ -333,7 +334,12 @@ namespace Game
                 case 'x': case 'X': spriteTarget = characters.xTarget; spriteAlt = characters.xAlt; break;
                 case 'y': case 'Y': spriteTarget = characters.yTarget; spriteAlt = characters.yAlt; break;
                 case 'z': case 'Z': spriteTarget = characters.zTarget; spriteAlt = characters.zAlt; break;
-                default: spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; break;
+                default:
+                    if (input)
+                    { spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; }
+                    else
+                    { spriteTarget = spriteAlt = characters.blankAlt; }
+                    break;
             }
             button.GetComponentInChildren<Image>().sprite = spriteTarget;
             SpriteState spriteState = new SpriteState
@@ -363,7 +369,7 @@ namespace Game
                 _inputButtons[_selectedInput].interactable = true;
             }
 
-            if (autoSelect)
+            if (_autoSelect)
             {
                 int index = System.Array.IndexOf(_expectChars, _inputChars[clicked]);
                 if (index != -1)
@@ -380,15 +386,15 @@ namespace Game
 
             if (inchar != _expectChars[_selectedChar])
             {
-                stage -= 1;
+                _stage -= 1;
                 StartCoroutine(OnIncorrectInput());
-                if (stage < 1)
+                if (_stage < 1)
                 {
                     Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
                     _isQuestEnded = true;
                     player.Damage();
-                    _results[quest - 1] = false;
-                    StartCoroutine(OnGameOver());
+                    _results[_quest - 1] = false;
+                    StartCoroutine(OnWordFail());
                 }
                 return;
             }
@@ -423,8 +429,8 @@ namespace Game
             {
                 Debug.Log($"[<color=cyan>LevelController</color>] Question finish");
                 _isQuestEnded = true;
-                _results[quest - 1] = true;
-                StartCoroutine(OnEnd());
+                _results[_quest - 1] = true;
+                StartCoroutine(OnWordPass());
             }
             _selectedInput = -1;
         }
@@ -462,14 +468,18 @@ namespace Game
                 _inputButtons[_selectedInput].interactable = true;
             }
 
-            graphics.SetStage(stage);
+            graphics.SetStage(_stage);
 
             _selectedInput = -1;
         }
 
-        private IEnumerator OnEnd()
+        private IEnumerator OnWordPass()
         {
-            QuestionEnd();
+            progress.value = 1f * _quest / _wordList.Length;
+            if (_quest > _wordList.Length)
+                _isLevelEnded = true;
+            if (player.isOutOfLife)
+                _isLevelEnded = _isdead = true;
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
@@ -480,9 +490,13 @@ namespace Game
             nextUI.SetActive(true);
         }
 
-        private IEnumerator OnGameOver()
+        private IEnumerator OnWordFail()
         {
-            QuestionEnd();
+            progress.value = 1f * _quest / _wordList.Length;
+            if (_quest > _wordList.Length)
+                _isLevelEnded = true;
+            if (player.isOutOfLife)
+                _isLevelEnded = _isdead = true;
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
@@ -493,30 +507,48 @@ namespace Game
             nextUI.SetActive(true);
         }
 
-        private IEnumerator EndScreen()
+        private IEnumerator OnEndScreen(bool dead)
         {
-            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score}%)");
-
-            yield return new WaitForSeconds(1);
-            text.text = "Gameover";
-            yield return new WaitForSeconds(2);
-            text.text = "Score: " + score;
-        }
-
-        private void QuestionEnd()
-        {
-            progress.value = 1f * quest / _wordList.Length;
-            if (quest > _wordList.Length || player.isOutOfLife)
-                _isLevelEnded = true;
-
-            float s = 0f;
+            float score = 0f;
+            int exp = 0;
+            int combo = 1;
             for (int i = 0; i < _results.Length; i++)
             {
                 if (_results[i])
-                    s += 100f;
+                {
+                    score += 100f;
+                    exp += 10 * combo;
+                    if (combo < 8) combo *= 2;
+                }
+                else
+                {
+                    combo = Mathf.CeilToInt(combo * .5f);
+                }
+                Debug.Log($"i {i} exp {exp} combo {combo}");
             }
-            s /= _results.Length;
-            score = Mathf.RoundToInt(s);
+            score /= _results.Length;
+            player.AddExperience(exp);
+
+            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})");
+
+            TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
+            GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
+            endScreenUI.SetActive(true);
+            backButton.SetActive(false);
+
+            endText.text = $"{(dead ? "Game Over" : "Victory")}";
+            
+            yield return new WaitForSeconds(2);
+            endText.text += $"\nScore: {Mathf.RoundToInt(score)}";
+
+            yield return new WaitForSeconds(2);
+            endText.text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
+
+            yield return new WaitForSeconds(2);
+            endText.text += $"\nEXP: {exp}";
+
+            yield return new WaitForSeconds(2);
+            backButton.SetActive(true);
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Game
 
         public bool Override = false;
         [Range(0, 7)] public int Y;
-        [Range(-4, 4)] public int X;
+        [Range(-4, 4)] public float X;
 #endif
 
         private void Awake()

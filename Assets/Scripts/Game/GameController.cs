@@ -36,9 +36,6 @@ namespace Game {
         private string
             _filepath;
 
-        public int
-            ss;
-
         private void Awake()
         {
             _filepath = $"{Application.streamingAssetsPath}/{_filename}";
@@ -62,7 +59,7 @@ namespace Game {
 
         }
 
-        public void StartLevel(int mode)
+        public void StartLevel()
         {
             if (player.isOutOfLife)
             {
@@ -86,15 +83,14 @@ namespace Game {
             //string[] words = GetWords(20, 20);
             //level.Initialize(words);
 
-            string[] words = GetWords(levelSelect.topic, 10 + Mathf.FloorToInt(Random.Range(levelSelect.wordMin, levelSelect.wordMax)));
+            string[] words = GetWords(levelSelect.topic, Mathf.FloorToInt(Random.Range(levelSelect.wordMin, levelSelect.wordMax)));
             level.Initialize(words, levelSelect.hide, levelSelect.manual);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with topic {levelSelect.topic} and mode {levelSelect.difficulty}");
         }
 
-        public void TerminateLevel(int score)
+        public void TerminateLevel()
         {
-            ss = score;
             level.gameObject.SetActive(false);
             levelUI.SetActive(false);
             menuObject.SetActive(true);
