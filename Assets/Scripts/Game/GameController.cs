@@ -9,15 +9,19 @@ namespace Game {
     public class GameController : MonoBehaviour
     {
         [SerializeField]
-        LevelController
+        private LevelController
             level;
 
         [SerializeField]
-        PlayerData
+        private PlayerData
             player;
 
         [SerializeField]
-        GameObject
+        private LevelSelection
+            levelSelect;
+
+        [SerializeField]
+        private GameObject
             menuObject,
             mainMenu,
             levelMenu,
@@ -78,10 +82,31 @@ namespace Game {
             //    words[i] = words[r];
             //    words[r] = tmp;
             //}
-            string[] words = GetWords(20, 20);
-            level.Initialize(words);
 
-            Debug.Log($"[<color=magenta>GameController</color>] Started Level with mode {mode}");
+            //string[] words = GetWords(20, 20);
+            //level.Initialize(words);
+
+            string[] words = GetWords(levelSelect.topic, 10 + Mathf.FloorToInt(Random.Range(0f, 10f)));
+            float hide; bool auto;
+            switch (levelSelect.difficulty)
+            {
+                default:
+                case 0:
+                    hide = 1f;
+                    auto = true;
+                    break;
+                case 1:
+                    hide = .6f;
+                    auto = false;
+                    break;
+                case 2:
+                    hide = .8f;
+                    auto = false;
+                    break;
+            }
+            level.Initialize(words, hide, auto);
+
+            Debug.Log($"[<color=magenta>GameController</color>] Started Level with topic {levelSelect.topic} and mode {levelSelect.difficulty}");
         }
 
         public void TerminateLevel(int score)

@@ -84,7 +84,7 @@ namespace Game
             stage;
 
         public float
-            percent;
+            hidePercent;
 
         public bool
             autoSelect;
@@ -136,9 +136,11 @@ namespace Game
 
         }
 
-        public void Initialize(string[] words)
+        public void Initialize(string[] words, float hide, bool select)
         {
             _wordList = words;
+            hidePercent = hide;
+            autoSelect = select;
             for (int i = 0; i < _wordList.Length; i++)
             {
                 _wordList[i] = _wordList[i].Trim().ToUpper();
@@ -170,8 +172,8 @@ namespace Game
             _expectChars = new char[disChars.Length];
             _wordButtons = new Button[disChars.Length];
             _inputButtons = new Button[_inputs];
-            percent = Mathf.Clamp01(percent);
-            int len = Mathf.RoundToInt(disChars.Length * percent);
+            hidePercent = Mathf.Clamp01(hidePercent);
+            int len = Mathf.RoundToInt(disChars.Length * hidePercent);
             if (len < disChars.Length)
             {
                 for (int i = 0; i < len;)
@@ -267,7 +269,7 @@ namespace Game
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(inputLayout.GetComponent<RectTransform>());
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Target word is \"{_targetWord}\"; Hide {percent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
+            Debug.Log($"[<color=cyan>LevelController</color>] Target word is \"{_targetWord}\"; Hide {hidePercent * 100}%; Auto target {(autoSelect ? "yes" : "no")}");
         }
 
         public void Terminate()

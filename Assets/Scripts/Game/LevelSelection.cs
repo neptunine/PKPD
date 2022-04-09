@@ -16,12 +16,14 @@ namespace Game
 
         void Start()
         {
-            int i = 0;
+            int i = 1;
             foreach (Transform child in topicButtonsParent)
             {
                 Toggle toggle = child.GetComponent<Toggle>();
                 if (toggle)
                 {
+                    if (i == 1) toggle.isOn = true;
+                    else toggle.isOn = false;
                     int j = i;
                     Toggle self = toggle;
                     toggle.onValueChanged.AddListener((isOn) => { if (isOn) SelectTopic(j, toggle); });
@@ -34,12 +36,16 @@ namespace Game
                 Toggle toggle = child.GetComponent<Toggle>();
                 if (toggle)
                 {
+                    if (i == 0) toggle.isOn = true;
+                    else toggle.isOn = false;
                     int j = i;
                     Toggle self = toggle;
                     toggle.onValueChanged.AddListener((isOn) => { if (isOn) SelectDifficulty(j, toggle); });
                     i++;
                 }
             }
+            topic = 1;
+            difficulty = 0;
         }
 
         void Update()
