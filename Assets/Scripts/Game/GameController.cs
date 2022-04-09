@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mono.Data.Sqlite;
+using System.Data;
 using Utility;
 
 namespace Game {
@@ -23,17 +25,20 @@ namespace Game {
             creditsMenu,
             levelUI;
 
-        public TextAsset[]
-            wordFile;
+        [SerializeField]
+        private string
+            _filename;
+
+        private string
+            _filepath;
 
         public int
             ss;
 
-        public DBDEMO
-            getwordd;
-
         private void Awake()
         {
+            _filepath = $"{Application.streamingAssetsPath}/{_filename}";
+
             level.gameObject.SetActive(false);
             levelUI.SetActive(false);
             menuObject.SetActive(true);
@@ -64,9 +69,8 @@ namespace Game {
             menuObject.SetActive(false);
             level.gameObject.SetActive(true);
             levelUI.SetActive(true);
-            string[] words = getwordd.GetWords(20,20);
-            //string[] words = wordFile[mode].text.Split("\n"[0]);
 
+            //string[] words = wordFile[mode].text.Split("\n"[0]);
             //for (int i = 0; i < words.Length; i++)
             //{
             //    string tmp = words[i];
@@ -74,6 +78,7 @@ namespace Game {
             //    words[i] = words[r];
             //    words[r] = tmp;
             //}
+            string[] words = GetWords(20, 20);
             level.Initialize(words);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with mode {mode}");
@@ -89,5 +94,33 @@ namespace Game {
             Debug.Log($"[<color=magenta>GameController</color>] Ended Level");
         }
 
+        public string[] GetWords(int topic, int quantity)
+        {
+            string commandString = $"select * from Words WHERE GenreID = {topic} order by RANDOM() LIMIT {quantity};";
+            string[] wordarray = new string[quantity];
+
+            using (var connection = new SqliteConnection("Data Source=" + _filepath))
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = commandString;
+
+                    using (IDataReader reader = command.ExecuteReader())
+                    {
+                        for (int i = 0; reader.Read(); i++)
+                        {
+                            wordarray[i] = (string)reader["Name"];
+
+                        }
+                        reader.Close();
+                    }
+                }
+                connection.Close();
+            }
+            Debug.Log($"[<color=magenta>LevelController</color>] Read word from \"{_filepath}\" with commond \"{commandString}\"");
+            return wordarray;
+        }
     }
 }

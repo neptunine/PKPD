@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game
 {
@@ -48,7 +50,7 @@ namespace Game
         private DateTime
             _damageTime,
             _nextHealTime;
-
+        
         public bool isOutOfLife
         {
             get { return _lives <= 0; }
@@ -59,13 +61,20 @@ namespace Game
             get { return _lives; }
         }
 
-
         [Header("level")]
         private int
             _level,
             _currentExp,
             _expForNextLevel,
             _totalExp;
+
+        [SerializeField]
+        private TMP_Text
+            lvText;
+
+        [SerializeField]
+        private RectTransform
+            lvBar;
 
         public int level
         {
@@ -82,6 +91,8 @@ namespace Game
             _filepath = $"{Application.persistentDataPath}/{_filename}";
             ReadSave();
 
+            lvText.text = _level.ToString();
+            lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, lvBar.localScale.y, lvBar.localScale.z);
         }
 
         private void Update()
@@ -226,6 +237,7 @@ namespace Game
 
                 Debug.LogWarning($"[<color=orange>PlayerData</color>] File \"{_filepath}\" can not be read\n{e}");
             }
+            _expForNextLevel = GetExpforLevel(_level);
         }
 
 
