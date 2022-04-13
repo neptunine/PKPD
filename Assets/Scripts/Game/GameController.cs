@@ -84,7 +84,7 @@ namespace Game {
             //level.Initialize(words);
 
             string[] words = GetWords(levelSelect.topic, Mathf.FloorToInt(Random.Range(levelSelect.wordMin, levelSelect.wordMax)));
-            level.Initialize(words, levelSelect.hide, levelSelect.manual);
+            level.Initialize(words, levelSelect.hide, !levelSelect.manual);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with topic {levelSelect.topic} and mode {levelSelect.difficulty}");
         }

@@ -115,10 +115,10 @@ namespace Game
             _isLevelEnded,
             _isdead;
 
-        public bool[]
+        private bool[]
             _results;
 
-        private int
+        private readonly int
             _inputs = 18;
 
         private void Awake()
@@ -281,6 +281,7 @@ namespace Game
 
         public void Clear()
         {
+            endScreenUI.SetActive(false);
             _selectedChar = _selectedInput = -1;
             _targetWord = null;
             _expectChars = null;
@@ -508,24 +509,26 @@ namespace Game
             float score = 0f;
             int exp = 0;
             int combo = 1;
+            string debug = string.Empty;
             for (int i = 0; i < _results.Length; i++)
             {
                 if (_results[i])
                 {
                     score += 100f;
                     exp += 10 * combo;
+                    debug += $"<color=green>{exp}({combo})</color>; ";
                     if (combo < 8) combo *= 2;
                 }
                 else
                 {
+                    debug += $"<color=maroon>{exp}({combo})</color>; ";
                     combo = Mathf.CeilToInt(combo * .5f);
                 }
-                Debug.Log($"i {i} exp {exp} combo {combo}");
             }
             score /= _results.Length;
             player.AddExperience(exp);
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})");
+            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})({debug})");
 
             TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
             GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
