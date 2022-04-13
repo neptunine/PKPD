@@ -28,12 +28,12 @@ namespace Utility
                 _value = Mathf.Clamp01(value);
                 _from = fillRect.sizeDelta.x;
                 //_to = Mathf.Round(min + (max - min) * _value);
-                _to = Mathf.Round(-_width + min + (padding * -2 + _width + min) * _value);
+                _to = Mathf.Round(Mathf.Lerp(-_width + min, padding * -2, _value));
                 _timer = 0;
             }
         }
 
-        private float
+        public float
             _value,
             _timer,
             _from,

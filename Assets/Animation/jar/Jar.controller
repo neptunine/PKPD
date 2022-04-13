@@ -913,7 +913,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &297614258315306827
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -938,7 +938,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &759359522038077317
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

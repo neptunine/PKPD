@@ -207,7 +207,7 @@ namespace Game
                 //character.index = i;
                 //character.character = disChars[i];
                 Button button = charObject.GetComponentInChildren<Button>();
-                SetButtonSprite(button, disChars[i], false);
+                SetButtonSprite(button, disChars[i]);
                 _wordButtons[i] = button;
                 SmoothFollow sf = charObject.GetComponent<SmoothFollow>();
                 sf.anchor.transform.SetParent(displayLayout.transform);
@@ -261,7 +261,7 @@ namespace Game
                 sf.anchor.transform.SetParent(inputLayout.transform);
                 sf.anchor.name = "d." + i.ToString();
                 Button button = charObject.GetComponentInChildren<Button>();
-                SetButtonSprite(button, inChars[i], true);
+                SetButtonSprite(button, inChars[i]);
                 _inputButtons[i] = button;
                 button.interactable = true;
                 int self = i;
@@ -302,7 +302,7 @@ namespace Game
             }
         }
 
-        private void SetButtonSprite(Button button, char character, bool input)
+        private void SetButtonSprite(Button button, char character)
         {
             Sprite spriteTarget, spriteAlt;
 
@@ -334,12 +334,8 @@ namespace Game
                 case 'x': case 'X': spriteTarget = characters.xTarget; spriteAlt = characters.xAlt; break;
                 case 'y': case 'Y': spriteTarget = characters.yTarget; spriteAlt = characters.yAlt; break;
                 case 'z': case 'Z': spriteTarget = characters.zTarget; spriteAlt = characters.zAlt; break;
-                default:
-                    if (input)
-                    { spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; }
-                    else
-                    { spriteTarget = spriteAlt = characters.blankAlt; }
-                    break;
+                case '\0': spriteTarget = spriteAlt = characters.blankAlt; break;
+                default: spriteTarget = characters.blankTarget; spriteAlt = characters.blankAlt; break;
             }
             button.GetComponentInChildren<Image>().sprite = spriteTarget;
             SpriteState spriteState = new SpriteState
