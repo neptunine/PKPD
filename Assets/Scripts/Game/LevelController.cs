@@ -456,7 +456,7 @@ namespace Game
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
 
             if (Random.value < .1f) _controller.audioController.PlayCharacterCorrect();
-            Journal.Increment("Count Word -,-", 1);
+            Journal.Increment(2, 1);
 
         }
 
@@ -496,7 +496,7 @@ namespace Game
 
             _controller.audioController.PlayWordCorrect();
             _controller.playerData.Increment("WordCleared");
-            Journal.Increment("Keep Trying!", 1);
+            Journal.Increment(5, 1);
 
             yield return new WaitForSeconds(2);
             text.text = passText;
@@ -517,7 +517,7 @@ namespace Game
 
             _controller.audioController.PlayWordFail();
             _controller.playerData.Increment("WordFailed");
-            Journal.Increment("Never gonna give you up!", 1);
+            Journal.Increment(4, 1);
 
             yield return new WaitForSeconds(2);
             text.text = failText;
@@ -577,7 +577,7 @@ namespace Game
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);
 
-            Journal.Increment("Your first play~", 1);
+            Journal.Increment(3, 1);
         }
 
     }
