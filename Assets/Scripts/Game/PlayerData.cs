@@ -22,7 +22,8 @@ namespace Game
         private class Save
         {
             public int
-                lives;
+                lives,
+                totalLivesTaken;
 
             public long
                 damageTime,
@@ -37,20 +38,33 @@ namespace Game
                 volume;
 
             public int
-                timePlayed,
                 totalWordCleared,
                 totalWordFailed,
                 totalLevelCleared;
+
+            public TimeSpan
+                timePlayed;
         }
 
         private float 
             _volume;
 
         private int
-            _timePlayed,
             _totalWordCleared,
             _totalWordFailed,
             _totalLevelCleared;
+
+        private TimeSpan
+            _timePlayed;
+
+        private DateTime
+            _focusTime;
+
+        public float volume { get { return _volume; } set { _volume = value; } }
+        public TimeSpan timePlayed { get { return _timePlayed; } }
+        public int totalWordCleared { get { return _totalWordCleared; } }
+        public int totalWordFailed { get { return _totalWordFailed; } }
+        public int totalLevelCleared { get { return _totalLevelCleared; } }
 
         [Header("Lives")]
         [SerializeField]
@@ -63,21 +77,16 @@ namespace Game
 
         private int
            _lives,
-           _timeToHeal;
+           _timeToHeal,
+           _totalLivesTaken;
 
         private DateTime
             _damageTime,
             _nextHealTime;
         
-        public bool isOutOfLife
-        {
-            get { return _lives <= 0; }
-        }
-
-        public int lives
-        {
-            get { return _lives; }
-        }
+        public bool isOutOfLife { get { return _lives <= 0; } }
+        public int lives { get { return _lives; } }
+        public int totalLivesTaken { get { return _totalLivesTaken; } }
 
         [Header("level")]
         private int
@@ -94,15 +103,10 @@ namespace Game
         private RectTransform
             _lvBar;
 
-        public int level
-        {
-            get { return _level; }
-        }
-
-        public int totalExp
-        {
-            get { return _totalExp; }
-        }
+        public int level { get { return _level; } }
+        public int currentExp { get { return _currentExp; } }
+        public int expForNextLevel { get { return _expForNextLevel; } }
+        public int totalExp { get { return _totalExp; } }
 
         void Awake()
         {
@@ -111,6 +115,20 @@ namespace Game
 
             _lvText.text = _level.ToString();
             _lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, _lvBar.localScale.y, _lvBar.localScale.z);
+
+            _focusTime = DateTime.UtcNow;
+        }
+
+        private void OnApplicationFocus(bool focus)
+        {
+            _timePlayed += DateTime.UtcNow - _focusTime;
+            _focusTime = DateTime.UtcNow;
+
+            if (!focus)
+            {
+                WriteSave();
+                Debug.Log($"[<color=orange>PlayerData</color>] Saved player data");
+            }
         }
 
         private void Update()
@@ -159,7 +177,7 @@ namespace Game
                     _totalLevelCleared += 1;
                     break;
                 default:
-                    Debug.LogError($"[<color=orange>PlayerData</color>] Unknown on increment \"{id}\"");
+                    Debug.LogError($"[<color=orange>PlayerData</color>] Stat \"{id}\" doesn't exist");
                     break;
             }
         }
@@ -220,6 +238,7 @@ namespace Game
             Save save = new Save
             {
                 lives = _lives,
+                totalLivesTaken = _totalLivesTaken,
                 damageTime = ((DateTimeOffset)_damageTime).ToUnixTimeMilliseconds(),
                 nextHealTime = ((DateTimeOffset)_nextHealTime).ToUnixTimeMilliseconds(),
                 level = _level,
@@ -245,6 +264,7 @@ namespace Game
             {
                 Save save = JsonUtility.FromJson<Save>(File.ReadAllText(_filepath));
                 _lives = save.lives;
+                _totalLivesTaken = save.totalLivesTaken;
                 _damageTime = DateTimeOffset.FromUnixTimeMilliseconds(save.damageTime).UtcDateTime;
                 _nextHealTime = DateTimeOffset.FromUnixTimeMilliseconds(save.nextHealTime).UtcDateTime;
                 _level = save.level;
@@ -262,10 +282,12 @@ namespace Game
             {
                 DateTime now = DateTime.UtcNow;
                 _lives = fullLives;
+                _totalLivesTaken = 0;
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
-                _timePlayed = _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _timePlayed = TimeSpan.Zero;
+                _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
                 _volume = 1;
 
                Debug.Log($"[<color=orange>PlayerData</color>] File not found \"{_filepath}\"");
@@ -275,6 +297,7 @@ namespace Game
             {
                 Save save = ReadFromBinaryFile<Save>(_filepath);
                 _lives = save.lives;
+                _totalLivesTaken = save.totalLivesTaken;
                 _damageTime = DateTimeOffset.FromUnixTimeMilliseconds(save.damageTime).UtcDateTime;
                 _nextHealTime = DateTimeOffset.FromUnixTimeMilliseconds(save.nextHealTime).UtcDateTime;
                 _level = save.level;
@@ -292,10 +315,12 @@ namespace Game
             {
                 DateTime now = DateTime.UtcNow;
                 _lives = fullLives;
+                _totalLivesTaken = 0;
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
-                _timePlayed = _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _timePlayed = TimeSpan.Zero;
+                _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
                 _volume = 1;
 
                 Debug.LogWarning($"[<color=orange>PlayerData</color>] File \"{_filepath}\" can not be read\n{e}");

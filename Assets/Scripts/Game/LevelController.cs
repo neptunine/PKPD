@@ -118,6 +118,9 @@ namespace Game
         private bool[]
             _results;
 
+        private float
+            _expScale;
+
         private readonly int
             _inputs = 18;
 
@@ -141,11 +144,12 @@ namespace Game
 
         }
 
-        public void Initialize(string[] words, float hide, bool select)
+        public void Initialize(string[] words, float hide, bool select, float expScale = 1f)
         {
             _wordList = words;
             _hidePercent = hide;
             _autoSelect = select;
+            _expScale = expScale;
             for (int i = 0; i < _wordList.Length; i++)
             {
                 _wordList[i] = _wordList[i].Trim().ToUpper();
@@ -548,9 +552,10 @@ namespace Game
                 
             }
             score /= _results.Length;
+            exp = Mathf.FloorToInt(exp * _expScale);
             _controller.playerData.AddExperience(exp);
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})({debug})");
+            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp} [{_expScale}x])({debug})");
 
             if (dead) _controller.audioController.PlayFailed();
             else {

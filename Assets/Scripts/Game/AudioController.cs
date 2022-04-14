@@ -16,18 +16,19 @@ namespace Game
             _audioSource;
 
         private float _volume;
-        public float Volume
+        public float volume
         {
             get { return _volume; }
             set
             {
                 _volume = Mathf.Clamp01(value);
-                _audioSource.volume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(_volume * 5.757f) - 3.1623e-3f);
                 // https://www.dr-lex.be/info-stuff/volumecontrols.html#ideal 50dB dynamic range constants
+                _audioSource.volume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(_volume * 5.757f) - 3.1623e-3f);
+                _controller.playerData.volume = _volume;
             }
         }
 
-        public bool Mute
+        public bool mute
         {
             get { return _audioSource.mute; }
             set { _audioSource.mute = value; }
@@ -53,6 +54,7 @@ namespace Game
         {
             _audioSource = GetComponentInChildren<AudioSource>();
             volumeController.SetController(this);
+            volumeController.SetVolume(_controller.playerData.volume);
 
             _audioSource.PlayOneShot(start[Random.Range(0, start.Length)]);
         }

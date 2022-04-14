@@ -23,6 +23,10 @@ namespace Game
 
             public bool
                 manualSelection = false;
+
+            [Min(0)]
+            public float
+                EXPMultiplier = 1f;
         }
 
         public Difficulty[]
@@ -40,6 +44,8 @@ namespace Game
         public float hide { get { return _hide; } }
         private bool _manual;
         public bool manual { get { return _manual; } }
+        private float _expMultiplier;
+        public float expMultiplier { get { return _expMultiplier; } }
 
         void Start()
         {
@@ -82,6 +88,7 @@ namespace Game
             _wordMax = difficulties[i].words.y;
             _hide = difficulties[i].hidePercentage;
             _manual = difficulties[i].manualSelection;
+            _expMultiplier = difficulties[i].EXPMultiplier;
         }
 
         public void SelectTopic(int index, Toggle self)

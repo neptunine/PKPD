@@ -35,7 +35,7 @@ namespace UI
             if (muted != _muted)
             {
                 _muted = muted;
-                if (_audioController) _audioController.Mute = _muted;
+                if (_audioController) _audioController.mute = _muted;
                 UpdateVolumeIcon();
             }
         }
@@ -56,7 +56,7 @@ namespace UI
             SetMuted(false);
 
             _sliderValueChanging = true;
-            if (_audioController) _audioController.Volume = slider.value;
+            if (_audioController) _audioController.volume = slider.value;
             _sliderValueChanging = false;
 
             UpdateVolumeIcon();
@@ -65,7 +65,7 @@ namespace UI
         public void OnMutePressed()
         {
             _muted = !_muted;
-            if (_audioController) _audioController.Mute = _muted;
+            if (_audioController) _audioController.mute = _muted;
 
             UpdateVolumeIcon();
         }

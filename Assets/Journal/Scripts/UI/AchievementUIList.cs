@@ -31,7 +31,7 @@ namespace GameGrind
             // Make the scrollbar fill a bit lighter than the base color
             scrollFill.color = settings.baseColor * 1.25f;
             // Assign the exit button the defined color
-            exitButton.color = settings.exitButtonColor;
+            if (exitButton) exitButton.color = settings.exitButtonColor;
         }
 
         // Use this for initialization
@@ -46,7 +46,7 @@ namespace GameGrind
             currentAchievementScore.text = AchievementController.CurrentAchievementScore.ToString() + " " + settings.achievementPointValueName;
 
             // Reloading the canvas since it is a persistent object can break the prefab references so we enforce the event listener directly
-            transform.Find("Close_Button").GetComponent<Button>().onClick.AddListener(() => gameObject.SetActive(false));
+            //transform.Find("Close_Button").GetComponent<Button>().onClick.AddListener(() => gameObject.SetActive(false));
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace GameGrind
         /// </summary>
         public void TogglePanel()
         {
-            isPanelActive = isPanelActive;
+            isPanelActive = !isPanelActive;
             this.gameObject.SetActive(isPanelActive); 
         }
 
