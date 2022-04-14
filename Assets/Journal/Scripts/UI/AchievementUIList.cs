@@ -21,7 +21,7 @@ namespace GameGrind
         [SerializeField]
         private TextMeshProUGUI currentAchievementScore;
 
-        private bool isPanelActive = false;
+        private bool isPanelActive = true;
         private List<AchievementUIElement> achievementUIObject = new List<AchievementUIElement>();
 
         private void Awake()
@@ -107,8 +107,8 @@ namespace GameGrind
         /// </summary>
         public void TogglePanel()
         {
-            isPanelActive = !isPanelActive;
-            this.gameObject.SetActive(isPanelActive);
+            isPanelActive = isPanelActive;
+            this.gameObject.SetActive(isPanelActive); 
         }
 
         private void ClearAchievementList()
