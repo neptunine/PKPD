@@ -14,8 +14,12 @@ namespace Game
             controller;
 
         [SerializeField]
+        private AudioController
+            gameAudio;
+
+        [SerializeField]
         private PlayerData
-            player;
+            player;  
 
         [SerializeField]
         private LevelGraphicsHandler
@@ -41,6 +45,10 @@ namespace Game
 
         [SerializeField]
         private Text text;
+
+        public string
+            passText = "Finish",
+            failText = "Failed";
 
         [System.Serializable]
         public class ABC
@@ -153,6 +161,8 @@ namespace Game
             endScreenUI.SetActive(false);
             Clear();
             NewWord();
+
+            gameAudio.PlayLevelStart();
         }
 
         public void NewWord()
@@ -448,8 +458,8 @@ namespace Game
             yield return new WaitForSeconds(t);
 
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
-            Journal.Increment("Count Word -,-", 1);
 
+            Journal.Increment("Count Word -,-", 1);
 
         }
 
@@ -485,12 +495,13 @@ namespace Game
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
+            gameAudio.PlayWordPass();
+
             yield return new WaitForSeconds(2);
-            text.text = "Finish";
-
+            text.text = passText;
             nextUI.SetActive(true);
-            Journal.Increment("Keep Trying!", 1);
 
+            Journal.Increment("Keep Trying!", 1);
         }
 
         private IEnumerator OnWordFail()
@@ -504,10 +515,12 @@ namespace Game
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
-            yield return new WaitForSeconds(2);
-            text.text = "Failed";
+            gameAudio.PlayWordFail();
 
+            yield return new WaitForSeconds(2);
+            text.text = failText;
             nextUI.SetActive(true);
+
             Journal.Increment("Never gonna give you up!", 1);
         }
 

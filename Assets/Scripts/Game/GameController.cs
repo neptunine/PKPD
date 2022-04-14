@@ -13,6 +13,10 @@ namespace Game {
             level;
 
         [SerializeField]
+        private AudioController
+            audioController;
+
+        [SerializeField]
         private PlayerData
             player;
 
