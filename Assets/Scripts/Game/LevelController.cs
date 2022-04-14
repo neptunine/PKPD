@@ -9,17 +9,8 @@ namespace Game
 {
     public class LevelController : MonoBehaviour
     {
-        [SerializeField]
         private GameController
-            controller;
-
-        [SerializeField]
-        private AudioController
-            gameAudio;
-
-        [SerializeField]
-        private PlayerData
-            player;  
+            _controller;
 
         [SerializeField]
         private LevelGraphicsHandler
@@ -130,6 +121,11 @@ namespace Game
         private readonly int
             _inputs = 18;
 
+        public void SetController(GameController controller)
+        {
+            _controller = controller;
+        }
+
         private void Awake()
         {
 
@@ -162,7 +158,7 @@ namespace Game
             Clear();
             NewWord();
 
-            gameAudio.PlayLevelStart();
+            _controller.audioController.PlayLevelStart();
         }
 
         public void NewWord()
@@ -287,7 +283,7 @@ namespace Game
         public void Terminate()
         {
             Clear();
-            controller.TerminateLevel();
+            _controller.TerminateLevel();
         }
 
         public void Clear()
@@ -400,7 +396,7 @@ namespace Game
                 {
                     Debug.Log($"[<color=cyan>LevelController</color>] Question Failed");
                     _isQuestEnded = true;
-                    player.Damage();
+                    _controller.playerData.Damage();
                     _results[_quest - 1] = false;
                     StartCoroutine(OnWordFail());
                 }
@@ -489,19 +485,20 @@ namespace Game
             progress.value = 1f * _quest / _wordList.Length;
             if (_quest > _wordList.Length)
                 _isLevelEnded = true;
-            if (player.isOutOfLife)
+            if (_controller.playerData.isOutOfLife)
                 _isLevelEnded = _isdead = true;
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
-            gameAudio.PlayWordPass();
+            _controller.audioController.PlayWordPass();
+            _controller.playerData.Increment("WordCleared");
+            Journal.Increment("Keep Trying!", 1);
 
             yield return new WaitForSeconds(2);
             text.text = passText;
             nextUI.SetActive(true);
 
-            Journal.Increment("Keep Trying!", 1);
         }
 
         private IEnumerator OnWordFail()
@@ -509,19 +506,20 @@ namespace Game
             progress.value = 1f * _quest / _wordList.Length;
             if (_quest > _wordList.Length)
                 _isLevelEnded = true;
-            if (player.isOutOfLife)
+            if (_controller.playerData.isOutOfLife)
                 _isLevelEnded = _isdead = true;
 
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
-            gameAudio.PlayWordFail();
+            _controller.audioController.PlayWordFail();
+            _controller.playerData.Increment("WordFailed");
+            Journal.Increment("Never gonna give you up!", 1);
 
             yield return new WaitForSeconds(2);
             text.text = failText;
             nextUI.SetActive(true);
 
-            Journal.Increment("Never gonna give you up!", 1);
         }
 
         private IEnumerator OnEndScreen(bool dead)
@@ -547,12 +545,15 @@ namespace Game
                 
             }
             score /= _results.Length;
-            player.AddExperience(exp);
+            _controller.playerData.AddExperience(exp);
 
             Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})({debug})");
 
-            if (dead) gameAudio.PlayFailed();
-            else gameAudio.PlayVictory();
+            if (dead) _controller.audioController.PlayFailed();
+            else {
+                _controller.audioController.PlayVictory();
+                _controller.playerData.Increment("LevelCleared");
+            }
 
             TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
             GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
@@ -569,9 +570,6 @@ namespace Game
 
             yield return new WaitForSeconds(2);
             endText.text += $"\nEXP: {exp}";
-
-            if (dead) gameAudio.PlayFailed();
-            else gameAudio.PlayVictory();
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);

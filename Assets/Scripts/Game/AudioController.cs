@@ -1,32 +1,36 @@
 ﻿using UnityEngine;
+using UI;
 
 namespace Game
 {
     public class AudioController : MonoBehaviour
     {
+        private GameController
+            _controller;
+
+        [SerializeField]
+        private VolumeController
+            volumeController;
+
         private AudioSource
             _audioSource;
 
-        private float _effectVolume;
-        public float effectVolume
+        private float _volume;
+        public float Volume
         {
-            get { return _effectVolume; }
+            get { return _volume; }
             set
             {
+                _volume = Mathf.Clamp01(Volume);
+                _audioSource.volume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(_volume * 5.757f) - 3.1623e-3f);
                 // https://www.dr-lex.be/info-stuff/volumecontrols.html#ideal 50dB dynamic range constants
-                _effectVolume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(Mathf.Clamp01(effectVolume) * 5.757f) - 3.1623e-3f);
             }
         }
 
-        private float _voiceVolume;
-        public float voiceVolume
+        public bool Mute
         {
-            get { return _voiceVolume; }
-            set
-            {
-                // https://www.dr-lex.be/info-stuff/volumecontrols.html#ideal 50dB dynamic range constants
-                _voiceVolume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(Mathf.Clamp01(voiceVolume) * 5.757f) - 3.1623e-3f);
-            }
+            get { return _audioSource.mute; }
+            set { _audioSource.mute = Mute; }
         }
 
         public AudioClip[]
@@ -34,13 +38,17 @@ namespace Game
             wordFail,
             levelStart,
             levelVictory,
-            levelFail,
-            levelVictoryClip,
-            levelFailClip;
+            levelFail;
+
+        public void SetController(GameController controller)
+        {
+            _controller = controller;
+        }
 
         private void Start()
         {
             _audioSource = GetComponentInChildren<AudioSource>();
+            volumeController.SetController(this);
         }
 
         public void PlayWordPass()
@@ -63,19 +71,9 @@ namespace Game
             _audioSource.PlayOneShot(levelVictory[Random.Range(0, levelVictory.Length)]);
         }
 
-        public void PlayVictoryClip()
-        {
-            _audioSource.PlayOneShot(levelVictoryClip[Random.Range(0, levelVictoryClip.Length)]);
-        }
-
         public void PlayFailed()
         {
             _audioSource.PlayOneShot(levelFail[Random.Range(0, levelFail.Length)]);
-        }
-
-        public void PlayFailedClip()
-        {
-            _audioSource.PlayOneShot(levelFailClip[Random.Range(0, levelFailClip.Length)]);
         }
     }
 }

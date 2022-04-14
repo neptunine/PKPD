@@ -8,20 +8,16 @@ using Utility;
 namespace Game {
     public class GameController : MonoBehaviour
     {
-        [SerializeField]
-        private LevelController
-            level;
+        public LevelController
+            levelController;
 
-        [SerializeField]
-        private AudioController
+        public AudioController
             audioController;
 
-        [SerializeField]
-        private PlayerData
-            player;
+        public PlayerData
+            playerData;
 
-        [SerializeField]
-        private LevelSelection
+        public LevelSelection
             levelSelect;
 
         [SerializeField]
@@ -42,9 +38,12 @@ namespace Game {
 
         private void Awake()
         {
+            levelController.SetController(this);
+            audioController.SetController(this);
+
             _filepath = $"{Application.streamingAssetsPath}/{_filename}";
 
-            level.gameObject.SetActive(false);
+            levelController.gameObject.SetActive(false);
             levelUI.SetActive(false);
             menuObject.SetActive(true);
             mainMenu.SetActive(true);
@@ -65,14 +64,14 @@ namespace Game {
 
         public void StartLevel()
         {
-            if (player.isOutOfLife)
+            if (playerData.isOutOfLife)
             {
                 Debug.Log($"[<color=magenta>GameController</color>] Can't Start Level without life");
                 return;
             }
             
             menuObject.SetActive(false);
-            level.gameObject.SetActive(true);
+            levelController.gameObject.SetActive(true);
             levelUI.SetActive(true);
 
             //string[] words = wordFile[mode].text.Split("\n"[0]);
@@ -88,14 +87,14 @@ namespace Game {
             //level.Initialize(words);
 
             string[] words = GetWords(levelSelect.topic, Mathf.FloorToInt(Random.Range(levelSelect.wordMin, levelSelect.wordMax)));
-            level.Initialize(words, levelSelect.hide, !levelSelect.manual);
+            levelController.Initialize(words, levelSelect.hide, !levelSelect.manual);
 
             Debug.Log($"[<color=magenta>GameController</color>] Started Level with topic {levelSelect.topic} and mode {levelSelect.difficulty}");
         }
 
         public void TerminateLevel()
         {
-            level.gameObject.SetActive(false);
+            levelController.gameObject.SetActive(false);
             levelUI.SetActive(false);
             menuObject.SetActive(true);
 

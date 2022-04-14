@@ -32,7 +32,25 @@ namespace Game
                 level,
                 currentExp,
                 totalExp;
+
+            public float
+                volume;
+
+            public int
+                timePlayed,
+                totalWordCleared,
+                totalWordFailed,
+                totalLevelCleared;
         }
+
+        private float 
+            _volume;
+
+        private int
+            _timePlayed,
+            _totalWordCleared,
+            _totalWordFailed,
+            _totalLevelCleared;
 
         [Header("Lives")]
         [SerializeField]
@@ -70,11 +88,11 @@ namespace Game
 
         [SerializeField]
         private TMP_Text
-            lvText;
+            _lvText;
 
         [SerializeField]
         private RectTransform
-            lvBar;
+            _lvBar;
 
         public int level
         {
@@ -91,8 +109,8 @@ namespace Game
             _filepath = $"{Application.persistentDataPath}/{_filename}";
             ReadSave();
 
-            lvText.text = _level.ToString();
-            lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, lvBar.localScale.y, lvBar.localScale.z);
+            _lvText.text = _level.ToString();
+            _lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, _lvBar.localScale.y, _lvBar.localScale.z);
         }
 
         private void Update()
@@ -127,6 +145,25 @@ namespace Game
             _livesDisplay.SetInteger("lives", _lives);
         }
 
+        public void Increment(string id)
+        {
+            switch (id)
+            {
+                case "WordCleared":
+                    _totalWordCleared += 1;
+                    break;
+                case "WordFailed":
+                    _totalWordFailed += 1;
+                    break;
+                case "LevelCleared":
+                    _totalLevelCleared += 1;
+                    break;
+                default:
+                    Debug.LogError($"[<color=orange>PlayerData</color>] Unknown on increment \"{id}\"");
+                    break;
+            }
+        }
+
         public void Damage()
         {
             DateTime now = DateTime.UtcNow;
@@ -147,6 +184,11 @@ namespace Game
             WriteSave();
         }
 
+        public void Heal()
+        {
+            _timeToHeal = 0;
+        }
+
         public void AddExperience(int exp)
         {
             _expForNextLevel = GetExpforLevel(_level);
@@ -163,8 +205,8 @@ namespace Game
                 Debug.Log($"[<color=orange>PlayerData</color>] Level {_level} reached [lv.{_level}: {Math.Min(_currentExp, _expForNextLevel)}/{_expForNextLevel}]");
             }
 
-            lvText.text = _level.ToString();
-            lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, lvBar.localScale.y, lvBar.localScale.z);
+            _lvText.text = _level.ToString();
+            _lvBar.localScale = new Vector3(1f * _currentExp / _expForNextLevel, _lvBar.localScale.y, _lvBar.localScale.z);
             WriteSave();
         }
 
@@ -183,6 +225,11 @@ namespace Game
                 level = _level,
                 currentExp = _currentExp,
                 totalExp = _totalExp,
+                timePlayed = _timePlayed,
+                totalWordCleared = _totalWordCleared,
+                totalWordFailed = _totalWordFailed,
+                totalLevelCleared = _totalLevelCleared,
+                volume = _volume,
             };
             if (json)
                 File.WriteAllText(_filepath, JsonUtility.ToJson(save));
@@ -203,6 +250,11 @@ namespace Game
                 _level = save.level;
                 _currentExp = save.currentExp;
                 _totalExp = save.totalExp;
+                _timePlayed = save.timePlayed;
+                _totalWordCleared = save.totalWordCleared;
+                _totalWordFailed = save.totalWordFailed;
+                _totalLevelCleared = save.totalLevelCleared;
+                _volume = save.volume;
 
                 Debug.Log($"[<color=orange>PlayerData</color>] Read file \"{_filepath}\"");
             }
@@ -213,8 +265,10 @@ namespace Game
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
+                _timePlayed = _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _volume = 1;
 
-                Debug.Log($"[<color=orange>PlayerData</color>] File not found \"{_filepath}\"");
+               Debug.Log($"[<color=orange>PlayerData</color>] File not found \"{_filepath}\"");
             }
             else
             try
@@ -226,6 +280,11 @@ namespace Game
                 _level = save.level;
                 _currentExp = save.currentExp;
                 _totalExp = save.totalExp;
+                _timePlayed = save.timePlayed;
+                _totalWordCleared = save.totalWordCleared;
+                _totalWordFailed = save.totalWordFailed;
+                _totalLevelCleared = save.totalLevelCleared;
+                _volume = save.volume;
 
                 Debug.Log($"[<color=orange>PlayerData</color>] Read file \"{_filepath}\"");
             }
@@ -236,6 +295,8 @@ namespace Game
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
+                _timePlayed = _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _volume = 1;
 
                 Debug.LogWarning($"[<color=orange>PlayerData</color>] File \"{_filepath}\" can not be read\n{e}");
             }
