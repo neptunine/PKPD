@@ -13,7 +13,7 @@ namespace GameGrind
         {
             get
             {
-                return new Color(baseColor.r * .85f, baseColor.g * .85f, baseColor.b * .85f, 1f);
+                return new Color(baseColor.r * .85f, baseColor.g * .85f, baseColor.b * .85f, baseColor.a);
             }
         }
         public Color ValueBackgroundColor
