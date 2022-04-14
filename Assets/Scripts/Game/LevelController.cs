@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Utility;
+using GameGrind;
 
 namespace Game
 {
@@ -447,6 +448,9 @@ namespace Game
             yield return new WaitForSeconds(t);
 
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
+            Journal.Increment("Count Word -,-", 1);
+
+
         }
 
         private IEnumerator OnIncorrectInput()
@@ -485,6 +489,8 @@ namespace Game
             text.text = "Finish";
 
             nextUI.SetActive(true);
+            Journal.Increment("Keep Trying!", 1);
+
         }
 
         private IEnumerator OnWordFail()
@@ -502,6 +508,7 @@ namespace Game
             text.text = "Failed";
 
             nextUI.SetActive(true);
+            Journal.Increment("Never gonna give you up!", 1);
         }
 
         private IEnumerator OnEndScreen(bool dead)
@@ -524,6 +531,7 @@ namespace Game
                     debug += $"<color=maroon>{exp}({combo})</color>; ";
                     combo = Mathf.CeilToInt(combo * .5f);
                 }
+                
             }
             score /= _results.Length;
             player.AddExperience(exp);
@@ -548,6 +556,9 @@ namespace Game
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);
+
+            Journal.Increment("Your first play~", 1);
         }
+
     }
 }

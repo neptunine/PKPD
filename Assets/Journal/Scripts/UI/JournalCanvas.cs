@@ -26,7 +26,7 @@ namespace GameGrind
         {
             if (Input.GetKeyDown(togglePanel))
             {
-                if (panel != null)
+                //if (panel != null)
                     ToggleAchievementPanel();
             }
         }
