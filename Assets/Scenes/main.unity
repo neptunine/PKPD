@@ -1836,6 +1836,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
   levelVictory:
   - {fileID: 0}
+  levelFail:
+  - {fileID: 0}
+  levelVictoryClip:
+  - {fileID: 8300000, guid: fcc4e695225924b82a7dcf462352bdde, type: 3}
+  levelFailClip:
+  - {fileID: 8300000, guid: cf4c63c6e289b4ffba8d24eba0f5e719, type: 3}
 --- !u!114 &169596347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2124,7 +2130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.3125, y: 0}
+  m_AnchoredPosition: {x: 55.5, y: 0}
   m_SizeDelta: {x: 108, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179794635
@@ -3168,7 +3174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 58.3125, y: 0}
+  m_AnchoredPosition: {x: 55.5, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &427009640
@@ -4032,7 +4038,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2117467595}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.47985384
+  m_Size: 0.33421785
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -15558,7 +15564,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675528805}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.65000004, z: 10}
+  m_LocalPosition: {x: 0, y: 0.65, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 696255519}

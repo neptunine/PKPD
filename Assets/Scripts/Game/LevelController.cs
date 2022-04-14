@@ -551,6 +551,9 @@ namespace Game
 
             Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp})({debug})");
 
+            if (dead) gameAudio.PlayFailed();
+            else gameAudio.PlayVictory();
+
             TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
             GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
             endScreenUI.SetActive(true);
@@ -566,6 +569,9 @@ namespace Game
 
             yield return new WaitForSeconds(2);
             endText.text += $"\nEXP: {exp}";
+
+            if (dead) gameAudio.PlayFailed();
+            else gameAudio.PlayVictory();
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);
