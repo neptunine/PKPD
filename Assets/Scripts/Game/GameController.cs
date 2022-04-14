@@ -26,6 +26,7 @@ namespace Game {
             mainMenu,
             levelMenu,
             optionsMenu,
+            statsMenu,
             creditsMenu,
             levelUI;
 
@@ -49,6 +50,7 @@ namespace Game {
             mainMenu.SetActive(true);
             levelMenu.SetActive(false);
             optionsMenu.SetActive(false);
+            statsMenu.SetActive(false);
             creditsMenu.SetActive(false);
         }
 

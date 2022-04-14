@@ -17,6 +17,9 @@ TextureImporter:
   - first:
       213: -5306418507695489978
     second: buttons_sheet_4
+  - first:
+      213: 5721886744670624192
+    second: buttons_sheet_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -226,6 +229,27 @@ TextureImporter:
       bones: []
       spriteID: 64c704b5b70db56b0800000000000000
       internalID: -5306418507695489978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buttons_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c9db1dada9386f40800000000000000
+      internalID: 5721886744670624192
       vertices: []
       indices: 
       edges: []

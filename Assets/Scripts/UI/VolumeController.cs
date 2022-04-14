@@ -11,10 +11,12 @@ namespace UI
 
         public Slider slider;
 
-        public GameObject muteIcon;
-        public GameObject zeroVolumeIcon;
-        public GameObject lowVolumeIcon;
-        public GameObject HighVolumeIcon;
+        public Image Icon;
+
+        public Sprite muteIcon;
+        public Sprite zeroVolumeIcon;
+        public Sprite lowVolumeIcon;
+        public Sprite HighVolumeIcon;
 
         bool _muted = false;
 
@@ -33,6 +35,7 @@ namespace UI
             if (muted != _muted)
             {
                 _muted = muted;
+                if (_audioController) _audioController.Mute = _muted;
                 UpdateVolumeIcon();
             }
         }
@@ -50,6 +53,8 @@ namespace UI
 
         public void OnSliderValueChanged()
         {
+            SetMuted(false);
+
             _sliderValueChanging = true;
             if (_audioController) _audioController.Volume = slider.value;
             _sliderValueChanging = false;
@@ -59,38 +64,29 @@ namespace UI
 
         public void OnMutePressed()
         {
+            _muted = !_muted;
             if (_audioController) _audioController.Mute = _muted;
+
+            UpdateVolumeIcon();
         }
 
         void UpdateVolumeIcon()
         {
             if (_muted)
             {
-                muteIcon.SetActive(true);
-                zeroVolumeIcon.SetActive(false);
-                lowVolumeIcon.SetActive(false);
-                HighVolumeIcon.SetActive(false);
+                Icon.sprite = muteIcon;
             }
             else if (slider.value > 0.5f)
             {
-                muteIcon.SetActive(false);
-                zeroVolumeIcon.SetActive(false);
-                lowVolumeIcon.SetActive(false);
-                HighVolumeIcon.SetActive(true);
+                Icon.sprite = HighVolumeIcon;
             }
             else if (slider.value > 0f)
             {
-                muteIcon.SetActive(false);
-                zeroVolumeIcon.SetActive(false);
-                lowVolumeIcon.SetActive(true);
-                HighVolumeIcon.SetActive(false);
+                Icon.sprite = lowVolumeIcon;
             }
             else
             {
-                muteIcon.SetActive(false);
-                zeroVolumeIcon.SetActive(true);
-                lowVolumeIcon.SetActive(false);
-                HighVolumeIcon.SetActive(false);
+                Icon.sprite = zeroVolumeIcon;
             }
         }
     }

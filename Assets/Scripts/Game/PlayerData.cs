@@ -186,7 +186,7 @@ namespace Game
 
         public void Heal()
         {
-            _timeToHeal = 0;
+            _nextHealTime = DateTime.UtcNow;
         }
 
         public void AddExperience(int exp)

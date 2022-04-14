@@ -455,6 +455,7 @@ namespace Game
 
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
 
+            if (Random.value < .1f) _controller.audioController.PlayCharacterCorrect();
             Journal.Increment("Count Word -,-", 1);
 
         }
@@ -476,8 +477,10 @@ namespace Game
             }
 
             graphics.SetStage(_stage);
-
             _selectedInput = -1;
+
+            if (Random.value < .1f) _controller.audioController.PlayCharacterIncorrect();
+
         }
 
         private IEnumerator OnWordPass()
@@ -491,7 +494,7 @@ namespace Game
             foreach (Button button in charDisplay.GetComponentsInChildren<Button>())
                 button.interactable = false;
 
-            _controller.audioController.PlayWordPass();
+            _controller.audioController.PlayWordCorrect();
             _controller.playerData.Increment("WordCleared");
             Journal.Increment("Keep Trying!", 1);
 

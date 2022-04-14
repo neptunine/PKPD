@@ -21,7 +21,7 @@ namespace Game
             get { return _volume; }
             set
             {
-                _volume = Mathf.Clamp01(Volume);
+                _volume = Mathf.Clamp01(value);
                 _audioSource.volume = Mathf.Clamp01(3.1623e-3f * Mathf.Exp(_volume * 5.757f) - 3.1623e-3f);
                 // https://www.dr-lex.be/info-stuff/volumecontrols.html#ideal 50dB dynamic range constants
             }
@@ -30,12 +30,16 @@ namespace Game
         public bool Mute
         {
             get { return _audioSource.mute; }
-            set { _audioSource.mute = Mute; }
+            set { _audioSource.mute = value; }
         }
 
         public AudioClip[]
-            wordPass,
+            start,
+            characterCorrect,
+            characterIncorrect,
+            wordCorrect,
             wordFail,
+            nextWord,
             levelStart,
             levelVictory,
             levelFail;
@@ -49,16 +53,33 @@ namespace Game
         {
             _audioSource = GetComponentInChildren<AudioSource>();
             volumeController.SetController(this);
+
+            _audioSource.PlayOneShot(start[Random.Range(0, start.Length)]);
         }
 
-        public void PlayWordPass()
+        public void PlayCharacterCorrect()
         {
-            _audioSource.PlayOneShot(wordPass[Random.Range(0, wordPass.Length)]);
+            _audioSource.PlayOneShot(characterCorrect[Random.Range(0, characterCorrect.Length)]);
+        }
+
+        public void PlayCharacterIncorrect()
+        {
+            _audioSource.PlayOneShot(characterIncorrect[Random.Range(0, characterIncorrect.Length)]);
+        }
+
+        public void PlayWordCorrect()
+        {
+            _audioSource.PlayOneShot(wordCorrect[Random.Range(0, wordCorrect.Length)]);
         }
 
         public void PlayWordFail()
         {
             _audioSource.PlayOneShot(wordFail[Random.Range(0, wordFail.Length)]);
+        }
+
+        public void PlayNextWord()
+        {
+            _audioSource.PlayOneShot(nextWord[Random.Range(0, nextWord.Length)]);
         }
 
         public void PlayLevelStart()
