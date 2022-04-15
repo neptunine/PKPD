@@ -8,8 +8,8 @@ namespace Journal
     {
         AchievementUIPopup achievementPopup;
         // Audio source for handling sound played on Achievement Grant
-        //AudioSource audioSource;
-        [SerializeField]Game.AudioController audioController;
+        AudioSource audioSource;
+        [SerializeField] Game.AudioController audioController;
 
         void Start()
         {
@@ -27,7 +27,7 @@ namespace Journal
         public void ShowAchievementGrant(Achievement achievement)
         {
             //audioSource.Play();
-            audioController.PlayAchievementGrant();
+            audioController.SetPlayAchievementGrant();
             achievementPopup.SetAchievementValues(achievement);
         }
     }

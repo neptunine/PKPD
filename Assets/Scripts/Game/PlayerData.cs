@@ -175,6 +175,12 @@ namespace Game
         {
             switch (id)
             {
+                case "CorrectInput":
+                    _totalCorrectInput += 1;
+                    break;
+                case "IncorrectInput":
+                    _totalIncorrectInput += 1;
+                    break;
                 case "WordCleared":
                     _totalWordCleared += 1;
                     break;

@@ -507,7 +507,7 @@ namespace Game
             _selectedInput = -1;
 
             if (Random.value < .05f) _controller.audioController.PlayCharacterIncorrect();
-            _controller.playerData.Increment("InorrectInput");
+            _controller.playerData.Increment("IncorrectInput");
             foreach (int i in journal.inorrectInput)
                 Journal.Journal.Increment(i, 1);
 

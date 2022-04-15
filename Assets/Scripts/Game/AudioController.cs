@@ -100,9 +100,15 @@ namespace Game
             _audioSource.PlayOneShot(levelFail[Random.Range(0, levelFail.Length)]);
         }
 
+        bool achievementGrantTrigger = false;
         public void PlayAchievementGrant()
         {
-            _audioSource.PlayOneShot(achievementGrant[Random.Range(0, achievementGrant.Length)]);
+            if (achievementGrantTrigger) _audioSource.PlayOneShot(achievementGrant[Random.Range(0, achievementGrant.Length)]);
+            achievementGrantTrigger = false;
+        }
+        public void SetPlayAchievementGrant()
+        {
+            achievementGrantTrigger = true;
         }
     }
 }
