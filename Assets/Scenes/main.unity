@@ -5993,6 +5993,14 @@ MonoBehaviour:
   levelText: {fileID: 1361380648}
   passText: Finish
   failText: Failed
+  journal:
+    correctInput: 1e000000
+    inorrectInput: 23000000
+    wordPass: 0a0000000b0000000c000000
+    wordFail: 0f0000001000000011000000
+    levelComplete: 140000001500000016000000
+    levelFail: 190000001a0000001b000000
+    exp: 2800000029000000
   characters:
     blankTarget: {fileID: -1177852489173450185, guid: c5e47fb4d516f4f03923871c975f5c86,
       type: 3}

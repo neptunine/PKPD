@@ -1,80 +1,208 @@
 {
     "AchievementList": [
         {
-            "id": 1,
-            "title": "Keep Trying!",
-            "icon": {
-                "instanceID": 0
-            },
-            "iconPath": "",
-            "trimmedIconPath": "",
-            "description": "",
-            "value": 0,
-            "neededValue": 10,
-            "displayAsPercentage": false,
-            "points": 10,
-            "completed": false,
-            "secret": false
-        },
-        {
-            "id": 2,
-            "title": "Count Word -,-",
-            "icon": {
-                "instanceID": 0
-            },
-            "iconPath": "",
-            "trimmedIconPath": "",
-            "description": "",
-            "value": 0,
-            "neededValue": 25,
-            "displayAsPercentage": false,
-            "points": 10,
-            "completed": false,
-            "secret": false
-        },
-        {
-            "id": 3,
+            "id": 10,
             "title": "Your first play~",
             "icon": {
-                "instanceID": 0
+                "instanceID": 140076
             },
-            "iconPath": "",
+            "iconPath": "Assets/Textures/Sprite/achieve.png",
             "trimmedIconPath": "",
-            "description": "",
+            "description": "Won the first time",
             "value": 0,
             "neededValue": 1,
             "displayAsPercentage": false,
-            "points": 5,
+            "points": 10,
             "completed": false,
             "secret": false
         },
         {
-            "id": 4,
+            "id": 11,
+            "title": "Nice Play",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Won 10 times",
+            "value": 0,
+            "neededValue": 10,
+            "displayAsPercentage": false,
+            "points": 20,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 12,
+            "title": "Nice Play +",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Won 25 times",
+            "value": 0,
+            "neededValue": 25,
+            "displayAsPercentage": false,
+            "points": 40,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 15,
             "title": "Never gonna give you up!",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "",
+            "description": "Loss first time",
             "value": 0,
             "neededValue": 1,
+            "displayAsPercentage": false,
+            "points": 2,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 16,
+            "title": "Never gonna let you down!",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Loss 10 times",
+            "value": 0,
+            "neededValue": 10,
+            "displayAsPercentage": false,
+            "points": 3,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 17,
+            "title": "Never gonna run around and desert you!",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Loss 25 times",
+            "value": 0,
+            "neededValue": 25,
+            "displayAsPercentage": false,
+            "points": 4,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 25,
+            "title": "Keep Trying!",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Failed word 4 times",
+            "value": 0,
+            "neededValue": 4,
             "displayAsPercentage": false,
             "points": 10,
             "completed": false,
             "secret": false
         },
         {
-            "id": 5,
+            "id": 26,
+            "title": "Keep Trying! +",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Failed word 20 times",
+            "value": 0,
+            "neededValue": 20,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 27,
+            "title": "Keep Trying! ++",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Failed word 100 times",
+            "value": 0,
+            "neededValue": 100,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 30,
+            "title": "Count Word -,-",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Correct input 25 times",
+            "value": 0,
+            "neededValue": 25,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 35,
+            "title": "Count Word -,- 2",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Incorrect input 25 times",
+            "value": 0,
+            "neededValue": 25,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 40,
             "title": "Amazing@@",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "",
+            "description": "Gain 1000 exp",
             "value": 0,
-            "neededValue": 25,
+            "neededValue": 1000,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 41,
+            "title": "Amazing@@",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Gain 10000 exp",
+            "value": 0,
+            "neededValue": 10000,
             "displayAsPercentage": false,
             "points": 10,
             "completed": false,

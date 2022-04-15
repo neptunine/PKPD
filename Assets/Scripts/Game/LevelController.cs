@@ -47,6 +47,22 @@ namespace Game
             failText = "Failed";
 
         [System.Serializable]
+        public class JournalID
+        {
+            public int[]
+                correctInput,
+                inorrectInput,
+                wordPass,
+                wordFail,
+                levelComplete,
+                levelFail,
+                exp;
+        }
+
+        public JournalID
+            journal;
+
+        [System.Serializable]
         public class ABC
         {
             public Sprite
@@ -464,8 +480,10 @@ namespace Game
 
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
 
-            if (Random.value < .1f) _controller.audioController.PlayCharacterCorrect();
-            Journal.Journal.Increment(2, 1);
+            if (Random.value < .05f) _controller.audioController.PlayCharacterCorrect();
+            _controller.playerData.Increment("CorrectInput");
+            foreach (int i in journal.correctInput)
+                Journal.Journal.Increment(i, 1);
 
         }
 
@@ -488,7 +506,10 @@ namespace Game
             graphics.SetStage(_stage);
             _selectedInput = -1;
 
-            if (Random.value < .1f) _controller.audioController.PlayCharacterIncorrect();
+            if (Random.value < .05f) _controller.audioController.PlayCharacterIncorrect();
+            _controller.playerData.Increment("InorrectInput");
+            foreach (int i in journal.inorrectInput)
+                Journal.Journal.Increment(i, 1);
 
         }
 
@@ -505,7 +526,8 @@ namespace Game
 
             _controller.audioController.PlayWordCorrect();
             _controller.playerData.Increment("WordCleared");
-            Journal.Journal.Increment(5, 1);
+            foreach (int i in journal.wordPass)
+                Journal.Journal.Increment(i, 1);
 
             yield return new WaitForSeconds(2);
             levelText.text = passText;
@@ -526,7 +548,8 @@ namespace Game
 
             _controller.audioController.PlayWordFail();
             _controller.playerData.Increment("WordFailed");
-            Journal.Journal.Increment(4, 1);
+            foreach (int i in journal.wordFail)
+                Journal.Journal.Increment(i, 1);
 
             yield return new WaitForSeconds(2);
             levelText.text = failText;
@@ -559,14 +582,25 @@ namespace Game
             score /= _results.Length;
             exp = Mathf.FloorToInt(exp * _expScale);
             _controller.playerData.AddExperience(exp);
+            foreach (int i in journal.exp)
+                Journal.Journal.Increment(i, exp);
 
             Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp} [{_expScale}x])({debug})");
 
             graphics.SetStage(-1);
-            if (dead) _controller.audioController.PlayFailed();
-            else {
+            if (dead)
+            {
+                _controller.audioController.PlayFailed();
+                _controller.playerData.Increment("LevelFailed");
+                foreach (int i in journal.levelFail)
+                    Journal.Journal.Increment(i, 1);
+            }
+            else
+            {
                 _controller.audioController.PlayVictory();
                 _controller.playerData.Increment("LevelCleared");
+                foreach (int i in journal.levelComplete)
+                    Journal.Journal.Increment(i, 1);
             }
 
             TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
@@ -588,7 +622,6 @@ namespace Game
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);
 
-            Journal.Journal.Increment(3, 1);
         }
 
     }

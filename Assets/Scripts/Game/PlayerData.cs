@@ -41,7 +41,8 @@ namespace Game
             public int
                 totalWordCleared,
                 totalWordFailed,
-                totalLevelCleared;
+                totalLevelCleared,
+                totalLevelFailed;
 
             public TimeSpan
                 timePlayed;
@@ -53,7 +54,8 @@ namespace Game
         private int
             _totalWordCleared,
             _totalWordFailed,
-            _totalLevelCleared;
+            _totalLevelCleared,
+            _totalLevelFailed;
 
         private TimeSpan
             _timePlayed;
@@ -178,6 +180,9 @@ namespace Game
                 case "LevelCleared":
                     _totalLevelCleared += 1;
                     break;
+                case "LevelFailed":
+                    _totalLevelFailed += 1;
+                    break;
                 default:
                     Debug.LogError($"[<color=orange>PlayerData</color>] Stat \"{id}\" doesn't exist");
                     break;
@@ -250,6 +255,7 @@ namespace Game
                 totalWordCleared = _totalWordCleared,
                 totalWordFailed = _totalWordFailed,
                 totalLevelCleared = _totalLevelCleared,
+                totalLevelFailed = _totalLevelFailed,
                 volume = _volume,
             };
             if (json)
@@ -276,6 +282,7 @@ namespace Game
                 _totalWordCleared = save.totalWordCleared;
                 _totalWordFailed = save.totalWordFailed;
                 _totalLevelCleared = save.totalLevelCleared;
+                _totalLevelFailed = save.totalLevelFailed;
                 _volume = save.volume;
 
                 Debug.Log($"[<color=orange>PlayerData</color>] Read file \"{_filepath}\"");
@@ -289,7 +296,7 @@ namespace Game
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
                 _timePlayed = TimeSpan.Zero;
-                _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
                 _volume = 1;
 
                Debug.Log($"[<color=orange>PlayerData</color>] File not found \"{_filepath}\"");
@@ -309,6 +316,7 @@ namespace Game
                 _totalWordCleared = save.totalWordCleared;
                 _totalWordFailed = save.totalWordFailed;
                 _totalLevelCleared = save.totalLevelCleared;
+                _totalLevelFailed = save.totalLevelFailed;
                 _volume = save.volume;
 
                 Debug.Log($"[<color=orange>PlayerData</color>] Read file \"{_filepath}\"");
@@ -322,7 +330,7 @@ namespace Game
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
                 _timePlayed = TimeSpan.Zero;
-                _totalWordCleared = _totalWordFailed = _totalLevelCleared = 0;
+                _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
                 _volume = 1;
 
                 Debug.LogWarning($"[<color=orange>PlayerData</color>] File \"{_filepath}\" can not be read\n{e}");

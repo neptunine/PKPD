@@ -297,6 +297,8 @@ namespace Journal
 
                     SetValue(achievement.id, achievement.value, achievement.secret, false);
                 }
+
+                Debug.Log($"[<color=teal>Journal</color>] Read file \"{string.Format("{0}{1}", SavePath, SaveName)}\"");
             }
         }
 
