@@ -143,7 +143,7 @@ namespace Game
             _expScale;
 
         private readonly int
-            _inputs = 18;
+            _inputs = 24;
 
         public void SetController(GameController controller)
         {
