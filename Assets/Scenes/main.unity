@@ -1518,6 +1518,12 @@ MonoBehaviour:
   volumeController: {fileID: 707355995}
   start:
   - {fileID: 8300000, guid: 646670dc9c0dcec448b89f030010c717, type: 3}
+  - {fileID: 8300000, guid: 0b4c9ac3fee4eaf4fb3b55db673a2d7f, type: 3}
+  - {fileID: 8300000, guid: 886ff6dfe22cba54598968e85ea5708b, type: 3}
+  - {fileID: 8300000, guid: e56bc10051e88bf4b8ff125c844e3c68, type: 3}
+  - {fileID: 8300000, guid: c0c63fc0687d7cb44835462c4cc92a50, type: 3}
+  - {fileID: 8300000, guid: 5138bed45cd6e7a4ca25ef1f0ab3fe20, type: 3}
+  - {fileID: 8300000, guid: 4cb840d88c26d0847a4a3306bab13cd8, type: 3}
   characterCorrect:
   - {fileID: 8300000, guid: 5b49c0b4d4c8ae44884b1cc1d8d9191b, type: 3}
   - {fileID: 8300000, guid: e8bc28a81c8b05845a96f45432ea3dc1, type: 3}
@@ -9350,7 +9356,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.25
+  m_fontSize: 18
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
