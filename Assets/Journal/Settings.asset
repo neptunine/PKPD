@@ -19,7 +19,7 @@ MonoBehaviour:
   saveDataPath: /
   saveFileName: achievements
   autoSave: 1
-  baseColor: {r: 0.7529412, g: 0.7529412, b: 0.7529412, a: 0.1254902}
+  baseColor: {r: 0.2509804, g: 0.0627451, b: 0.1254902, a: 0.7529412}
   accentColor: {r: 1, g: 0.8313726, b: 0, a: 1}
   progressBarColor: {r: 1, g: 0.8313726, b: 0, a: 1}
   progressBarCompleteColor: {r: 0, g: 0.9215687, b: 0.35686275, a: 1}

@@ -64,10 +64,11 @@ namespace Game
             _focusTime;
 
         public float volume { get { return _volume; } set { _volume = value; } }
-        public TimeSpan timePlayed { get { return _timePlayed; } }
+        public TimeSpan timePlayed { get { return _timePlayed + (DateTime.UtcNow - _focusTime); } }
         public int totalWordCleared { get { return _totalWordCleared; } }
         public int totalWordFailed { get { return _totalWordFailed; } }
         public int totalLevelCleared { get { return _totalLevelCleared; } }
+        public int totalLevelFailed { get { return _totalLevelFailed; } }
 
         [Header("Lives")]
         [SerializeField]
@@ -184,7 +185,7 @@ namespace Game
                     _totalLevelFailed += 1;
                     break;
                 default:
-                    Debug.LogError($"[<color=orange>PlayerData</color>] Stat \"{id}\" doesn't exist");
+                    Debug.LogWarning($"[<color=orange>PlayerData</color>] Stat \"{id}\" doesn't exist");
                     break;
             }
         }
