@@ -608,16 +608,29 @@ namespace Game
             endScreenUI.SetActive(true);
             backButton.SetActive(false);
 
-            endText.text = $"{(dead ? "Game Over" : "Victory")}";
+            string title =
+                $"{(dead ? "Game Over" : "Victory")}";
+
+            string text =
+                $"\nScore: {Mathf.RoundToInt(score)}" +
+                $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}" +
+                $"\nEXP: {exp:N0}";
+
+            endText.text = "<size=20>";
+            foreach (char c in title)
+            {
+                endText.text += c;
+                yield return new WaitForSeconds(.2f);
+            }
+            endText.text += "</size>";
             
-            yield return new WaitForSeconds(2);
-            endText.text += $"\nScore: {Mathf.RoundToInt(score)}";
+            yield return new WaitForSeconds(1);
 
-            yield return new WaitForSeconds(2);
-            endText.text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
-
-            yield return new WaitForSeconds(2);
-            endText.text += $"\nEXP: {exp}";
+            foreach (char c in text)
+            {
+                endText.text += c;
+                yield return new WaitForSeconds(.1f);
+            }
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);

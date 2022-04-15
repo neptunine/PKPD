@@ -12,7 +12,7 @@
             "value": 0,
             "neededValue": 1,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -28,7 +28,7 @@
             "value": 0,
             "neededValue": 10,
             "displayAsPercentage": false,
-            "points": 20,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -44,7 +44,7 @@
             "value": 0,
             "neededValue": 25,
             "displayAsPercentage": false,
-            "points": 40,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -60,7 +60,7 @@
             "value": 0,
             "neededValue": 1,
             "displayAsPercentage": false,
-            "points": 2,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -76,7 +76,7 @@
             "value": 0,
             "neededValue": 10,
             "displayAsPercentage": false,
-            "points": 3,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -92,7 +92,7 @@
             "value": 0,
             "neededValue": 25,
             "displayAsPercentage": false,
-            "points": 4,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -108,7 +108,7 @@
             "value": 0,
             "neededValue": 50,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -124,7 +124,7 @@
             "value": 0,
             "neededValue": 250,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -140,7 +140,7 @@
             "value": 0,
             "neededValue": 1000,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -156,7 +156,7 @@
             "value": 0,
             "neededValue": 50,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -172,7 +172,7 @@
             "value": 0,
             "neededValue": 250,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -188,7 +188,7 @@
             "value": 0,
             "neededValue": 1000,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -204,7 +204,7 @@
             "value": 0,
             "neededValue": 10000,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -220,7 +220,7 @@
             "value": 0,
             "neededValue": 10000,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -236,7 +236,7 @@
             "value": 0,
             "neededValue": 100,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         },
@@ -252,7 +252,7 @@
             "value": 0,
             "neededValue": 420690,
             "displayAsPercentage": false,
-            "points": 10,
+            "points": 1,
             "completed": false,
             "secret": false
         }

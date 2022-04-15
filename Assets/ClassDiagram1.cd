@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Game.AudioController">
+    <Position X="5.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QRAADAAAEDIIAIAkAAACECIAHABAACEAAEAAQEiCAAA=</HashCode>
+      <FileName>Assets\Scripts\Game\AudioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.GameController">
+    <Position X="2" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQIAgBACAAAAQAAAAKAAAABAAAHAAoAgAAgIABAEA=</HashCode>
+      <FileName>Assets\Scripts\Game\GameController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.LevelController">
+    <Position X="3.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Game.LevelController.JournalID">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Game\LevelController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Game.LevelController.ABC">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Game\LevelController.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>iAQAhEChpGIgAQAmBAAJACAEEMJREA0CBMAUgMhCAEg=</HashCode>
+      <FileName>Assets\Scripts\Game\LevelController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.LevelGraphicsHandler">
+    <Position X="9" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Game.LevelGraphicsHandler.SpriteArray">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Game\LevelGraphicsHandler.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AARAQAgCASKAAAAAAAIBoAIAAAAAAAAAIIAIBABAYEg=</HashCode>
+      <FileName>Assets\Scripts\Game\LevelGraphicsHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.LevelSelection">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Game.LevelSelection.Difficulty">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Game\LevelSelection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAEAIIABECAEgkAAAAABBBAEAAIggAAAAAAAAASCAAA=</HashCode>
+      <FileName>Assets\Scripts\Game\LevelSelection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.PlayerData">
+    <Position X="10.75" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Game.PlayerData.Save">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Game\PlayerData.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AARBBAGIAAgAAASCoAQaQUAGCEMgEhAgiURKCIPCAEA=</HashCode>
+      <FileName>Assets\Scripts\Game\PlayerData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game.PlayerStatistics">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAQAAgAAAAAAAAAFCEhAAAMAFAgAAURAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Game\PlayerStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.CanvasPP">
+    <Position X="16.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\UI\CanvasPP.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.UITransitioner">
+    <Position X="18.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAEAAAAIAAIAAAAQABEAAIAAAAAAQAAQEA=</HashCode>
+      <FileName>Assets\Scripts\UI\UITransitioner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.VolumeController">
+    <Position X="22" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACAAAAAAAAAiAAgEOAAACACAAAAEAAEQIBA=</HashCode>
+      <FileName>Assets\Scripts\UI\VolumeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.ProgressBar">
+    <Position X="20.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAAIAAAAwAABAAAAAAAAAAhAAACAAAAAAACACCAA=</HashCode>
+      <FileName>Assets\Scripts\UI\ProgressBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.SmoothFollow">
+    <Position X="26.5" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Utility.SmoothFollow.modeSetting">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Utility\SmoothFollow.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="Utility.SmoothFollow.XYZ">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Utility\SmoothFollow.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQQAAAAAAAAA4ACAAAAAAAAAAAAAAAAAAAAAAQCAAAA=</HashCode>
+      <FileName>Assets\Scripts\Utility\SmoothFollow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.TouchDragDrop">
+    <Position X="28.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Scripts\Utility\TouchDragDrop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utility.TouchRaycast">
+    <Position X="30" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Utility\TouchRaycast.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

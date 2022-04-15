@@ -39,35 +39,36 @@ namespace Game {
         {
             int t, f;
             float p;
-            level.text = playerData.level.ToString();
-            currentExp.text = playerData.currentExp.ToString();
-            levelupExp.text = playerData.expForNextLevel.ToString();
-            totalExp.text = playerData.totalExp.ToString();
+            level.text = string.Format("{0:N0}", playerData.level);
+            currentExp.text = string.Format("{0:N0}", playerData.currentExp);
+            levelupExp.text = string.Format("{0:N0}", playerData.expForNextLevel);
+            totalExp.text = string.Format("{0:N0}", playerData.totalExp);
+            expBar.localScale = new Vector3(1f * playerData.currentExp / playerData.expForNextLevel, inputBar.localScale.y, inputBar.localScale.z);
             t = playerData.totalCorrectInput;
             f = playerData.totalIncorrectInput;
             if (t + f != 0) p = 1f * t / (t + f);
             else p = .5f;
-            correctInput.text = t.ToString();
-            incorrectInput.text = f.ToString();
-            percentInput.text = string.Format("{0:P2}", p);
+            correctInput.text = string.Format("{0:N0}", t);
+            incorrectInput.text = string.Format("{0:N0}", f);
+            percentInput.text = string.Format("{0:P0}", p);
             inputBar.localScale = new Vector3(p, inputBar.localScale.y, inputBar.localScale.z);
             t = playerData.totalWordCleared;
             f = playerData.totalWordFailed;
             if (t + f != 0) p = 1f * t / (t + f);
             else p = .5f;
-            wordCleared.text = t.ToString();
-            wordFailed.text = f.ToString();
-            percentWord.text = string.Format("{0:P2}", p);
+            wordCleared.text = string.Format("{0:N0}", t);
+            wordFailed.text = string.Format("{0:N0}", f);
+            percentWord.text = string.Format("{0:P0}", p);
             wordBar.localScale = new Vector3(p, wordBar.localScale.y, wordBar.localScale.z);
             t = playerData.totalLevelCleared;
             f = playerData.totalLevelFailed;
             if (t + f != 0) p = 1f * t / (t + f);
             else p = .5f;
-            levelCleared.text = t.ToString();
-            levelFailed.text = f.ToString();
-            percentLevel.text = string.Format("{0:P2}", p);
+            levelCleared.text = string.Format("{0:N0}", t);
+            levelFailed.text = string.Format("{0:N0}", f);
+            percentLevel.text = string.Format("{0:P0}", p);
             levelBar.localScale = new Vector3(p, levelBar.localScale.y, levelBar.localScale.z);
-            timePlayed.text = string.Format("{0:F2} Hours", playerData.timePlayed.TotalHours);
+            timePlayed.text = string.Format("{0:F1} Hours", playerData.timePlayed.TotalHours);
         }
     }
 }
