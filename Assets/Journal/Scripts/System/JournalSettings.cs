@@ -13,7 +13,7 @@ namespace Journal
         {
             get
             {
-                return new Color(baseColor.r * .85f, baseColor.g * .85f, baseColor.b * .85f, baseColor.a);
+                return new Color(baseColor.r * .85f, baseColor.g * .85f, baseColor.b * .85f, Mathf.Clamp01(baseColor.a * 1.15f));
             }
         }
         public Color ValueBackgroundColor

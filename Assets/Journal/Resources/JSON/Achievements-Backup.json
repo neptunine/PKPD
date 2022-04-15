@@ -2,13 +2,13 @@
     "AchievementList": [
         {
             "id": 10,
-            "title": "Your first play~",
+            "title": "First Timer",
             "icon": {
-                "instanceID": 140076
+                "instanceID": 78566
             },
             "iconPath": "Assets/Textures/Sprite/achieve.png",
             "trimmedIconPath": "",
-            "description": "Won the first time",
+            "description": "Won for the first time",
             "value": 0,
             "neededValue": 1,
             "displayAsPercentage": false,
@@ -18,7 +18,7 @@
         },
         {
             "id": 11,
-            "title": "Nice Play",
+            "title": "Getting the hang of it",
             "icon": {
                 "instanceID": 0
             },
@@ -34,7 +34,7 @@
         },
         {
             "id": 12,
-            "title": "Nice Play +",
+            "title": "Practice makes purrfect",
             "icon": {
                 "instanceID": 0
             },
@@ -50,13 +50,13 @@
         },
         {
             "id": 15,
-            "title": "Never gonna give you up!",
+            "title": "Inevitable",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Loss first time",
+            "description": "Lose for the first time",
             "value": 0,
             "neededValue": 1,
             "displayAsPercentage": false,
@@ -66,13 +66,13 @@
         },
         {
             "id": 16,
-            "title": "Never gonna let you down!",
+            "title": "Unfortunate",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Loss 10 times",
+            "description": "Lose 10 times",
             "value": 0,
             "neededValue": 10,
             "displayAsPercentage": false,
@@ -82,13 +82,13 @@
         },
         {
             "id": 17,
-            "title": "Never gonna run around and desert you!",
+            "title": "It Happens",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Loss 25 times",
+            "description": "Lose 25 times",
             "value": 0,
             "neededValue": 25,
             "displayAsPercentage": false,
@@ -104,9 +104,9 @@
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Failed word 4 times",
+            "description": "Failed 50 words",
             "value": 0,
-            "neededValue": 4,
+            "neededValue": 50,
             "displayAsPercentage": false,
             "points": 10,
             "completed": false,
@@ -114,15 +114,15 @@
         },
         {
             "id": 26,
-            "title": "Keep Trying! +",
+            "title": "Don't give up!",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Failed word 20 times",
+            "description": "Failed 250 words",
             "value": 0,
-            "neededValue": 20,
+            "neededValue": 250,
             "displayAsPercentage": false,
             "points": 10,
             "completed": false,
@@ -130,61 +130,13 @@
         },
         {
             "id": 27,
-            "title": "Keep Trying! ++",
+            "title": "Understandable",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Failed word 100 times",
-            "value": 0,
-            "neededValue": 100,
-            "displayAsPercentage": false,
-            "points": 10,
-            "completed": false,
-            "secret": false
-        },
-        {
-            "id": 30,
-            "title": "Count Word -,-",
-            "icon": {
-                "instanceID": 0
-            },
-            "iconPath": "",
-            "trimmedIconPath": "",
-            "description": "Correct input 25 times",
-            "value": 0,
-            "neededValue": 25,
-            "displayAsPercentage": false,
-            "points": 10,
-            "completed": false,
-            "secret": false
-        },
-        {
-            "id": 35,
-            "title": "Count Word -,- 2",
-            "icon": {
-                "instanceID": 0
-            },
-            "iconPath": "",
-            "trimmedIconPath": "",
-            "description": "Incorrect input 25 times",
-            "value": 0,
-            "neededValue": 25,
-            "displayAsPercentage": false,
-            "points": 10,
-            "completed": false,
-            "secret": false
-        },
-        {
-            "id": 40,
-            "title": "Amazing@@",
-            "icon": {
-                "instanceID": 0
-            },
-            "iconPath": "",
-            "trimmedIconPath": "",
-            "description": "Gain 1000 exp",
+            "description": "Failed 1000 words",
             "value": 0,
             "neededValue": 1000,
             "displayAsPercentage": false,
@@ -193,16 +145,64 @@
             "secret": false
         },
         {
-            "id": 41,
-            "title": "Amazing@@",
+            "id": 30,
+            "title": "Spelling Master",
             "icon": {
                 "instanceID": 0
             },
             "iconPath": "",
             "trimmedIconPath": "",
-            "description": "Gain 10000 exp",
+            "description": "10000 Correct Inputs",
             "value": 0,
             "neededValue": 10000,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 35,
+            "title": "Speling Mastur",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "10000 Incorrect Inputs",
+            "value": 0,
+            "neededValue": 10000,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 40,
+            "title": "Level Up!",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Reach 100 EXP",
+            "value": 0,
+            "neededValue": 100,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 41,
+            "title": "You're Breathtaking!",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Gain 420690 EXP",
+            "value": 0,
+            "neededValue": 420690,
             "displayAsPercentage": false,
             "points": 10,
             "completed": false,

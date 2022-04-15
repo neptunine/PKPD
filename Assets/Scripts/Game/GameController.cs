@@ -28,6 +28,7 @@ namespace Game {
             optionsMenu,
             statsMenu,
             creditsMenu,
+            achievementMenu,
             levelUI,
             endUI;
 
@@ -54,6 +55,7 @@ namespace Game {
             optionsMenu.SetActive(false);
             statsMenu.SetActive(false);
             creditsMenu.SetActive(false);
+            achievementMenu.SetActive(false);
         }
 
         private void Start()
