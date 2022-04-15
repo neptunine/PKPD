@@ -1753,9 +1753,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 1726739341}
   target: {fileID: 1483393905}
-  spacing: {x: 256, y: 0}
+  spacing: {x: -256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: 50, y: 0}
 --- !u!1 &178986440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,7 +2229,7 @@ MonoBehaviour:
   target: {fileID: 1726739341}
   spacing: {x: -256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: 50, y: 0}
 --- !u!114 &201432866
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -7334,9 +7334,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 81857401}
   target: {fileID: 1726739341}
-  spacing: {x: -256, y: 0}
+  spacing: {x: 256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: -50, y: 0}
 --- !u!114 &748677672
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -7591,9 +7591,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 1726739341}
   target: {fileID: 81857401}
-  spacing: {x: 256, y: 0}
+  spacing: {x: -256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: 50, y: 0}
 --- !u!1 &816900985
 GameObject:
   m_ObjectHideFlags: 0
@@ -7893,9 +7893,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 1336822199}
   target: {fileID: 1726739341}
-  spacing: {x: -256, y: 0}
+  spacing: {x: 256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: -50, y: 0}
 --- !u!114 &830634078
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -7965,9 +7965,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 81857401}
   target: {fileID: 1726739341}
-  spacing: {x: -256, y: 0}
+  spacing: {x: 256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: -50, y: 0}
 --- !u!114 &833228430
 MonoBehaviour:
   m_ObjectHideFlags: 16
@@ -14623,9 +14623,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initial: {fileID: 1726739341}
   target: {fileID: 1336822199}
-  spacing: {x: 256, y: 0}
+  spacing: {x: -256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: 100, y: 0}
+  movement: {x: 50, y: 0}
 --- !u!114 &1370998906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15452,7 +15452,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1439491760
@@ -16810,7 +16810,7 @@ MonoBehaviour:
   target: {fileID: 266904188}
   spacing: {x: 256, y: 0}
   moveTarget: {fileID: 1904054734}
-  movement: {x: -100, y: 0}
+  movement: {x: -50, y: 0}
 --- !u!1 &1582510554
 GameObject:
   m_ObjectHideFlags: 0
@@ -20112,7 +20112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 270, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904054735
@@ -20170,7 +20170,7 @@ MonoBehaviour:
     Y: 1
     Z: 1
   anchor: {fileID: 1438639249}
-  lerpSpeed: 5
+  lerpSpeed: 6.9
   smoothTime: 0.1
 --- !u!1 &1911120491
 GameObject:
