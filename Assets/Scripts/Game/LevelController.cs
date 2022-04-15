@@ -34,8 +34,13 @@ namespace Game
             displayLayout,
             inputLayout;
 
+        public RectTransform
+            displaySpawn,
+            inputSpawn;
+
         [SerializeField]
-        private Text text;
+        private TMP_Text
+            levelText;
 
         public string
             passText = "Finish",
@@ -201,7 +206,7 @@ namespace Game
             }
             else
             {
-                for (int i = 0; i < len; i++)
+                for (int i = 0; i < disChars.Length; i++)
                 {
                     inChars[i] = _expectChars[i] = disChars[i];
                     disChars[i] = '\0';
@@ -210,7 +215,7 @@ namespace Game
 
             for (int i = 0; i < disChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
+                GameObject charObject = Instantiate(charPrefab, displaySpawn.position, Quaternion.identity, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = "W." + i.ToString();
                 //charObject.GetComponentInChildren<Image>().sprite = GetSprite(disChars[i]);
@@ -261,7 +266,7 @@ namespace Game
             _inputChars = inChars;
             for (int i = 0; i < inChars.Length; i++)
             {
-                GameObject charObject = Instantiate(charPrefab.gameObject, charDisplay.transform);
+                GameObject charObject = Instantiate(charPrefab, inputSpawn.position, Quaternion.identity, charDisplay.transform);
                 //charObject.GetComponent<RectTransform>().anchoredPosition3D = Vector3.zero;
                 charObject.name = "D." + i.ToString();
                 //charObject.GetComponentInChildren<Image>().sprite = GetSprite(inChars[i]);
@@ -296,7 +301,7 @@ namespace Game
             _selectedChar = _selectedInput = -1;
             _targetWord = null;
             _expectChars = null;
-            text.text = string.Empty;
+            levelText.text = string.Empty;
             graphics.Clear();
             _stage = graphics.maxstage;
 
@@ -503,7 +508,7 @@ namespace Game
             Journal.Increment(5, 1);
 
             yield return new WaitForSeconds(2);
-            text.text = passText;
+            levelText.text = passText;
             nextUI.SetActive(true);
 
         }
@@ -524,7 +529,7 @@ namespace Game
             Journal.Increment(4, 1);
 
             yield return new WaitForSeconds(2);
-            text.text = failText;
+            levelText.text = failText;
             nextUI.SetActive(true);
 
         }
@@ -557,27 +562,29 @@ namespace Game
 
             Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp} [{_expScale}x])({debug})");
 
+            graphics.SetStage(-1);
             if (dead) _controller.audioController.PlayFailed();
             else {
                 _controller.audioController.PlayVictory();
                 _controller.playerData.Increment("LevelCleared");
             }
 
-            TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
+            TMP_Text[] endText = endScreenUI.GetComponentsInChildren<TMP_Text>();
+            endText[0].text = endText[1].text = string.Empty;
             GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
             endScreenUI.SetActive(true);
             backButton.SetActive(false);
 
-            endText.text = $"{(dead ? "Game Over" : "Victory")}";
+            endText[0].text = $"{(dead ? "Game Over" : "Victory")}";
             
             yield return new WaitForSeconds(2);
-            endText.text += $"\nScore: {Mathf.RoundToInt(score)}";
+            endText[1].text += $"\nScore: {Mathf.RoundToInt(score)}";
 
             yield return new WaitForSeconds(2);
-            endText.text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
+            endText[1].text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
 
             yield return new WaitForSeconds(2);
-            endText.text += $"\nEXP: {exp}";
+            endText[1].text += $"\nEXP: {exp}";
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);

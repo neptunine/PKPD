@@ -28,7 +28,8 @@ namespace Game {
             optionsMenu,
             statsMenu,
             creditsMenu,
-            levelUI;
+            levelUI,
+            endUI;
 
         [SerializeField]
         private string
@@ -46,6 +47,7 @@ namespace Game {
 
             levelController.gameObject.SetActive(false);
             levelUI.SetActive(false);
+            endUI.SetActive(false);
             menuObject.SetActive(true);
             mainMenu.SetActive(true);
             levelMenu.SetActive(false);
