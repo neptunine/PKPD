@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace GameGrind
+namespace Journal
 {
     [System.Serializable]
     public class EditorAchievementHandler

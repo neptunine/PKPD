@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace GameGrind
+namespace Journal
 {
     [DisallowMultipleComponent]
     public class AchievementGranter : MonoBehaviour
     {
         AchievementUIPopup achievementPopup;
         // Audio source for handling sound played on Achievement Grant
-        AudioSource audioSource;
+        //AudioSource audioSource;
+        Game.AudioController audioController;
+
         void Start()
         {
             achievementPopup = GetComponent<AchievementUIPopup>();
-            audioSource = GetComponent<AudioSource>();
+            //audioSource = GetComponent<AudioSource>();
 
             // Subscribe to the OnAchievementGrant event so we know when an achievement was completed
             AchievementEvents.AchievementGranted += ShowAchievementGrant;
@@ -24,7 +26,8 @@ namespace GameGrind
         /// <param name="achievement"></param>
         public void ShowAchievementGrant(Achievement achievement)
         {
-            audioSource.Play();
+            //audioSource.Play();
+            audioController.PlayAchievementGrant();
             achievementPopup.SetAchievementValues(achievement);
         }
     }

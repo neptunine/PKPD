@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Text.RegularExpressions;
 using TMPro;
 #pragma warning disable 649
-namespace GameGrind
+namespace Journal
 {
     public class AchievementUIElement : MonoBehaviour
     {

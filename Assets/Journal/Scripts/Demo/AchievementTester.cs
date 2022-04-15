@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameGrind
+namespace Journal
 {
     public class AchievementTester : MonoBehaviour
     {

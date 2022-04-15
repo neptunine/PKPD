@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Journal;
 
 namespace Game
 {
@@ -127,6 +128,7 @@ namespace Game
             if (!focus)
             {
                 WriteSave();
+                Journal.Journal.Save();
                 Debug.Log($"[<color=orange>PlayerData</color>] Saved player data");
             }
         }

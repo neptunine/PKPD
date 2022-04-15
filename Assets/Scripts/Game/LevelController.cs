@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Utility;
-using GameGrind;
+using Journal;
 
 namespace Game
 {
@@ -465,7 +465,7 @@ namespace Game
             selector.GetComponent<SmoothFollow>().anchor = _wordButtons[_selectedChar].transform;
 
             if (Random.value < .1f) _controller.audioController.PlayCharacterCorrect();
-            Journal.Increment(2, 1);
+            Journal.Journal.Increment(2, 1);
 
         }
 
@@ -505,7 +505,7 @@ namespace Game
 
             _controller.audioController.PlayWordCorrect();
             _controller.playerData.Increment("WordCleared");
-            Journal.Increment(5, 1);
+            Journal.Journal.Increment(5, 1);
 
             yield return new WaitForSeconds(2);
             levelText.text = passText;
@@ -526,7 +526,7 @@ namespace Game
 
             _controller.audioController.PlayWordFail();
             _controller.playerData.Increment("WordFailed");
-            Journal.Increment(4, 1);
+            Journal.Journal.Increment(4, 1);
 
             yield return new WaitForSeconds(2);
             levelText.text = failText;
@@ -569,27 +569,26 @@ namespace Game
                 _controller.playerData.Increment("LevelCleared");
             }
 
-            TMP_Text[] endText = endScreenUI.GetComponentsInChildren<TMP_Text>();
-            endText[0].text = endText[1].text = string.Empty;
+            TMP_Text endText = endScreenUI.GetComponentInChildren<TMP_Text>();
             GameObject backButton = endScreenUI.GetComponentInChildren<Button>().gameObject;
             endScreenUI.SetActive(true);
             backButton.SetActive(false);
 
-            endText[0].text = $"{(dead ? "Game Over" : "Victory")}";
+            endText.text = $"{(dead ? "Game Over" : "Victory")}";
             
             yield return new WaitForSeconds(2);
-            endText[1].text += $"\nScore: {Mathf.RoundToInt(score)}";
+            endText.text += $"\nScore: {Mathf.RoundToInt(score)}";
 
             yield return new WaitForSeconds(2);
-            endText[1].text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
+            endText.text += $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}";
 
             yield return new WaitForSeconds(2);
-            endText[1].text += $"\nEXP: {exp}";
+            endText.text += $"\nEXP: {exp}";
 
             yield return new WaitForSeconds(2);
             backButton.SetActive(true);
 
-            Journal.Increment(3, 1);
+            Journal.Journal.Increment(3, 1);
         }
 
     }

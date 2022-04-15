@@ -4,7 +4,7 @@ using System.Collections.Generic;
 // Unassigned warnings due to [SerializeField] private fields being assigned in inspector
 #pragma warning disable 649
 
-namespace GameGrind
+namespace Journal
 {
     public class StatTrack : MonoBehaviour
     {
@@ -13,7 +13,8 @@ namespace GameGrind
         private AchievementCollection achievements;
         void Awake()
         {
-            Journal.SaveName = string.Format("{0}{1}", settings.saveFileName, ".json");
+            //Journal.SaveName = string.Format("{0}{1}", settings.saveFileName, ".json");
+            Journal.SaveName = string.Format("{0}", settings.saveFileName);
             Journal.SavePath = string.Format("{0}{1}", Application.persistentDataPath, settings.saveDataPath);
 
             achievements = new AchievementCollection();

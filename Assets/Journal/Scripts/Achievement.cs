@@ -1,4 +1,4 @@
-﻿namespace GameGrind
+﻿namespace Journal
 {
     [System.Serializable]
     public class Achievement

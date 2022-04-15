@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace GameGrind
+namespace Journal
 {
     //[CreateAssetMenu(fileName = "Settings", menuName = "Journal/Settings File")]
     public class JournalSettings : ScriptableObject

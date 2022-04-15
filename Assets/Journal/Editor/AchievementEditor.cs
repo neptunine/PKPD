@@ -6,7 +6,7 @@ using System.IO;
 // Unassigned warnings due to [SerializeField] private fields being assigned in inspector
 #pragma warning disable 414
 
-namespace GameGrind
+namespace Journal
 {
     public class AchievementEditor : EditorWindow
     {

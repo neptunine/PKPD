@@ -43,7 +43,8 @@ namespace Game
             nextWord,
             levelStart,
             levelVictory,
-            levelFail;
+            levelFail,
+            achievementGrant;
 
         public void SetController(GameController controller)
         {
@@ -97,6 +98,11 @@ namespace Game
         public void PlayFailed()
         {
             _audioSource.PlayOneShot(levelFail[Random.Range(0, levelFail.Length)]);
+        }
+
+        public void PlayAchievementGrant()
+        {
+            _audioSource.PlayOneShot(achievementGrant[Random.Range(0, achievementGrant.Length)]);
         }
     }
 }

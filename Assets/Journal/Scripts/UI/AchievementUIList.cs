@@ -6,7 +6,7 @@ using TMPro;
 // Unassigned warnings due to [SerializeField] private fields being assigned in inspector
 #pragma warning disable 649
 
-namespace GameGrind
+namespace Journal
 {
     public class AchievementUIList : MonoBehaviour
     {

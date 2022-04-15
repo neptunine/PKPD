@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GameGrind
+namespace Journal
 {
     public class AchievementController
     {
