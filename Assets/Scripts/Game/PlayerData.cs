@@ -23,8 +23,7 @@ namespace Game
         private class Save
         {
             public int
-                lives,
-                totalLivesTaken;
+                lives;
 
             public long
                 damageTime,
@@ -39,6 +38,8 @@ namespace Game
                 volume;
 
             public int
+                totalCorrectInput,
+                totalIncorrectInput,
                 totalWordCleared,
                 totalWordFailed,
                 totalLevelCleared,
@@ -52,6 +53,8 @@ namespace Game
             _volume;
 
         private int
+            _totalCorrectInput,
+            _totalIncorrectInput,
             _totalWordCleared,
             _totalWordFailed,
             _totalLevelCleared,
@@ -65,6 +68,8 @@ namespace Game
 
         public float volume { get { return _volume; } set { _volume = value; } }
         public TimeSpan timePlayed { get { return _timePlayed + (DateTime.UtcNow - _focusTime); } }
+        public int totalCorrectInput { get { return _totalCorrectInput; } }
+        public int totalIncorrectInput{ get { return _totalIncorrectInput; } }
         public int totalWordCleared { get { return _totalWordCleared; } }
         public int totalWordFailed { get { return _totalWordFailed; } }
         public int totalLevelCleared { get { return _totalLevelCleared; } }
@@ -81,8 +86,7 @@ namespace Game
 
         private int
            _lives,
-           _timeToHeal,
-           _totalLivesTaken;
+           _timeToHeal;
 
         private DateTime
             _damageTime,
@@ -90,7 +94,6 @@ namespace Game
         
         public bool isOutOfLife { get { return _lives <= 0; } }
         public int lives { get { return _lives; } }
-        public int totalLivesTaken { get { return _totalLivesTaken; } }
 
         [Header("level")]
         private int
@@ -246,13 +249,14 @@ namespace Game
             Save save = new Save
             {
                 lives = _lives,
-                totalLivesTaken = _totalLivesTaken,
                 damageTime = ((DateTimeOffset)_damageTime).ToUnixTimeMilliseconds(),
                 nextHealTime = ((DateTimeOffset)_nextHealTime).ToUnixTimeMilliseconds(),
                 level = _level,
                 currentExp = _currentExp,
                 totalExp = _totalExp,
                 timePlayed = _timePlayed,
+                totalCorrectInput = _totalCorrectInput,
+                totalIncorrectInput = _totalIncorrectInput,
                 totalWordCleared = _totalWordCleared,
                 totalWordFailed = _totalWordFailed,
                 totalLevelCleared = _totalLevelCleared,
@@ -273,13 +277,14 @@ namespace Game
             {
                 Save save = JsonUtility.FromJson<Save>(File.ReadAllText(_filepath));
                 _lives = save.lives;
-                _totalLivesTaken = save.totalLivesTaken;
                 _damageTime = DateTimeOffset.FromUnixTimeMilliseconds(save.damageTime).UtcDateTime;
                 _nextHealTime = DateTimeOffset.FromUnixTimeMilliseconds(save.nextHealTime).UtcDateTime;
                 _level = save.level;
                 _currentExp = save.currentExp;
                 _totalExp = save.totalExp;
                 _timePlayed = save.timePlayed;
+                _totalCorrectInput = save.totalCorrectInput;
+                _totalIncorrectInput = save.totalIncorrectInput;
                 _totalWordCleared = save.totalWordCleared;
                 _totalWordFailed = save.totalWordFailed;
                 _totalLevelCleared = save.totalLevelCleared;
@@ -292,12 +297,11 @@ namespace Game
             {
                 DateTime now = DateTime.UtcNow;
                 _lives = fullLives;
-                _totalLivesTaken = 0;
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
                 _timePlayed = TimeSpan.Zero;
-                _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
+                _totalCorrectInput = _totalIncorrectInput = _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
                 _volume = 1;
 
                Debug.Log($"[<color=orange>PlayerData</color>] File not found \"{_filepath}\"");
@@ -307,13 +311,14 @@ namespace Game
             {
                 Save save = ReadFromBinaryFile<Save>(_filepath);
                 _lives = save.lives;
-                _totalLivesTaken = save.totalLivesTaken;
                 _damageTime = DateTimeOffset.FromUnixTimeMilliseconds(save.damageTime).UtcDateTime;
                 _nextHealTime = DateTimeOffset.FromUnixTimeMilliseconds(save.nextHealTime).UtcDateTime;
                 _level = save.level;
                 _currentExp = save.currentExp;
                 _totalExp = save.totalExp;
                 _timePlayed = save.timePlayed;
+                _totalCorrectInput = save.totalCorrectInput;
+                _totalIncorrectInput = save.totalIncorrectInput;
                 _totalWordCleared = save.totalWordCleared;
                 _totalWordFailed = save.totalWordFailed;
                 _totalLevelCleared = save.totalLevelCleared;
@@ -326,12 +331,11 @@ namespace Game
             {
                 DateTime now = DateTime.UtcNow;
                 _lives = fullLives;
-                _totalLivesTaken = 0;
                 _damageTime = now;
                 _nextHealTime = now;
                 _level = _currentExp = _totalExp = 0;
                 _timePlayed = TimeSpan.Zero;
-                _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
+                _totalCorrectInput = _totalIncorrectInput = _totalWordCleared = _totalWordFailed = _totalLevelCleared = _totalLevelFailed = 0;
                 _volume = 1;
 
                 Debug.LogWarning($"[<color=orange>PlayerData</color>] File \"{_filepath}\" can not be read\n{e}");
