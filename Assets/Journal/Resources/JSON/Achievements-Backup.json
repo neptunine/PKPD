@@ -207,6 +207,54 @@
             "points": 10,
             "completed": false,
             "secret": false
+        },
+        {
+            "id": 20,
+            "title": "Newbie",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Complete 50 Words",
+            "value": 0,
+            "neededValue": 50,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 21,
+            "title": "Expert",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Complete 250 Words",
+            "value": 0,
+            "neededValue": 250,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
+        },
+        {
+            "id": 22,
+            "title": "Master",
+            "icon": {
+                "instanceID": 0
+            },
+            "iconPath": "",
+            "trimmedIconPath": "",
+            "description": "Complete 1000 Words",
+            "value": 0,
+            "neededValue": 1000,
+            "displayAsPercentage": false,
+            "points": 10,
+            "completed": false,
+            "secret": false
         }
     ]
 }
