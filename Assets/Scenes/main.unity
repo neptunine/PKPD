@@ -1799,8 +1799,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c41d382c5390dad419373b09fb86ff09, type: 3}
   - {fileID: 8300000, guid: b7579e9bd9d33914f9f2cbc588012c0c, type: 3}
   achievementGrant:
-  - {fileID: 8300000, guid: 3884c6922b4d5f842895e66c21c6eb2b, type: 3}
-  - {fileID: 8300000, guid: dee385ec1d3021e41bd48a3ca874b0ca, type: 3}
+  - {fileID: 8300000, guid: 8ebbdf74fd33ec1499017a9152c42fd1, type: 3}
 --- !u!114 &169596347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12112,6 +12111,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 994610522}
         m_MethodName: Transition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 169596345}
+        m_MethodName: PlayAchievementGrant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
