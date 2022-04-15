@@ -1582,6 +1582,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d906da799ecd4474eae5e6f0cad73ba0, type: 3}
   - {fileID: 8300000, guid: c41d382c5390dad419373b09fb86ff09, type: 3}
   - {fileID: 8300000, guid: b7579e9bd9d33914f9f2cbc588012c0c, type: 3}
+  achievementGrant:
+  - {fileID: 8300000, guid: 3884c6922b4d5f842895e66c21c6eb2b, type: 3}
+  - {fileID: 8300000, guid: dee385ec1d3021e41bd48a3ca874b0ca, type: 3}
 --- !u!114 &169596347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11040,7 +11043,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1884616597}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19847,8 +19850,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1782133877}
-  - {fileID: 2037017893}
   - {fileID: 1091463799}
+  - {fileID: 2037017893}
   - {fileID: 1287644116}
   - {fileID: 1757189731}
   - {fileID: 1368989870}
@@ -20110,7 +20113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 240, y: 240}
+  m_SizeDelta: {x: 270, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1904054735
 MonoBehaviour:
@@ -20131,7 +20134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9ca27b0643bd448d9ba2942d63b2370b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 260414b871dc04adbb62c533215b83f0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23606,6 +23609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fe351997c424a54fb0c1403da94b566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioController: {fileID: 169596345}
 --- !u!114 &114643800451171876
 MonoBehaviour:
   m_ObjectHideFlags: 0

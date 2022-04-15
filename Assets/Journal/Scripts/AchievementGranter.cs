@@ -9,7 +9,7 @@ namespace Journal
         AchievementUIPopup achievementPopup;
         // Audio source for handling sound played on Achievement Grant
         //AudioSource audioSource;
-        Game.AudioController audioController;
+        [SerializeField]Game.AudioController audioController;
 
         void Start()
         {
