@@ -60,7 +60,7 @@ namespace Game {
 
         private void Start()
         {
-            
+            audioController.PlayStart();
         }
 
         private void Update()

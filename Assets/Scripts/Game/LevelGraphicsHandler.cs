@@ -53,8 +53,8 @@ namespace Game
         [Header("Debug")]
 
         public bool Override = false;
-        [Range(0, 7)] public int Y;
-        [Range(-4, 4)] public float X;
+        [Range(-1, 7)] public int stage;
+        [Range(-4, 4)] public float tilt;
 #endif
 
         private void Awake()
@@ -78,8 +78,8 @@ namespace Game
 #if UNITY_EDITOR
             if (Override)
             {
-                _stage = Y;
-                _tilt = X;
+                _stage = stage;
+                _tilt = tilt;
                 _animator.SetInteger("stage", _stage);
                 _animator.SetFloat("tilt", _tilt);
             }

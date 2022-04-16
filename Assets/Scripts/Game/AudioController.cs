@@ -58,7 +58,10 @@ namespace Game
             _audioSource = GetComponentInChildren<AudioSource>();
             volumeController.SetController(this);
             volumeController.SetVolume(_controller.playerData.volume);
+        }
 
+        public void PlayStart()
+        {
             _audioSource.PlayOneShot(start[Random.Range(0, start.Length)]);
         }
 
