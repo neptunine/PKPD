@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 namespace Game {
@@ -11,7 +12,7 @@ namespace Game {
         public TMP_Text currentExp;
         public TMP_Text levelupExp;
         public TMP_Text totalExp;
-        public RectTransform expBar;
+        public Slider expBar;
 
         [Header("time")]
         public TMP_Text timePlayed;
@@ -20,19 +21,19 @@ namespace Game {
         public TMP_Text correctInput;
         public TMP_Text incorrectInput;
         public TMP_Text percentInput;
-        public RectTransform inputBar;
+        public Slider inputBar;
 
         [Header("word")]
         public TMP_Text wordCleared;
         public TMP_Text wordFailed;
         public TMP_Text percentWord;
-        public RectTransform wordBar;
+        public Slider wordBar;
 
         [Header("level")]
         public TMP_Text levelCleared;
         public TMP_Text levelFailed;
         public TMP_Text percentLevel;
-        public RectTransform levelBar;
+        public Slider levelBar;
 
 
         private void OnEnable()
@@ -43,7 +44,7 @@ namespace Game {
             currentExp.text = string.Format("{0:N0}", playerData.currentExp);
             levelupExp.text = string.Format("{0:N0}", playerData.expForNextLevel);
             totalExp.text = string.Format("{0:N0}", playerData.totalExp);
-            expBar.localScale = new Vector3(1f * playerData.currentExp / playerData.expForNextLevel, inputBar.localScale.y, inputBar.localScale.z);
+            expBar.value = 1f * playerData.currentExp / playerData.expForNextLevel;
             t = playerData.totalCorrectInput;
             f = playerData.totalIncorrectInput;
             if (t + f != 0) p = 1f * t / (t + f);
@@ -51,7 +52,7 @@ namespace Game {
             correctInput.text = string.Format("{0:N0}", t);
             incorrectInput.text = string.Format("{0:N0}", f);
             percentInput.text = string.Format("{0:P0}", p);
-            inputBar.localScale = new Vector3(p, inputBar.localScale.y, inputBar.localScale.z);
+            inputBar.value = p;
             t = playerData.totalWordCleared;
             f = playerData.totalWordFailed;
             if (t + f != 0) p = 1f * t / (t + f);
@@ -59,7 +60,7 @@ namespace Game {
             wordCleared.text = string.Format("{0:N0}", t);
             wordFailed.text = string.Format("{0:N0}", f);
             percentWord.text = string.Format("{0:P0}", p);
-            wordBar.localScale = new Vector3(p, wordBar.localScale.y, wordBar.localScale.z);
+            wordBar.value = p;
             t = playerData.totalLevelCleared;
             f = playerData.totalLevelFailed;
             if (t + f != 0) p = 1f * t / (t + f);
@@ -67,7 +68,7 @@ namespace Game {
             levelCleared.text = string.Format("{0:N0}", t);
             levelFailed.text = string.Format("{0:N0}", f);
             percentLevel.text = string.Format("{0:P0}", p);
-            levelBar.localScale = new Vector3(p, levelBar.localScale.y, levelBar.localScale.z);
+            levelBar.value = p;
             timePlayed.text = string.Format("{0:F1} Hours", playerData.timePlayed.TotalHours);
         }
     }

@@ -41,7 +41,9 @@ namespace Game
             wordCorrect,
             wordFail,
             nextWord,
+            nextWord1Life,
             levelStart,
+            levelStart0Life,
             levelVictory,
             levelFail,
             achievementGrant;
@@ -85,9 +87,19 @@ namespace Game
             _audioSource.PlayOneShot(nextWord[Random.Range(0, nextWord.Length)]);
         }
 
+        public void PlayNextWord1Life()
+        {
+            _audioSource.PlayOneShot(nextWord1Life[Random.Range(0, nextWord1Life.Length)]);
+        }
+
         public void PlayLevelStart()
         {
             _audioSource.PlayOneShot(levelStart[Random.Range(0, levelStart.Length)]);
+        }
+
+        public void PlayLevelStart0Life()
+        {
+            _audioSource.PlayOneShot(levelStart0Life[Random.Range(0, levelStart0Life.Length)]);
         }
 
         public void PlayVictory()

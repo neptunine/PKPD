@@ -195,6 +195,11 @@ namespace Game
                 return;
             }
             _isQuestEnded = false;
+            if (_quest != 0)
+            {
+                if (_controller.playerData.lives == 1) _controller.audioController.PlayNextWord1Life();
+                else _controller.audioController.PlayNextWord();
+            }
             _quest += 1;
 
             _targetWord = _wordList[_quest - 1];

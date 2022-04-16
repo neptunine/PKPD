@@ -72,6 +72,7 @@ namespace Game {
         {
             if (playerData.isOutOfLife)
             {
+                audioController.PlayLevelStart0Life();
                 Debug.Log($"[<color=magenta>GameController</color>] Can't Start Level without life");
                 return;
             }
