@@ -46,6 +46,9 @@ namespace Game
             passText = "Finish",
             failText = "Failed";
 
+        public float
+            endTitleSize = 20;
+
         [System.Serializable]
         public class JournalID
         {
@@ -624,7 +627,7 @@ namespace Game
             string expString = $"{exp:N0} x {_expScale}";
             string expStringFinal = $"{expFinal:N0}";
 
-            endText.text = "<size=20>";
+            endText.text = $"<size={endTitleSize}>";
             foreach (char c in title)
             {
                 endText.text += c;

@@ -1582,9 +1582,9 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 40
+  m_lineSpacing: 50
   m_lineSpacingMax: 0
-  m_paragraphSpacing: 40
+  m_paragraphSpacing: 50
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
@@ -6889,7 +6889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &574405227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6952,7 +6952,7 @@ MonoBehaviour:
       type: 2}
   size: {x: 32, y: 32}
   maxSize: 20
-  numOfCircleToShow: 1
+  numOfCircleToShow: 2
   Initialized: 0
 --- !u!4 &574405229
 Transform:
@@ -8244,6 +8244,7 @@ MonoBehaviour:
   levelText: {fileID: 1361380648}
   passText: Finish
   failText: Failed
+  endTitleSize: 16
   journal:
     correctInput: 1e000000
     inorrectInput: 23000000
