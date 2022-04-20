@@ -585,12 +585,12 @@ namespace Game
                 
             }
             score /= _results.Length;
-            exp = Mathf.FloorToInt(exp * _expScale);
-            _controller.playerData.AddExperience(exp);
+            int expFinal = Mathf.FloorToInt(exp * _expScale);
+            _controller.playerData.AddExperience(expFinal);
             foreach (int i in journal.exp)
-                Journal.Journal.Increment(i, exp);
+                Journal.Journal.Increment(i, expFinal);
 
-            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {exp} [{_expScale}x])({debug})");
+            Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {expFinal} [{exp}x{_expScale}])({debug})");
 
             graphics.SetStage(-1);
             if (dead)
@@ -614,12 +614,15 @@ namespace Game
             backButton.SetActive(false);
 
             string title =
-                $"{(dead ? "Game Over" : "Victory")}";
+                $"{(dead ? "GAME OVER" : "VICTORY")}";
 
             string text =
                 $"\nScore: {Mathf.RoundToInt(score)}" +
                 $"\nProgress: {(dead ? _quest - 1 : _quest)}/{_results.Length}" +
-                $"\nEXP: {exp:N0}";
+                $"\nEXP: {exp:N0} x {_expScale}";
+
+            string expString = $"{exp:N0} x {_expScale}";
+            string expStringFinal = $"{expFinal:N0}";
 
             endText.text = "<size=20>";
             foreach (char c in title)
@@ -628,10 +631,21 @@ namespace Game
                 yield return new WaitForSeconds(.2f);
             }
             endText.text += "</size>";
-            
-            yield return new WaitForSeconds(1);
 
+            yield return new WaitForSeconds(1);
             foreach (char c in text)
+            {
+                endText.text += c;
+                yield return new WaitForSeconds(.1f);
+            }
+            yield return new WaitForSeconds(.5f);
+
+            for (int i = 0; i < expString.Length; i++)
+            {
+                endText.text = endText.text.Remove(endText.text.Length - 1);
+                yield return new WaitForSeconds(.1f);
+            }
+            foreach (char c in expStringFinal)
             {
                 endText.text += c;
                 yield return new WaitForSeconds(.1f);
