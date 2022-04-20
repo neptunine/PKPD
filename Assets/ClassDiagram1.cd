@@ -3,7 +3,7 @@
   <Class Name="Game.AudioController">
     <Position X="5.5" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QRAADAAAEDIIAIAkAAACECIAHABAACEAAEAAQEiCAAA=</HashCode>
+      <HashCode>QRAADAAAEDIIAIAkAAASECIAHABAADEAAEAAQEiCAIA=</HashCode>
       <FileName>Assets\Scripts\Game\AudioController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -49,7 +49,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AARAQAgCASKAAAAAAAIBoAIAAAAAAAAAIIAIBABAYEg=</HashCode>
+      <HashCode>AgRAQAgCASKAAAAAAAIBoAIAAAAACAAAIIAIBABAAEg=</HashCode>
       <FileName>Assets\Scripts\Game\LevelGraphicsHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -156,6 +156,41 @@
     <TypeIdentifier>
       <HashCode>AIQAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Assets\Scripts\Utility\TouchRaycast.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIStyle.StyleMarkupLinkAttribute" Collapsed="true">
+    <Position X="34" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MUI\UIStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIStyle.UIStyle" Collapsed="true">
+    <Position X="35.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAQQAABACAAABACABACAAAQEAAAAhAAAAAAEgAAIA=</HashCode>
+      <FileName>Assets\Scripts\MUI\UIStyle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIStyle.UIStyleMarkup" Collapsed="true">
+    <Position X="37.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MUI\UIStyleMarkup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIStyle.UIStyler" Collapsed="true">
+    <Position X="34" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEAAAABAAAAIAAAAAAAAAAAADAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\MUI\UIStyler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIStyle.UIStylerEditor" Collapsed="true">
+    <Position X="35.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\MUI\UIStyler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

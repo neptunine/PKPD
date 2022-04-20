@@ -4,6 +4,7 @@ using UnityEngine;
 using Mono.Data.Sqlite;
 using System.Data;
 using Utility;
+using System.IO;
 
 namespace Game {
     public class GameController : MonoBehaviour
@@ -44,8 +45,6 @@ namespace Game {
             levelController.SetController(this);
             audioController.SetController(this);
 
-            _filepath = $"{Application.streamingAssetsPath}/{_filename}";
-
             levelController.gameObject.SetActive(false);
             levelUI.SetActive(false);
             endUI.SetActive(false);
@@ -56,16 +55,33 @@ namespace Game {
             statsMenu.SetActive(false);
             creditsMenu.SetActive(false);
             achievementMenu.SetActive(false);
+
+
+            string _filepathAssets = $"{Application.streamingAssetsPath}/{_filename}";
+            _filepath = $"{Application.persistentDataPath}/{Path.GetFileNameWithoutExtension(_filename)}";
+#if UNITY_ANDROID
+            WWW loadDb = new WWW(_filepathAssets);
+            while (!loadDb.isDone) { }
+            File.WriteAllBytes(_filepath, loadDb.bytes);
+#else
+            File.Copy(_filepathAssets, _filepath, true);
+#endif
+            Debug.Log($"[<color=magenta>GameController</color>] Copied {_filename}");
         }
 
         private void Start()
         {
-            audioController.PlayStart();
+            
         }
 
+        bool loaded = false;
         private void Update()
         {
-
+            if (!loaded && Time.timeSinceLevelLoad > .5f)
+            {
+                audioController.PlayStart();
+                loaded = true;
+            }
         }
 
         public void StartLevel()
