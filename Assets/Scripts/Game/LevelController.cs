@@ -605,9 +605,9 @@ namespace Game
 
             Debug.Log($"[<color=cyan>LevelController</color>] Level Ended (score: {score:f2}%; exp: {expFinal} [{exp}x{_expScale}])({debug})");
 
-            graphics.SetStage(-1);
             if (dead)
             {
+                graphics.SetStage(-2);
                 _controller.audioController.PlayFailed();
                 _controller.playerData.Increment("LevelFailed");
                 foreach (int i in journal.levelFail)
@@ -615,6 +615,7 @@ namespace Game
             }
             else
             {
+                graphics.SetStage(-1);
                 _controller.audioController.PlayVictory();
                 _controller.playerData.Increment("LevelCleared");
                 foreach (int i in journal.levelComplete)

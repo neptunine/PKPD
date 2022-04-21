@@ -101,9 +101,9 @@ namespace Game
 
         public void SetStage(int i)
         {
-            if (i == -1)
+            if (i == -1 || i == -2)
             {
-                _animator.SetInteger("stage", -1);
+                _animator.SetInteger("stage", i);
                 return;
             }
             _stage = Mathf.Clamp(jar.Length - 1 - i, 0, jar.Length - 1);
