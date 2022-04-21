@@ -1804,7 +1804,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 474d0ec43acfbb045a636385b319c109, type: 3}
   - {fileID: 8300000, guid: 26335a62b3cd98f41b1310862821013b, type: 3}
   wordFail:
-  - {fileID: 8300000, guid: 5fdb13d3756c84fecac96f5a2d124370, type: 3}
   - {fileID: 8300000, guid: b88fcbdf53342514785e84f527c7cbb6, type: 3}
   - {fileID: 8300000, guid: a5e7e0fc0006f784c88b6921627c0e2c, type: 3}
   - {fileID: 8300000, guid: 90bf83206684ada458fe87e5f229fc76, type: 3}
@@ -1820,6 +1819,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3f32fc328e9872044b91f5bed47aebfb, type: 3}
   nextWord1Life:
   - {fileID: 8300000, guid: 5729bf62c1afa914394c379171355fb5, type: 3}
+  - {fileID: 8300000, guid: b34c0e800e316af4d9b884a1e0661eab, type: 3}
+  - {fileID: 8300000, guid: 79bc5575db60e9241868dc6225562b83, type: 3}
+  - {fileID: 8300000, guid: c2fcecd96c1e2c140907b0c7ea38ee1f, type: 3}
+  - {fileID: 8300000, guid: 58098924e30c1cd4b97d4206fd6cf607, type: 3}
   levelStart:
   - {fileID: 8300000, guid: 900ddf06ca253d34d879b4573c8a8bd6, type: 3}
   - {fileID: 8300000, guid: 97821995e83b2634c8cea46e81818c25, type: 3}
@@ -1828,6 +1831,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9177f67f3c00464bb5c7d07a14cdbfc, type: 3}
   - {fileID: 8300000, guid: a0bb80512770e9a47ba8cebfec94a1ef, type: 3}
   - {fileID: 8300000, guid: f610dc66e3f0942409f5b12245b91ab7, type: 3}
+  - {fileID: 8300000, guid: 4fb9e0c9598202c4b8cc3bb6158cfad8, type: 3}
   levelStart0Life:
   - {fileID: 8300000, guid: cafe1e9caecf76847b91756e434e8268, type: 3}
   levelVictory:

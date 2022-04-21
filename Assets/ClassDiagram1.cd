@@ -32,7 +32,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>iAQAhEChpGIgAQAmBAAJACAEEMJVEA0CBMAUgMhCAEg=</HashCode>
+      <HashCode>iAQAhEihpGIgAQAmBAAJACAEEMJVEA0CBMAUgMhCAEg=</HashCode>
       <FileName>Assets\Scripts\Game\LevelController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -198,6 +198,118 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAACAA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.Achievement">
+    <Position X="48.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAACAQgAAAEAAIAAAAAAAAAAAADAAAQAAIAAAAiA=</HashCode>
+      <FileName>Assets\Journal\Scripts\Achievement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementProgressData">
+    <Position X="57.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAiA=</HashCode>
+      <FileName>Assets\Journal\Scripts\Achievement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementController">
+    <Position X="52" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgABAAAAAAAAAIAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\AchievementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementEvents">
+    <Position X="53.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAkAAAAAAAAEAAAAAAAAAQAEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\AchievementEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementGranter">
+    <Position X="55.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAICAAACAAAAAAAAAgAAAAAAAAEAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\AchievementGranter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementTester">
+    <Position X="60.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\Demo\AchievementTester.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.Journal">
+    <Position X="69.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAgIAAABAJAgAAMAYAACAAAAAAAEgAAAAAAAACgAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\Journal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.StatTrack">
+    <Position X="74.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAABAACABAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\StatTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementCollection">
+    <Position X="50.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\StatTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementProgressDataCollection">
+    <Position X="59" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\StatTrack.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.JournalSettings">
+    <Position X="73" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIBCACEgAAAAAgAJBAJAAAgAACAABAEhoAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\System\JournalSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementToggle">
+    <Position X="62.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAIAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Journal\Scripts\UI\AchievementToggle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementUIElement">
+    <Position X="64.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAEAAAAAAAgAAAACAACAAACAgAAAAAAAAAABoEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\UI\AchievementUIElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementUIList">
+    <Position X="66" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAACAAAACAIAAAAQghAACBBAAABAQQBAASAEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\UI\AchievementUIList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.AchievementUIPopup">
+    <Position X="67.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAAAAAAAAAAAECAAACAAAAAAAAAAAAABEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\UI\AchievementUIPopup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Journal.JournalCanvas">
+    <Position X="71.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAQAACAAAAAAAAAAAAAAAAAAAAAAAQAAAEA=</HashCode>
+      <FileName>Assets\Journal\Scripts\UI\JournalCanvas.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
