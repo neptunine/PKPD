@@ -4,9 +4,9 @@
             "id": 10,
             "title": "First Timer",
             "icon": {
-                "instanceID": 140076
+                "instanceID": 32062
             },
-            "iconPath": "Assets/Textures/Sprite/achieve.png",
+            "iconPath": "Assets/Journal/Resources/Sprites/10.png",
             "trimmedIconPath": "",
             "description": "Won for the first time",
             "value": 0,
@@ -20,9 +20,9 @@
             "id": 11,
             "title": "Getting the hang of it",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32022
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/11.png",
             "trimmedIconPath": "",
             "description": "Won 10 times",
             "value": 0,
@@ -36,13 +36,13 @@
             "id": 12,
             "title": "Practice makes purrfect",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32014
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/12.png",
             "trimmedIconPath": "",
-            "description": "Won 50 times",
+            "description": "Won 100 times",
             "value": 0,
-            "neededValue": 50,
+            "neededValue": 100,
             "displayAsPercentage": false,
             "points": 1,
             "completed": false,
@@ -52,9 +52,9 @@
             "id": 15,
             "title": "Inevitable",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32050
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/15.png",
             "trimmedIconPath": "",
             "description": "Lose for the first time",
             "value": 0,
@@ -68,9 +68,9 @@
             "id": 16,
             "title": "Unfortunate",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32042
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/16.png",
             "trimmedIconPath": "",
             "description": "Lose 10 times",
             "value": 0,
@@ -84,9 +84,9 @@
             "id": 17,
             "title": "It Happens",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32046
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/17.png",
             "trimmedIconPath": "",
             "description": "Lose 50 times",
             "value": 0,
@@ -100,9 +100,9 @@
             "id": 20,
             "title": "Newbie",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32026
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/20.png",
             "trimmedIconPath": "",
             "description": "Complete 25 Words",
             "value": 0,
@@ -116,13 +116,13 @@
             "id": 21,
             "title": "Expert",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32034
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/21.png",
             "trimmedIconPath": "",
-            "description": "Complete 200 Words",
+            "description": "Complete 100 Words",
             "value": 0,
-            "neededValue": 200,
+            "neededValue": 100,
             "displayAsPercentage": false,
             "points": 1,
             "completed": false,
@@ -132,9 +132,9 @@
             "id": 22,
             "title": "Master",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32054
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/22.png",
             "trimmedIconPath": "",
             "description": "Complete 1000 Words",
             "value": 0,
@@ -196,9 +196,9 @@
             "id": 30,
             "title": "Spelling Master",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32058
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/30.png",
             "trimmedIconPath": "",
             "description": "10000 Correct Inputs",
             "value": 0,
@@ -212,9 +212,9 @@
             "id": 35,
             "title": "Speling Mastur",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32038
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/35.png",
             "trimmedIconPath": "",
             "description": "10000 Incorrect Inputs",
             "value": 0,
@@ -228,9 +228,9 @@
             "id": 40,
             "title": "Level Up!",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32070
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/40.png",
             "trimmedIconPath": "",
             "description": "Reach 100 EXP",
             "value": 0,
@@ -244,9 +244,9 @@
             "id": 41,
             "title": "You're Breathtaking!",
             "icon": {
-                "instanceID": 0
+                "instanceID": 32018
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/41.png",
             "trimmedIconPath": "",
             "description": "Gain 420690 EXP",
             "value": 0,

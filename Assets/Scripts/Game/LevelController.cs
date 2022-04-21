@@ -40,11 +40,19 @@ namespace Game
 
         [SerializeField]
         private TMP_Text
+            levelAns;
+
+        public string
+            passText = "Correct!!",
+            failText = "Correct answer is";
+
+        [SerializeField]
+        private TMP_Text
             levelText;
 
         public string
-            passText = "Finish",
-            failText = "Failed";
+            passTitle = "Finish",
+            failTitle = "Failed";
 
         public float
             endTitleSize = 20;
@@ -538,7 +546,8 @@ namespace Game
                 Journal.Journal.Increment(i, 1);
 
             yield return new WaitForSeconds(2);
-            levelText.text = passText;
+            levelText.text = passTitle;
+            levelAns.text = passText;
             nextUI.SetActive(true);
 
         }
@@ -560,7 +569,8 @@ namespace Game
                 Journal.Journal.Increment(i, 1);
 
             yield return new WaitForSeconds(2);
-            levelText.text = failText;
+            levelText.text = failTitle;
+            levelAns.text = $"{failText}\n\"{_targetWord}\"";
             nextUI.SetActive(true);
 
         }

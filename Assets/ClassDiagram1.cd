@@ -10,7 +10,7 @@
   <Class Name="Game.GameController">
     <Position X="2" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQQIAgBACAAAAQAAAAKAAAABAAAHAAoAgAAgIABAEA=</HashCode>
+      <HashCode>AAQQIAgBACAAAAQBAAAKAAAABAAAHAAoAgAAgIABAEA=</HashCode>
       <FileName>Assets\Scripts\Game\GameController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -32,7 +32,7 @@
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>iAQAhEChpGIgAQAmBAAJACAEEMJREA0CBMAUgMhCAEg=</HashCode>
+      <HashCode>iAQAhEChpGIgAQAmBAAJACAEEMJVEA0CBMAUgMhCAEg=</HashCode>
       <FileName>Assets\Scripts\Game\LevelController.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -158,36 +158,43 @@
       <FileName>Assets\Scripts\Utility\TouchRaycast.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UIStyle.StyleMarkupLinkAttribute" Collapsed="true">
-    <Position X="34" Y="2" Width="1.5" />
+  <Class Name="UIStyle.StyleMarkupLinkAttribute">
+    <Position X="39.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UIStyle.UIStyle" Collapsed="true">
+  <Class Name="UIStyle.UIStyle">
     <Position X="35.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAQQAABACAAABACABACAAAQEAAAAhAAAAAAEgAAIA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyle.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UIStyle.UIStyleMarkup" Collapsed="true">
+  <Class Name="UIStyle.UIStyleMarkup">
     <Position X="37.5" Y="2" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="UIStyle.UIStyleMarkup.StyleClass" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\MUI\UIStyleMarkup.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAIAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyleMarkup.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UIStyle.UIStyler" Collapsed="true">
-    <Position X="34" Y="3" Width="1.5" />
+  <Class Name="UIStyle.UIStyler">
+    <Position X="41" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>CAAAAAAEAAAABAAAAIAAAAAAAAAAAADAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyler.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="UIStyle.UIStylerEditor" Collapsed="true">
-    <Position X="35.75" Y="3" Width="1.5" />
+  <Class Name="UIStyle.UIStylerEditor">
+    <Position X="42.75" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAQAAAAAAAAAAACAA=</HashCode>
       <FileName>Assets\Scripts\MUI\UIStyler.cs</FileName>
