@@ -4,7 +4,7 @@
             "id": 10,
             "title": "First Timer",
             "icon": {
-                "instanceID": 32062
+                "instanceID": 120952
             },
             "iconPath": "Assets/Journal/Resources/Sprites/10.png",
             "trimmedIconPath": "",
@@ -20,7 +20,7 @@
             "id": 11,
             "title": "Getting the hang of it",
             "icon": {
-                "instanceID": 32022
+                "instanceID": 120956
             },
             "iconPath": "Assets/Journal/Resources/Sprites/11.png",
             "trimmedIconPath": "",
@@ -36,7 +36,7 @@
             "id": 12,
             "title": "Practice makes purrfect",
             "icon": {
-                "instanceID": 32014
+                "instanceID": 120920
             },
             "iconPath": "Assets/Journal/Resources/Sprites/12.png",
             "trimmedIconPath": "",
@@ -52,7 +52,7 @@
             "id": 15,
             "title": "Inevitable",
             "icon": {
-                "instanceID": 32050
+                "instanceID": 120912
             },
             "iconPath": "Assets/Journal/Resources/Sprites/15.png",
             "trimmedIconPath": "",
@@ -68,7 +68,7 @@
             "id": 16,
             "title": "Unfortunate",
             "icon": {
-                "instanceID": 32042
+                "instanceID": 120948
             },
             "iconPath": "Assets/Journal/Resources/Sprites/16.png",
             "trimmedIconPath": "",
@@ -84,7 +84,7 @@
             "id": 17,
             "title": "It Happens",
             "icon": {
-                "instanceID": 32046
+                "instanceID": 120936
             },
             "iconPath": "Assets/Journal/Resources/Sprites/17.png",
             "trimmedIconPath": "",
@@ -100,7 +100,7 @@
             "id": 20,
             "title": "Newbie",
             "icon": {
-                "instanceID": 32026
+                "instanceID": 120928
             },
             "iconPath": "Assets/Journal/Resources/Sprites/20.png",
             "trimmedIconPath": "",
@@ -116,13 +116,13 @@
             "id": 21,
             "title": "Expert",
             "icon": {
-                "instanceID": 32034
+                "instanceID": 120904
             },
             "iconPath": "Assets/Journal/Resources/Sprites/21.png",
             "trimmedIconPath": "",
-            "description": "Complete 100 Words",
+            "description": "Complete 200 Words",
             "value": 0,
-            "neededValue": 100,
+            "neededValue": 200,
             "displayAsPercentage": false,
             "points": 1,
             "completed": false,
@@ -132,7 +132,7 @@
             "id": 22,
             "title": "Master",
             "icon": {
-                "instanceID": 32054
+                "instanceID": 120924
             },
             "iconPath": "Assets/Journal/Resources/Sprites/22.png",
             "trimmedIconPath": "",
@@ -148,9 +148,9 @@
             "id": 25,
             "title": "Keep Trying!",
             "icon": {
-                "instanceID": 0
+                "instanceID": 120960
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/25.png",
             "trimmedIconPath": "",
             "description": "Failed 25 words",
             "value": 0,
@@ -164,9 +164,9 @@
             "id": 26,
             "title": "Don't give up!",
             "icon": {
-                "instanceID": 0
+                "instanceID": 120932
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/26.png",
             "trimmedIconPath": "",
             "description": "Failed 200 words",
             "value": 0,
@@ -180,9 +180,9 @@
             "id": 27,
             "title": "Understandable",
             "icon": {
-                "instanceID": 0
+                "instanceID": 120896
             },
-            "iconPath": "",
+            "iconPath": "Assets/Journal/Resources/Sprites/27.png",
             "trimmedIconPath": "",
             "description": "Failed 1000 words",
             "value": 0,
@@ -196,7 +196,7 @@
             "id": 30,
             "title": "Spelling Master",
             "icon": {
-                "instanceID": 32058
+                "instanceID": 120916
             },
             "iconPath": "Assets/Journal/Resources/Sprites/30.png",
             "trimmedIconPath": "",
@@ -212,7 +212,7 @@
             "id": 35,
             "title": "Speling Mastur",
             "icon": {
-                "instanceID": 32038
+                "instanceID": 120900
             },
             "iconPath": "Assets/Journal/Resources/Sprites/35.png",
             "trimmedIconPath": "",
@@ -228,7 +228,7 @@
             "id": 40,
             "title": "Level Up!",
             "icon": {
-                "instanceID": 32070
+                "instanceID": 120964
             },
             "iconPath": "Assets/Journal/Resources/Sprites/40.png",
             "trimmedIconPath": "",
@@ -244,7 +244,7 @@
             "id": 41,
             "title": "You're Breathtaking!",
             "icon": {
-                "instanceID": 32018
+                "instanceID": 120940
             },
             "iconPath": "Assets/Journal/Resources/Sprites/41.png",
             "trimmedIconPath": "",
